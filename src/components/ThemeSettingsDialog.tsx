@@ -42,7 +42,7 @@ export function ThemeSettingsDialog() {
     theme: 'system',
     primaryColor: 'blue',
     layoutDensity: 'comfortable',
-    language: locale
+    language: locale,
   }
 
   const { theme, primaryColor, layoutDensity } = preferences
@@ -76,9 +76,7 @@ export function ThemeSettingsDialog() {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{t('settings.title')}</DialogTitle>
-          <DialogDescription>
-            {t('settings.subtitle')}
-          </DialogDescription>
+          <DialogDescription>{t('settings.subtitle')}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
@@ -171,7 +169,8 @@ export function ThemeSettingsDialog() {
           {/* Layout Density */}
           <div className="space-y-3">
             <Label className="text-base flex items-center gap-2">
-              <LayoutTemplate className="h-4 w-4" /> {t('settings.layout_density')}
+              <LayoutTemplate className="h-4 w-4" />{' '}
+              {t('settings.layout_density')}
             </Label>
             <div className="grid grid-cols-2 gap-2">
               <Button

@@ -41,8 +41,9 @@ export interface Project {
   leaderId: string
   status: ProjectStatus
   priority: Priority
-  startDate: string
-  dueDate: string
+  startDate: string | null
+  dueDate: string | null
+  createdAt?: string
   members: string[] // User IDs
 }
 

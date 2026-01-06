@@ -30,6 +30,7 @@ import { ProjectMembersDialog } from './components/ProjectMembersDialog'
 import { EditProjectDialog } from './components/EditProjectDialog'
 import { CommentSection } from '@/components/pm/CommentSection'
 import { AttachmentSection } from '@/components/pm/AttachmentSection'
+import { formatDate } from '@/lib/utils'
 
 export default function ProjectDetailsPage() {
   const { projectId } = useParams()
@@ -46,6 +47,7 @@ export default function ProjectDetailsPage() {
     companies,
   } = state
   const currentUser = state.currentUser
+  const locale = currentUser?.preferences.language || 'en-US'
 
   // Component State
   const [isTaskOpen, setIsTaskOpen] = useState(false)
@@ -208,8 +210,8 @@ export default function ProjectDetailsPage() {
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 <span>
-                  {new Date(project.startDate).toLocaleDateString()()} -{' '}
-                  {new Date(project.dueDate).toLocaleDateString()}
+                  {formatDate(project.startDate, locale)} -{' '}
+                  {formatDate(project.dueDate, locale)}
                 </span>
               </div>
             </div>

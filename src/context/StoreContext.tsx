@@ -266,6 +266,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     priority: p.priority,
     startDate: p.start_date,
     dueDate: p.due_date,
+    createdAt: p.created_at,
     members: p.members || [],
   })
 
@@ -515,8 +516,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
           leader_id: data.leaderId,
           status: data.status,
           priority: data.priority,
-          start_date: data.startDate,
-          due_date: data.dueDate,
+          start_date: data.startDate === '' ? null : data.startDate,
+          due_date: data.dueDate === '' ? null : data.dueDate,
           members: data.members,
         })
         .select()
@@ -530,17 +531,20 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Project created')
     },
     updateProject: async (id, data) => {
+      const payload: any = {}
+      if (data.name !== undefined) payload.name = data.name
+      if (data.description !== undefined) payload.description = data.description
+      if (data.status !== undefined) payload.status = data.status
+      if (data.priority !== undefined) payload.priority = data.priority
+      if (data.dueDate !== undefined)
+        payload.due_date = data.dueDate === '' ? null : data.dueDate
+      if (data.startDate !== undefined)
+        payload.start_date = data.startDate === '' ? null : data.startDate
+      if (data.members !== undefined) payload.members = data.members
+
       const { error } = await supabase
         .from('projects')
-        .update({
-          name: data.name,
-          description: data.description,
-          status: data.status,
-          priority: data.priority,
-          due_date: data.dueDate,
-          start_date: data.startDate,
-          members: data.members,
-        })
+        .update(payload)
         .eq('id', id)
 
       if (error) {

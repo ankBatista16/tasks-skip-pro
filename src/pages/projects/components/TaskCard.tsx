@@ -20,7 +20,7 @@ import {
   Paperclip,
   CheckSquare,
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn, formatDate } from '@/lib/utils'
 import { EditTaskDialog } from './EditTaskDialog'
 import { CommentSection } from '@/components/pm/CommentSection'
 import { AttachmentSection } from '@/components/pm/AttachmentSection'
@@ -39,6 +39,7 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
     comments: allComments,
     attachments: allAttachments,
   } = state
+  const locale = currentUser?.preferences.language || 'en-US'
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const isCompact = currentUser?.preferences.layoutDensity === 'compact'
@@ -207,7 +208,7 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
               {task.dueDate && (
                 <div className="flex items-center gap-1 ml-auto">
                   <Calendar className="h-3 w-3" />
-                  <span>{new Date(task.dueDate).toLocaleDateString()}</span>
+                  <span>{formatDate(task.dueDate, locale)}</span>
                 </div>
               )}
               {(taskComments.length > 0 || taskAttachments.length > 0) && (

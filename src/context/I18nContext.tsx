@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react'
 import enUS from '@/locales/en-US.json'
 import ptBR from '@/locales/pt-BR.json'
 import { format } from 'date-fns'
@@ -50,7 +56,7 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
   const t = (key: string, params?: Record<string, string | number>): string => {
     const keys = key.split('.')
     let value: any = translations[locale]
-    
+
     // Traverse current locale
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
@@ -65,7 +71,11 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
     if (value === undefined && locale !== 'pt-BR') {
       let fallbackValue: any = translations['pt-BR']
       for (const k of keys) {
-        if (fallbackValue && typeof fallbackValue === 'object' && k in fallbackValue) {
+        if (
+          fallbackValue &&
+          typeof fallbackValue === 'object' &&
+          k in fallbackValue
+        ) {
           fallbackValue = (fallbackValue as any)[k]
         } else {
           fallbackValue = undefined
@@ -89,12 +99,15 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
     return value
   }
 
-  const formatDate = (date: Date | string | number, formatStr: string = 'P') => {
+  const formatDate = (
+    date: Date | string | number,
+    formatStr: string = 'P',
+  ) => {
     const dateObj = new Date(date)
     if (isNaN(dateObj.getTime())) return 'Invalid Date'
-    
+
     return format(dateObj, formatStr, {
-      locale: locale === 'pt-BR' ? dateFnsPtBR : dateFnsEnUS
+      locale: locale === 'pt-BR' ? dateFnsPtBR : dateFnsEnUS,
     })
   }
 

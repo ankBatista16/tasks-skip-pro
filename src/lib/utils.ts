@@ -1,4 +1,4 @@
-/* General utility functions (exposes cn) */
+/* General utility functions (exposes cn, formatDate, THEME_COLORS) */
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -9,6 +9,21 @@ import { twMerge } from 'tailwind-merge'
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export function formatDate(
+  date: string | number | Date | null | undefined,
+  locale: string = 'en-US',
+  options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  },
+) {
+  if (!date) return 'N/A'
+  const d = new Date(date)
+  if (isNaN(d.getTime())) return 'Invalid Date'
+  return d.toLocaleDateString(locale, options)
 }
 
 export const THEME_COLORS = {

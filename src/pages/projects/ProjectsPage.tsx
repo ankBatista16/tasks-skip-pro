@@ -30,11 +30,12 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { Priority } from '@/types'
 import { Badge } from '@/components/ui/badge'
-import { cn } from '@/lib/utils'
+import { cn, formatDate } from '@/lib/utils'
 
 export default function ProjectsPage() {
   const { state, actions } = useStore()
   const { projects, currentUser, companies } = state
+  const locale = currentUser?.preferences.language || 'en-US'
   const [isOpen, setIsOpen] = useState(false)
   const [filterCompanyId, setFilterCompanyId] = useState<string>('all')
   const navigate = useNavigate()
@@ -301,9 +302,7 @@ export default function ProjectsPage() {
                 </div>
                 <span className="flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
-                  {project.dueDate
-                    ? new Date(project.dueDate).toLocaleDateString()
-                    : 'No due date'}
+                  {formatDate(project.dueDate, locale)}
                 </span>
               </CardFooter>
             </Card>
