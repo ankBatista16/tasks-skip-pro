@@ -5,15 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react'
-import {
-  User,
-  Company,
-  Project,
-  Task,
-  Notification,
-  Comment,
-  Role,
-} from '@/types'
+import { User, Company, Project, Task, Notification, Comment } from '@/types'
 import {
   mockUsers,
   mockCompanies,
@@ -50,6 +42,8 @@ interface StoreActions {
   addNotification: (
     notification: Omit<Notification, 'id' | 'createdAt'>,
   ) => void
+  addProjectMember: (projectId: string, userId: string) => void
+  removeProjectMember: (projectId: string, userId: string) => void
 }
 
 const StoreContext = createContext<
@@ -151,8 +145,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     },
     updateTask: (id, data) => {
       setTasks(tasks.map((t) => (t.id === id ? { ...t, ...data } : t)))
-      // Only toast on manual updates, not internal status toggles if noisy
-      // toast.success('Task updated')
     },
     addComment: (data) => {
       const newComment = {
@@ -175,6 +167,50 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         createdAt: new Date().toISOString(),
       }
       setNotifications((prev) => [newNotification, ...prev])
+    },
+    addProjectMember: (projectId, userId) => {
+      const project = projects.find((p) => p.id === projectId)
+      if (!project) return
+
+      if (!project.members.includes(userId)) {
+        setProjects(
+          projects.map((p) =>
+            p.id === projectId ? { ...p, members: [...p.members, userId] } : p,
+          ),
+        )
+
+        actions.addNotification({
+          userId,
+          title: 'Added to Project',
+          message: `You have been added to ${project.name}`,
+          type: 'info',
+          read: false,
+        })
+
+        toast.success('Member added successfully')
+      }
+    },
+    removeProjectMember: (projectId, userId) => {
+      const project = projects.find((p) => p.id === projectId)
+      if (!project) return
+
+      setProjects(
+        projects.map((p) =>
+          p.id === projectId
+            ? { ...p, members: p.members.filter((m) => m !== userId) }
+            : p,
+        ),
+      )
+
+      actions.addNotification({
+        userId,
+        title: 'Removed from Project',
+        message: `You have been removed from ${project.name}`,
+        type: 'warning',
+        read: false,
+      })
+
+      toast.success('Member removed successfully')
     },
   }
 

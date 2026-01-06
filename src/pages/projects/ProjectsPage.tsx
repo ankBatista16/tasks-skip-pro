@@ -3,11 +3,10 @@ import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
 import {
   Card,
-  CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from '@/components/ui/card'
 import { Plus, Calendar, User } from 'lucide-react'
 import { StatusBadge } from '@/components/pm/StatusBadge'
@@ -38,14 +37,22 @@ export default function ProjectsPage() {
   })
 
   // Filter projects based on permissions
-  const filteredProjects =
-    currentUser?.role === 'MASTER'
-      ? projects
-      : projects.filter((p) => p.companyId === currentUser?.companyId)
+  const filteredProjects = projects.filter((project) => {
+    // MASTER sees all
+    if (currentUser?.role === 'MASTER') return true
 
-  // Further filter for standard users to only see assigned projects could be added,
-  // but spec says "USER: Restricted project-level access" which implies they see projects but maybe not edit/create.
-  // Actually, spec says: "Project List: Searchable grid/list view".
+    // Different company
+    if (project.companyId !== currentUser?.companyId) return false
+
+    // ADMIN sees all in company
+    if (currentUser?.role === 'ADMIN') return true
+
+    // USER sees only if member or leader
+    return (
+      project.members.includes(currentUser?.id || '') ||
+      project.leaderId === currentUser?.id
+    )
+  })
 
   const canCreate =
     currentUser?.role === 'MASTER' || currentUser?.role === 'ADMIN'
@@ -55,7 +62,7 @@ export default function ProjectsPage() {
     if (currentUser?.companyId || currentUser?.role === 'MASTER') {
       actions.addProject({
         ...newProject,
-        companyId: currentUser?.companyId || 'c1', // Fallback for master or handling
+        companyId: currentUser?.companyId || 'c1',
         leaderId: currentUser?.id || '',
         status: 'active',
         members: [currentUser?.id || ''],
@@ -179,6 +186,11 @@ export default function ProjectsPage() {
             </CardFooter>
           </Card>
         ))}
+        {filteredProjects.length === 0 && (
+          <div className="col-span-full text-center py-10 text-muted-foreground bg-muted/20 rounded-lg border border-dashed">
+            No projects found.
+          </div>
+        )}
       </div>
     </div>
   )

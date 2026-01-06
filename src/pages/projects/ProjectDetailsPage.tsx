@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
@@ -6,7 +6,6 @@ import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { StatusBadge } from '@/components/pm/StatusBadge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
   DialogContent,
@@ -23,22 +22,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Plus,
-  Trash2,
-  MessageSquare,
-  Paperclip,
-  ChevronDown,
-  ChevronRight,
-  Calendar,
-} from 'lucide-react'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
-import { Card } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import { Plus, MessageSquare, Paperclip, Settings } from 'lucide-react'
+import { toast } from 'sonner'
+import { TaskCard } from './components/TaskCard'
+import { ProjectMembersDialog } from './components/ProjectMembersDialog'
 
 export default function ProjectDetailsPage() {
   const { projectId } = useParams()
@@ -47,29 +34,61 @@ export default function ProjectDetailsPage() {
   const { projects, tasks, users, comments } = state
   const currentUser = state.currentUser
 
-  // Task Creation State - Moved before conditional return
+  // Component State
   const [isTaskOpen, setIsTaskOpen] = useState(false)
+  const [isMembersOpen, setIsMembersOpen] = useState(false)
   const [newTask, setNewTask] = useState({
     title: '',
     priority: 'medium' as const,
     assigneeId: '',
   })
 
-  // Comments State - Moved before conditional return
-  const [newComment, setNewComment] = useState('')
-
+  // 1. Fetch Data
   const project = projects.find((p) => p.id === projectId)
   const projectTasks = tasks.filter((t) => t.projectId === projectId)
 
-  if (!project) return <div className="p-8 text-center">Project not found</div>
+  // 2. Access Control Logic
+  const hasAccess = (() => {
+    if (!project || !currentUser) return false
+    if (currentUser.role === 'MASTER') return true
+    if (
+      currentUser.role === 'ADMIN' &&
+      currentUser.companyId === project.companyId
+    )
+      return true
+    if (project.members.includes(currentUser.id)) return true
+    return false
+  })()
 
+  // 3. Permission Effects
+  useEffect(() => {
+    if (!project) {
+      // Handled by return null check below but good to have
+    } else if (!hasAccess) {
+      toast.error('Access Denied: You are not authorized to view this project.')
+      navigate('/')
+    }
+  }, [project, hasAccess, navigate])
+
+  if (!project || !hasAccess) {
+    return (
+      <div className="p-8 text-center text-muted-foreground">
+        Loading or Access Denied...
+      </div>
+    )
+  }
+
+  const isManager =
+    currentUser?.role === 'MASTER' ||
+    (currentUser?.role === 'ADMIN' &&
+      currentUser.companyId === project.companyId) ||
+    project.leaderId === currentUser?.id
+
+  // 4. Derived Data
   const completedTasks = projectTasks.filter((t) => t.status === 'done').length
   const progress = projectTasks.length
     ? Math.round((completedTasks / projectTasks.length) * 100)
     : 0
-
-  // Filter comments after project check
-  const projectComments = comments.filter((c) => c.projectId === project.id)
 
   const handleCreateTask = (e: React.FormEvent) => {
     e.preventDefault()
@@ -109,8 +128,12 @@ export default function ProjectDetailsPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex -space-x-2 mr-2">
-              {project.members.map((mid) => {
+            <div
+              className="flex -space-x-2 mr-2 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => isManager && setIsMembersOpen(true)}
+              title={isManager ? 'Manage Members' : 'Project Members'}
+            >
+              {project.members.slice(0, 5).map((mid) => {
                 const member = users.find((u) => u.id === mid)
                 return (
                   <Avatar
@@ -122,11 +145,21 @@ export default function ProjectDetailsPage() {
                   </Avatar>
                 )
               })}
+              {project.members.length > 5 && (
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-muted border-2 border-background text-[10px] font-medium">
+                  +{project.members.length - 5}
+                </div>
+              )}
             </div>
-            {(currentUser?.role === 'ADMIN' ||
-              project.leaderId === currentUser?.id) && (
-              <Button variant="outline" size="sm">
-                Add Member
+            {isManager && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2"
+                onClick={() => setIsMembersOpen(true)}
+              >
+                <Settings className="h-4 w-4" />
+                Manage
               </Button>
             )}
           </div>
@@ -264,106 +297,14 @@ export default function ProjectDetailsPage() {
           </div>
         </TabsContent>
       </Tabs>
-    </div>
-  )
-}
 
-function TaskCard({ task }: { task: any }) {
-  const { actions, state } = useStore()
-  const [isOpen, setIsOpen] = useState(false)
-  const assignee = state.users.find((u) => u.id === task.assigneeIds[0])
-
-  const toggleStatus = () => {
-    const newStatus = task.status === 'done' ? 'todo' : 'done'
-    actions.updateTask(task.id, { status: newStatus })
-  }
-
-  const toggleSubtask = (subtaskId: string, currentStatus: boolean) => {
-    const newSubtasks = task.subtasks.map((st: any) =>
-      st.id === subtaskId ? { ...st, status: !currentStatus } : st,
-    )
-    actions.updateTask(task.id, { subtasks: newSubtasks })
-  }
-
-  return (
-    <Collapsible
-      open={isOpen}
-      onOpenChange={setIsOpen}
-      className="border rounded-lg bg-card text-card-foreground shadow-sm"
-    >
-      <div className="p-4 flex items-start gap-3">
-        <Checkbox
-          checked={task.status === 'done'}
-          onCheckedChange={toggleStatus}
-          className="mt-1"
+      {isManager && (
+        <ProjectMembersDialog
+          project={project}
+          open={isMembersOpen}
+          onOpenChange={setIsMembersOpen}
         />
-        <div className="flex-1">
-          <div className="flex items-center justify-between">
-            <span
-              className={cn(
-                'font-medium',
-                task.status === 'done' && 'line-through text-muted-foreground',
-              )}
-            >
-              {task.title}
-            </span>
-            <CollapsibleTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                {isOpen ? (
-                  <ChevronDown className="h-4 w-4" />
-                ) : (
-                  <ChevronRight className="h-4 w-4" />
-                )}
-              </Button>
-            </CollapsibleTrigger>
-          </div>
-          <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-            <StatusBadge
-              status={task.priority}
-              className="text-[10px] px-1.5 py-0 h-5"
-            />
-            {assignee && (
-              <div className="flex items-center gap-1">
-                <Avatar className="h-4 w-4">
-                  <AvatarImage src={assignee.avatarUrl} />
-                  <AvatarFallback>{assignee.name[0]}</AvatarFallback>
-                </Avatar>
-                <span>{assignee.name}</span>
-              </div>
-            )}
-            {task.dueDate && (
-              <div className="flex items-center gap-1 ml-auto">
-                <Calendar className="h-3 w-3" />
-                <span>{new Date(task.dueDate).toLocaleDateString()}</span>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      <CollapsibleContent className="px-4 pb-4 pl-10 border-t bg-muted/30">
-        <div className="pt-3 space-y-2">
-          {task.subtasks.map((st: any) => (
-            <div key={st.id} className="flex items-center gap-2">
-              <Checkbox
-                checked={st.status}
-                onCheckedChange={() => toggleSubtask(st.id, st.status)}
-                className="h-3.5 w-3.5"
-              />
-              <span
-                className={cn(
-                  'text-sm',
-                  st.status && 'line-through text-muted-foreground',
-                )}
-              >
-                {st.title}
-              </span>
-            </div>
-          ))}
-          {task.subtasks.length === 0 && (
-            <p className="text-xs text-muted-foreground italic">No subtasks</p>
-          )}
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
+      )}
+    </div>
   )
 }
