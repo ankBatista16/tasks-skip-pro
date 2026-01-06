@@ -107,6 +107,19 @@ Deno.serve(async (req: Request) => {
       )
     }
 
+    // Ensure password is provided (Requirement: Mandatory Password)
+    if (!password) {
+      return new Response(
+        JSON.stringify({
+          error: 'Missing required field: password',
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      )
+    }
+
     // 5. Additional validation for ADMIN: can only create users for their own company
     if (member.role === 'ADMIN') {
       if (companyId && companyId !== member.company_id) {
@@ -133,10 +146,11 @@ Deno.serve(async (req: Request) => {
 
     // 6. Create Auth User
     // We pass all profile data in user_metadata so the trigger can populate the members table atomically
+    // setting email_confirm: true skips the invitation email
     const { data: authUser, error: authError } =
       await supabaseAdmin.auth.admin.createUser({
         email,
-        password: password || 'password123',
+        password: password,
         email_confirm: true,
         user_metadata: {
           full_name: fullName,
@@ -157,6 +171,13 @@ Deno.serve(async (req: Request) => {
             headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           },
         )
+      }
+
+      if (authError.message?.includes('Password should be')) {
+        return new Response(JSON.stringify({ error: authError.message }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
       }
 
       throw authError

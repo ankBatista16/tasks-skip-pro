@@ -32167,7 +32167,7 @@ const StoreProvider = ({ children }) => {
 				const { data: res, error } = await supabase.functions.invoke("create-user", {
 					body: {
 						email: data.email,
-						password: data.password || "password123",
+						password: data.password,
 						fullName: data.name,
 						role: data.role,
 						companyId: data.companyId,
@@ -32180,7 +32180,7 @@ const StoreProvider = ({ children }) => {
 					}
 				});
 				if (error) {
-					let message = "Failed to invite user";
+					let message = "Failed to create user";
 					if (typeof error === "object" && "status" in error && error.status === 401 || error.message?.includes("401")) message = "Unauthorized: Your session has expired. Please log in again.";
 					if (typeof error === "object" && "context" in error) try {
 						const response = error.context;
@@ -32195,7 +32195,7 @@ const StoreProvider = ({ children }) => {
 					return false;
 				}
 				if (session.user) fetchData(session.user.id);
-				toast.success("User invite sent successfully");
+				toast.success("User created successfully");
 				return true;
 			} catch (err) {
 				console.error("Unexpected error in addUser:", err);
@@ -41383,6 +41383,7 @@ function UsersPage() {
 	const [newUser, setNewUser] = (0, import_react.useState)({
 		name: "",
 		email: "",
+		password: "",
 		role: "USER",
 		companyId: currentUser?.companyId || "",
 		jobTitle: ""
@@ -41393,31 +41394,48 @@ function UsersPage() {
 		const searchLower = searchTerm.toLowerCase();
 		return user.name.toLowerCase().includes(searchLower) || user.email.toLowerCase().includes(searchLower);
 	});
+	const validateForm = () => {
+		if (!newUser.name.trim()) {
+			toast.error("Name is required");
+			return false;
+		}
+		if (!newUser.email.trim() || !newUser.email.includes("@")) {
+			toast.error("Valid email is required");
+			return false;
+		}
+		if (!newUser.password || newUser.password.length < 6) {
+			toast.error("Password must be at least 6 characters long");
+			return false;
+		}
+		return true;
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (newUser.name && newUser.email) {
-			setIsSubmitting(true);
-			try {
-				if (await actions.addUser({
-					...newUser,
-					role: newUser.role,
-					avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`,
-					permissions: []
-				})) {
-					setIsOpen(false);
-					setNewUser({
-						name: "",
-						email: "",
-						role: "USER",
-						companyId: currentUser?.companyId || "",
-						jobTitle: ""
-					});
-				}
-			} catch (error) {
-				console.error("Failed to add user", error);
-			} finally {
-				setIsSubmitting(false);
+		if (!validateForm()) return;
+		setIsSubmitting(true);
+		try {
+			if (await actions.addUser({
+				...newUser,
+				role: newUser.role,
+				avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`,
+				permissions: [],
+				status: "active"
+			})) {
+				setIsOpen(false);
+				setNewUser({
+					name: "",
+					email: "",
+					password: "",
+					role: "USER",
+					companyId: currentUser?.companyId || "",
+					jobTitle: ""
+				});
 			}
+		} catch (error) {
+			console.error("Failed to add user", error);
+			toast.error("Failed to create user");
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -41438,9 +41456,9 @@ function UsersPage() {
 						asChild: true,
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
 							className: "gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-4 w-4" }), " Invite User"]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-4 w-4" }), " Create User"]
 						})
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "Invite New User" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogHeader, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "Create New User" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogDescription, { children: "Add a new user to the system. They will be able to log in immediately with the password you provide." })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 						onSubmit: handleSubmit,
 						className: "space-y-4 py-4",
 						children: [
@@ -41456,6 +41474,7 @@ function UsersPage() {
 										...newUser,
 										name: e.target.value
 									}),
+									placeholder: "John Doe",
 									required: true
 								})]
 							}),
@@ -41472,8 +41491,34 @@ function UsersPage() {
 										...newUser,
 										email: e.target.value
 									}),
+									placeholder: "john@example.com",
 									required: true
 								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+										htmlFor: "password",
+										children: "Password"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										id: "password",
+										type: "password",
+										value: newUser.password,
+										onChange: (e) => setNewUser({
+											...newUser,
+											password: e.target.value
+										}),
+										placeholder: "••••••••",
+										required: true,
+										minLength: 6
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-xs text-muted-foreground",
+										children: "Must be at least 6 characters."
+									})
+								]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "space-y-2",
@@ -41532,7 +41577,7 @@ function UsersPage() {
 								type: "submit",
 								className: "w-full",
 								disabled: isSubmitting,
-								children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }), " Sending..."] }) : "Send Invitation"
+								children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }), " Creating User..."] }) : "Create User"
 							})
 						]
 					})] })]
@@ -42202,4 +42247,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-CJnmWtQ8.js.map
+//# sourceMappingURL=index-CcVf6WFW.js.map

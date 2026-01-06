@@ -312,7 +312,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
           {
             body: {
               email: data.email,
-              password: data.password || 'password123', // Default password for invited users
+              password: data.password, // Pass provided password
               fullName: data.name,
               role: data.role,
               companyId: data.companyId,
@@ -327,7 +327,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         )
 
         if (error) {
-          let message = 'Failed to invite user'
+          let message = 'Failed to create user'
 
           // Handle 401 Unauthorized errors explicitly
           if (
@@ -369,7 +369,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         // 5. Refresh Data
         // Since the trigger handles creation, we can refresh to see the new user
         if (session.user) fetchData(session.user.id)
-        toast.success('User invite sent successfully')
+        toast.success('User created successfully')
         return true
       } catch (err: any) {
         console.error('Unexpected error in addUser:', err)
