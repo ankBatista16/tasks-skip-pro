@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { StoreProvider, useStore } from '@/context/StoreContext'
+import { AuthProvider } from '@/hooks/use-auth'
 import Layout from '@/components/Layout'
 import LoginPage from '@/pages/LoginPage'
 import Index from '@/pages/Index'
@@ -25,6 +26,14 @@ const ProtectedRoute = ({
 }) => {
   const { state } = useStore()
 
+  if (state.loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    )
+  }
+
   if (!state.currentUser) {
     return <Navigate to="/login" replace />
   }
@@ -38,6 +47,14 @@ const ProtectedRoute = ({
 
 const AppRoutes = () => {
   const { state } = useStore()
+
+  if (state.loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading Application...
+      </div>
+    )
+  }
 
   return (
     <Routes>
@@ -92,13 +109,15 @@ const App = () => (
   <BrowserRouter
     future={{ v7_startTransition: false, v7_relativeSplatPath: false }}
   >
-    <StoreProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <AppRoutes />
-      </TooltipProvider>
-    </StoreProvider>
+    <AuthProvider>
+      <StoreProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <AppRoutes />
+        </TooltipProvider>
+      </StoreProvider>
+    </AuthProvider>
   </BrowserRouter>
 )
 
