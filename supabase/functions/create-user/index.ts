@@ -16,7 +16,13 @@ Deno.serve(async (req: Request) => {
   try {
     const authHeader = req.headers.get('Authorization')
     if (!authHeader) {
-      throw new Error('Missing Authorization header')
+      return new Response(
+        JSON.stringify({ error: 'Missing Authorization header' }),
+        {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      )
     }
 
     // 1. Verify the user calling the function (using Anon key + User JWT)
@@ -40,7 +46,10 @@ Deno.serve(async (req: Request) => {
 
     if (userError || !user) {
       return new Response(
-        JSON.stringify({ error: 'Unauthorized', details: userError }),
+        JSON.stringify({
+          error: 'Unauthorized: Invalid or expired token',
+          details: userError,
+        }),
         {
           status: 401,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -67,10 +76,13 @@ Deno.serve(async (req: Request) => {
       .single()
 
     if (memberError || !member) {
-      return new Response(JSON.stringify({ error: 'Profile not found' }), {
-        status: 403,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      })
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: Caller profile not found' }),
+        {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      )
     }
 
     if (member.role !== 'MASTER' && member.role !== 'ADMIN') {
@@ -93,25 +105,14 @@ Deno.serve(async (req: Request) => {
       companyId,
       jobTitle,
       permissions,
+      status,
     } = body
 
-    if (!email || !fullName || !role) {
+    if (!email || !fullName || !role || !password) {
       return new Response(
         JSON.stringify({
-          error: 'Missing required fields: email, fullName, role',
-        }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        },
-      )
-    }
-
-    // Ensure password is provided (Requirement: Mandatory Password)
-    if (!password) {
-      return new Response(
-        JSON.stringify({
-          error: 'Missing required field: password',
+          error:
+            'Missing required fields: email, password, fullName, role are required',
         }),
         {
           status: 400,
@@ -134,11 +135,6 @@ Deno.serve(async (req: Request) => {
           },
         )
       }
-      // Force company ID for admin created users if not provided
-      if (!companyId) {
-        // We will assume they meant their own company, or we fail.
-        // Let's enforce companyId check.
-      }
     }
 
     const targetCompanyId =
@@ -146,22 +142,23 @@ Deno.serve(async (req: Request) => {
 
     // 6. Create Auth User
     // We pass all profile data in user_metadata so the trigger can populate the members table atomically
-    // setting email_confirm: true skips the invitation email
     const { data: authUser, error: authError } =
       await supabaseAdmin.auth.admin.createUser({
         email,
         password: password,
-        email_confirm: true,
+        email_confirm: true, // Auto confirm email
         user_metadata: {
           full_name: fullName,
           role: role,
           company_id: targetCompanyId,
           job_title: jobTitle,
           permissions: permissions || [],
+          status: status || 'active',
         },
       })
 
     if (authError) {
+      console.error('Auth Error:', authError)
       // Handle known Supabase Auth errors
       if (authError.message?.includes('already registered')) {
         return new Response(

@@ -361,18 +361,21 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Company deleted')
     },
     addUser: async (data) => {
+      // Permission check
       if (currentUser?.role !== 'MASTER' && currentUser?.role !== 'ADMIN') {
         toast.error('Permission denied: Only Master or Admin can create users')
         return false
       }
 
       try {
+        // Get fresh session to ensure token is valid
         const {
           data: { session },
+          error: sessionError,
         } = await supabase.auth.getSession()
 
-        if (!session) {
-          toast.error('Authentication error')
+        if (sessionError || !session) {
+          toast.error('Session expired or invalid. Please login again.')
           return false
         }
 
@@ -387,6 +390,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
             companyId: data.companyId,
             jobTitle: data.jobTitle,
             permissions: data.permissions || [],
+            status: data.status,
           },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -395,14 +399,44 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         })
 
         if (error) {
-          toast.error(error.message || 'Failed to create user')
+          console.error('Create user error:', error)
+          const msg = error.message || ''
+
+          if (
+            msg.includes('401') ||
+            msg.toLowerCase().includes('unauthorized')
+          ) {
+            toast.error('Session expired or invalid. Please login again.')
+          } else if (
+            msg.includes('403') ||
+            msg.toLowerCase().includes('forbidden')
+          ) {
+            toast.error('You do not have permission to perform this action.')
+          } else {
+            // Check for custom error message in response
+            try {
+              if (
+                typeof error === 'object' &&
+                error !== null &&
+                'error' in error
+              ) {
+                toast.error((error as any).error)
+              } else {
+                toast.error('Failed to create user: ' + msg)
+              }
+            } catch {
+              toast.error('Failed to create user')
+            }
+          }
           return false
         }
 
+        // Refresh data to show new user
         if (session.user) fetchData(session.user.id)
         toast.success('User created successfully')
         return true
       } catch (err: any) {
+        console.error('Unexpected error:', err)
         toast.error('An unexpected error occurred.')
         return false
       }
@@ -582,7 +616,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       )
     },
     addNotification: async (data) => {
-      // Manual add kept for backward compatibility if any, but triggers handle DB now
       const { data: res, error } = await supabase
         .from('notifications')
         .insert({
@@ -595,8 +628,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         .single()
 
       if (!error && res) {
-        // Realtime will catch this, but optimistically adding is fine too
-        // setNotifications([mapNotification(res), ...notifications])
+        // Realtime will catch this
       }
     },
     addProjectMember: async (projectId, userId) => {
@@ -655,7 +687,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
       if (error) {
         toast.error('Failed to save preferences')
-        // Revert on error could be implemented here
         console.error(error)
       } else {
         toast.success('Preferences saved')

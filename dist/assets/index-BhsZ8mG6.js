@@ -32422,9 +32422,9 @@ const StoreProvider = ({ children }) => {
 				return false;
 			}
 			try {
-				const { data: { session } } = await supabase.auth.getSession();
-				if (!session) {
-					toast.error("Authentication error");
+				const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+				if (sessionError || !session) {
+					toast.error("Session expired or invalid. Please login again.");
 					return false;
 				}
 				const token = session.access_token;
@@ -32436,7 +32436,8 @@ const StoreProvider = ({ children }) => {
 						role: data.role,
 						companyId: data.companyId,
 						jobTitle: data.jobTitle,
-						permissions: data.permissions || []
+						permissions: data.permissions || [],
+						status: data.status
 					},
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -32444,13 +32445,23 @@ const StoreProvider = ({ children }) => {
 					}
 				});
 				if (error) {
-					toast.error(error.message || "Failed to create user");
+					console.error("Create user error:", error);
+					const msg = error.message || "";
+					if (msg.includes("401") || msg.toLowerCase().includes("unauthorized")) toast.error("Session expired or invalid. Please login again.");
+					else if (msg.includes("403") || msg.toLowerCase().includes("forbidden")) toast.error("You do not have permission to perform this action.");
+					else try {
+						if (typeof error === "object" && error !== null && "error" in error) toast.error(error.error);
+						else toast.error("Failed to create user: " + msg);
+					} catch {
+						toast.error("Failed to create user");
+					}
 					return false;
 				}
 				if (session.user) fetchData(session.user.id);
 				toast.success("User created successfully");
 				return true;
 			} catch (err) {
+				console.error("Unexpected error:", err);
 				toast.error("An unexpected error occurred.");
 				return false;
 			}
@@ -43069,4 +43080,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DMi-4ZV7.js.map
+//# sourceMappingURL=index-BhsZ8mG6.js.map
