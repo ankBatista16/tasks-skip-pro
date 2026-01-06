@@ -20532,13 +20532,13 @@ var getDefaultConfig = () => {
 	};
 };
 var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
-function cn$1(...inputs) {
+function cn(...inputs) {
 	return twMerge(clsx(inputs));
 }
 var ToastProvider = Provider$1;
 var ToastViewport = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport$1, {
 	ref,
-	className: cn$1("fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]", className),
+	className: cn("fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]", className),
 	...props
 }));
 ToastViewport.displayName = Viewport$1.displayName;
@@ -20552,20 +20552,20 @@ var toastVariants = cva("group pointer-events-auto relative flex w-full items-ce
 var Toast$1 = import_react.forwardRef(({ className, variant, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$4, {
 		ref,
-		className: cn$1(toastVariants({ variant }), className),
+		className: cn(toastVariants({ variant }), className),
 		...props
 	});
 });
 Toast$1.displayName = Root2$4.displayName;
 var ToastAction = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Action, {
 	ref,
-	className: cn$1("inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive", className),
+	className: cn("inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive", className),
 	...props
 }));
 ToastAction.displayName = Action.displayName;
 var ToastClose = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Close$1, {
 	ref,
-	className: cn$1("absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600", className),
+	className: cn("absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600", className),
 	"toast-close": "",
 	...props,
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" })
@@ -20573,13 +20573,13 @@ var ToastClose = import_react.forwardRef(({ className, ...props }, ref) => /* @_
 ToastClose.displayName = Close$1.displayName;
 var ToastTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Title$1, {
 	ref,
-	className: cn$1("text-sm font-semibold", className),
+	className: cn("text-sm font-semibold", className),
 	...props
 }));
 ToastTitle.displayName = Title$1.displayName;
 var ToastDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Description$1, {
 	ref,
-	className: cn$1("text-sm opacity-90", className),
+	className: cn("text-sm opacity-90", className),
 	...props
 }));
 ToastDescription.displayName = Description$1.displayName;
@@ -20995,7 +20995,7 @@ var TOAST_WIDTH = 356;
 var GAP = 14;
 var SWIPE_THRESHOLD = 45;
 var TIME_BEFORE_UNMOUNT = 200;
-function cn$2(...classes) {
+function cn$1(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 function getDefaultSwipeDirections(position) {
@@ -21148,12 +21148,12 @@ var Toast = (props) => {
 		if (icons == null ? void 0 : icons.loading) {
 			var _toast_classNames1$1;
 			return /* @__PURE__ */ import_react.createElement("div", {
-				className: cn$2(classNames == null ? void 0 : classNames.loader, toast$2 == null ? void 0 : (_toast_classNames1$1 = toast$2.classNames) == null ? void 0 : _toast_classNames1$1.loader, "sonner-loader"),
+				className: cn$1(classNames == null ? void 0 : classNames.loader, toast$2 == null ? void 0 : (_toast_classNames1$1 = toast$2.classNames) == null ? void 0 : _toast_classNames1$1.loader, "sonner-loader"),
 				"data-visible": toastType === "loading"
 			}, icons.loading);
 		}
 		return /* @__PURE__ */ import_react.createElement(Loader, {
-			className: cn$2(classNames == null ? void 0 : classNames.loader, toast$2 == null ? void 0 : (_toast_classNames$1 = toast$2.classNames) == null ? void 0 : _toast_classNames$1.loader),
+			className: cn$1(classNames == null ? void 0 : classNames.loader, toast$2 == null ? void 0 : (_toast_classNames$1 = toast$2.classNames) == null ? void 0 : _toast_classNames$1.loader),
 			visible: toastType === "loading"
 		});
 	}
@@ -21162,7 +21162,7 @@ var Toast = (props) => {
 	return /* @__PURE__ */ import_react.createElement("li", {
 		tabIndex: 0,
 		ref: toastRef,
-		className: cn$2(className, toastClassname, classNames == null ? void 0 : classNames.toast, toast$2 == null ? void 0 : (_toast_classNames = toast$2.classNames) == null ? void 0 : _toast_classNames.toast, classNames == null ? void 0 : classNames.default, classNames == null ? void 0 : classNames[toastType], toast$2 == null ? void 0 : (_toast_classNames1 = toast$2.classNames) == null ? void 0 : _toast_classNames1[toastType]),
+		className: cn$1(className, toastClassname, classNames == null ? void 0 : classNames.toast, toast$2 == null ? void 0 : (_toast_classNames = toast$2.classNames) == null ? void 0 : _toast_classNames.toast, classNames == null ? void 0 : classNames.default, classNames == null ? void 0 : classNames[toastType], toast$2 == null ? void 0 : (_toast_classNames1 = toast$2.classNames) == null ? void 0 : _toast_classNames1[toastType]),
 		"data-sonner-toast": "",
 		"data-rich-colors": (_toast_richColors = toast$2.richColors) != null ? _toast_richColors : defaultRichColors,
 		"data-styled": !Boolean(toast$2.jsx || toast$2.unstyled || unstyled),
@@ -21277,19 +21277,19 @@ var Toast = (props) => {
 			deleteToast();
 			toast$2.onDismiss == null || toast$2.onDismiss.call(toast$2, toast$2);
 		},
-		className: cn$2(classNames == null ? void 0 : classNames.closeButton, toast$2 == null ? void 0 : (_toast_classNames2 = toast$2.classNames) == null ? void 0 : _toast_classNames2.closeButton)
+		className: cn$1(classNames == null ? void 0 : classNames.closeButton, toast$2 == null ? void 0 : (_toast_classNames2 = toast$2.classNames) == null ? void 0 : _toast_classNames2.closeButton)
 	}, (_icons_close = icons == null ? void 0 : icons.close) != null ? _icons_close : CloseIcon) : null, (toastType || toast$2.icon || toast$2.promise) && toast$2.icon !== null && ((icons == null ? void 0 : icons[toastType]) !== null || toast$2.icon) ? /* @__PURE__ */ import_react.createElement("div", {
 		"data-icon": "",
-		className: cn$2(classNames == null ? void 0 : classNames.icon, toast$2 == null ? void 0 : (_toast_classNames3 = toast$2.classNames) == null ? void 0 : _toast_classNames3.icon)
+		className: cn$1(classNames == null ? void 0 : classNames.icon, toast$2 == null ? void 0 : (_toast_classNames3 = toast$2.classNames) == null ? void 0 : _toast_classNames3.icon)
 	}, toast$2.promise || toast$2.type === "loading" && !toast$2.icon ? toast$2.icon || getLoadingIcon() : null, toast$2.type !== "loading" ? icon : null) : null, /* @__PURE__ */ import_react.createElement("div", {
 		"data-content": "",
-		className: cn$2(classNames == null ? void 0 : classNames.content, toast$2 == null ? void 0 : (_toast_classNames4 = toast$2.classNames) == null ? void 0 : _toast_classNames4.content)
+		className: cn$1(classNames == null ? void 0 : classNames.content, toast$2 == null ? void 0 : (_toast_classNames4 = toast$2.classNames) == null ? void 0 : _toast_classNames4.content)
 	}, /* @__PURE__ */ import_react.createElement("div", {
 		"data-title": "",
-		className: cn$2(classNames == null ? void 0 : classNames.title, toast$2 == null ? void 0 : (_toast_classNames5 = toast$2.classNames) == null ? void 0 : _toast_classNames5.title)
+		className: cn$1(classNames == null ? void 0 : classNames.title, toast$2 == null ? void 0 : (_toast_classNames5 = toast$2.classNames) == null ? void 0 : _toast_classNames5.title)
 	}, toast$2.jsx ? toast$2.jsx : typeof toast$2.title === "function" ? toast$2.title() : toast$2.title), toast$2.description ? /* @__PURE__ */ import_react.createElement("div", {
 		"data-description": "",
-		className: cn$2(descriptionClassName, toastDescriptionClassname, classNames == null ? void 0 : classNames.description, toast$2 == null ? void 0 : (_toast_classNames6 = toast$2.classNames) == null ? void 0 : _toast_classNames6.description)
+		className: cn$1(descriptionClassName, toastDescriptionClassname, classNames == null ? void 0 : classNames.description, toast$2 == null ? void 0 : (_toast_classNames6 = toast$2.classNames) == null ? void 0 : _toast_classNames6.description)
 	}, typeof toast$2.description === "function" ? toast$2.description() : toast$2.description) : null), /* @__PURE__ */ import_react.isValidElement(toast$2.cancel) ? toast$2.cancel : toast$2.cancel && isAction(toast$2.cancel) ? /* @__PURE__ */ import_react.createElement("button", {
 		"data-button": true,
 		"data-cancel": true,
@@ -21300,7 +21300,7 @@ var Toast = (props) => {
 			toast$2.cancel.onClick == null || toast$2.cancel.onClick.call(toast$2.cancel, event);
 			deleteToast();
 		},
-		className: cn$2(classNames == null ? void 0 : classNames.cancelButton, toast$2 == null ? void 0 : (_toast_classNames7 = toast$2.classNames) == null ? void 0 : _toast_classNames7.cancelButton)
+		className: cn$1(classNames == null ? void 0 : classNames.cancelButton, toast$2 == null ? void 0 : (_toast_classNames7 = toast$2.classNames) == null ? void 0 : _toast_classNames7.cancelButton)
 	}, toast$2.cancel.label) : null, /* @__PURE__ */ import_react.isValidElement(toast$2.action) ? toast$2.action : toast$2.action && isAction(toast$2.action) ? /* @__PURE__ */ import_react.createElement("button", {
 		"data-button": true,
 		"data-action": true,
@@ -21311,7 +21311,7 @@ var Toast = (props) => {
 			if (event.defaultPrevented) return;
 			deleteToast();
 		},
-		className: cn$2(classNames == null ? void 0 : classNames.actionButton, toast$2 == null ? void 0 : (_toast_classNames8 = toast$2.classNames) == null ? void 0 : _toast_classNames8.actionButton)
+		className: cn$1(classNames == null ? void 0 : classNames.actionButton, toast$2 == null ? void 0 : (_toast_classNames8 = toast$2.classNames) == null ? void 0 : _toast_classNames8.actionButton)
 	}, toast$2.action.label) : null);
 };
 function getDocumentDirection() {
@@ -23831,7 +23831,7 @@ var TooltipProvider = Provider;
 var TooltipContent = import_react.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content2$3, {
 	ref,
 	sideOffset,
-	className: cn$1("z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-tooltip-content-transform-origin]", className),
+	className: cn("z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-tooltip-content-transform-origin]", className),
 	...props
 }));
 TooltipContent.displayName = Content2$3.displayName;
@@ -24209,7 +24209,7 @@ var buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespa
 });
 var Button = import_react.forwardRef(({ className, variant, size: size$3, asChild = false, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(asChild ? Slot$3 : "button", {
-		className: cn$1(buttonVariants({
+		className: cn(buttonVariants({
 			variant,
 			size: size$3,
 			className
@@ -24271,7 +24271,7 @@ function Sidebar() {
 				to: item.path,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
 					variant: isActive(item.path) ? "secondary" : "ghost",
-					className: cn$1("w-full justify-start gap-3", isActive(item.path) && "font-semibold"),
+					className: cn("w-full justify-start gap-3", isActive(item.path) && "font-semibold"),
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(item.icon, { className: "h-5 w-5" }), item.label]
 				})
 			}, item.path))
@@ -24555,19 +24555,19 @@ var Image = AvatarImage$1;
 var Fallback = AvatarFallback$1;
 var Avatar = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$5, {
 	ref,
-	className: cn$1("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className),
+	className: cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className),
 	...props
 }));
 Avatar.displayName = Root$5.displayName;
 var AvatarImage = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Image, {
 	ref,
-	className: cn$1("aspect-square h-full w-full", className),
+	className: cn("aspect-square h-full w-full", className),
 	...props
 }));
 AvatarImage.displayName = Image.displayName;
 var AvatarFallback = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Fallback, {
 	ref,
-	className: cn$1("flex h-full w-full items-center justify-center rounded-full bg-muted", className),
+	className: cn("flex h-full w-full items-center justify-center rounded-full bg-muted", className),
 	...props
 }));
 AvatarFallback.displayName = Fallback.displayName;
@@ -26678,33 +26678,33 @@ var DropdownMenu = Root2$2;
 var DropdownMenuTrigger = Trigger$3;
 var DropdownMenuSubTrigger = import_react.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SubTrigger2, {
 	ref,
-	className: cn$1("flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", inset && "pl-8", className),
+	className: cn("flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", inset && "pl-8", className),
 	...props,
 	children: [children, /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "ml-auto" })]
 }));
 DropdownMenuSubTrigger.displayName = SubTrigger2.displayName;
 var DropdownMenuSubContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SubContent2, {
 	ref,
-	className: cn$1("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-dropdown-menu-content-transform-origin]", className),
+	className: cn("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-dropdown-menu-content-transform-origin]", className),
 	...props
 }));
 DropdownMenuSubContent.displayName = SubContent2.displayName;
 var DropdownMenuContent = import_react.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal2, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content2$1, {
 	ref,
 	sideOffset,
-	className: cn$1("z-50 max-h-[var(--radix-dropdown-menu-content-available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-dropdown-menu-content-transform-origin]", className),
+	className: cn("z-50 max-h-[var(--radix-dropdown-menu-content-available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-dropdown-menu-content-transform-origin]", className),
 	...props
 }) }));
 DropdownMenuContent.displayName = Content2$1.displayName;
 var DropdownMenuItem = import_react.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Item2, {
 	ref,
-	className: cn$1("relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", inset && "pl-8", className),
+	className: cn("relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", inset && "pl-8", className),
 	...props
 }));
 DropdownMenuItem.displayName = Item2.displayName;
 var DropdownMenuCheckboxItem = import_react.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CheckboxItem2, {
 	ref,
-	className: cn$1("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className),
+	className: cn("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className),
 	checked,
 	...props,
 	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
@@ -26715,7 +26715,7 @@ var DropdownMenuCheckboxItem = import_react.forwardRef(({ className, children, c
 DropdownMenuCheckboxItem.displayName = CheckboxItem2.displayName;
 var DropdownMenuRadioItem = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(RadioItem2, {
 	ref,
-	className: cn$1("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className),
+	className: cn("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className),
 	...props,
 	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 		className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
@@ -26725,19 +26725,19 @@ var DropdownMenuRadioItem = import_react.forwardRef(({ className, children, ...p
 DropdownMenuRadioItem.displayName = RadioItem2.displayName;
 var DropdownMenuLabel = import_react.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label2, {
 	ref,
-	className: cn$1("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className),
+	className: cn("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className),
 	...props
 }));
 DropdownMenuLabel.displayName = Label2.displayName;
 var DropdownMenuSeparator = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator2, {
 	ref,
-	className: cn$1("-mx-1 my-1 h-px bg-muted", className),
+	className: cn("-mx-1 my-1 h-px bg-muted", className),
 	...props
 }));
 DropdownMenuSeparator.displayName = Separator2.displayName;
 var DropdownMenuShortcut = ({ className, ...props }) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-		className: cn$1("ml-auto text-xs tracking-widest opacity-60", className),
+		className: cn("ml-auto text-xs tracking-widest opacity-60", className),
 		...props
 	});
 };
@@ -26874,8 +26874,8 @@ function BottomNav() {
 			}
 		].map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 			to: item.path,
-			className: cn$1("flex flex-col items-center justify-center w-full h-full space-y-1", isActive(item.path) ? "text-primary" : "text-muted-foreground"),
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(item.icon, { className: cn$1("h-5 w-5", isActive(item.path) && "fill-current") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: cn("flex flex-col items-center justify-center w-full h-full space-y-1", isActive(item.path) ? "text-primary" : "text-muted-foreground"),
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(item.icon, { className: cn("h-5 w-5", isActive(item.path) && "fill-current") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 				className: "text-[10px] font-medium",
 				children: item.label
 			})]
@@ -26906,37 +26906,37 @@ function Layout() {
 }
 var Card = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
-	className: cn$1("rounded-lg border bg-card text-card-foreground shadow-sm", className),
+	className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className),
 	...props
 }));
 Card.displayName = "Card";
 var CardHeader = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
-	className: cn$1("flex flex-col space-y-1.5 p-6", className),
+	className: cn("flex flex-col space-y-1.5 p-6", className),
 	...props
 }));
 CardHeader.displayName = "CardHeader";
 var CardTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
-	className: cn$1("text-2xl font-semibold leading-none tracking-tight", className),
+	className: cn("text-2xl font-semibold leading-none tracking-tight", className),
 	...props
 }));
 CardTitle.displayName = "CardTitle";
 var CardDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
-	className: cn$1("text-sm text-muted-foreground", className),
+	className: cn("text-sm text-muted-foreground", className),
 	...props
 }));
 CardDescription.displayName = "CardDescription";
 var CardContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
-	className: cn$1("p-6 pt-0", className),
+	className: cn("p-6 pt-0", className),
 	...props
 }));
 CardContent.displayName = "CardContent";
 var CardFooter = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
-	className: cn$1("flex items-center p-6 pt-0", className),
+	className: cn("flex items-center p-6 pt-0", className),
 	...props
 }));
 CardFooter.displayName = "CardFooter";
@@ -27055,7 +27055,7 @@ var Root$3 = Progress$1;
 var Indicator = ProgressIndicator;
 var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$3, {
 	ref,
-	className: cn$1("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className),
+	className: cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className),
 	...props,
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Indicator, {
 		className: "h-full w-full flex-1 bg-primary transition-all",
@@ -27718,13 +27718,13 @@ function Index() {
 	const { state } = useStore();
 	const { currentUser, companies, projects, tasks, notifications, users } = state;
 	const isMaster = currentUser?.role === "MASTER";
-	const myProjects = isMaster ? projects : projects.filter((p) => p.members.includes(currentUser?.id || "") || p.companyId === currentUser?.companyId);
+	const myProjects = isMaster ? projects : projects.filter((p) => p.companyId === currentUser?.companyId || p.members.includes(currentUser?.id || ""));
 	const myTasks = tasks.filter((t) => t.assigneeIds.includes(currentUser?.id || ""));
 	const activeProjects = myProjects.filter((p) => p.status === "active").length;
 	const completedTasks = myTasks.filter((t) => t.status === "done").length;
 	const totalTasks = myTasks.length;
 	const taskProgress = totalTasks === 0 ? 0 : Math.round(completedTasks / totalTasks * 100);
-	const recentActivity = notifications.slice(0, 5);
+	const recentActivity = notifications.filter((n) => n.userId === currentUser?.id).slice(0, 5);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in",
 		children: [
@@ -27930,7 +27930,7 @@ var badgeVariants = cva("inline-flex items-center rounded-full border px-2.5 py-
 });
 function Badge({ className, variant, ...props }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: cn$1(badgeVariants({ variant }), className),
+		className: cn(badgeVariants({ variant }), className),
 		...props
 	});
 }
@@ -27955,7 +27955,7 @@ function StatusBadge({ status, className }) {
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Badge, {
 		variant: "outline",
-		className: cn$1("capitalize border-0 font-medium", colorClass, className),
+		className: cn("capitalize border-0 font-medium", colorClass, className),
 		children: status.replace("-", " ")
 	});
 }
@@ -28240,13 +28240,13 @@ var DialogTrigger = Trigger$2;
 var DialogPortal = Portal$2;
 var DialogOverlay = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Overlay, {
 	ref,
-	className: cn$1("fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className),
+	className: cn("fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className),
 	...props
 }));
 DialogOverlay.displayName = Overlay.displayName;
 var DialogContent = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogPortal, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogOverlay, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Content$1, {
 	ref,
-	className: cn$1("fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg overflow-y-auto max-h-screen", className),
+	className: cn("fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg overflow-y-auto max-h-screen", className),
 	...props,
 	children: [children, /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Close, {
 		className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",
@@ -28258,31 +28258,31 @@ var DialogContent = import_react.forwardRef(({ className, children, ...props }, 
 })] }));
 DialogContent.displayName = Content$1.displayName;
 var DialogHeader = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	className: cn$1("flex flex-col space-y-1.5 text-center sm:text-left", className),
+	className: cn("flex flex-col space-y-1.5 text-center sm:text-left", className),
 	...props
 });
 DialogHeader.displayName = "DialogHeader";
 var DialogFooter = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	className: cn$1("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className),
+	className: cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className),
 	...props
 });
 DialogFooter.displayName = "DialogFooter";
 var DialogTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Title, {
 	ref,
-	className: cn$1("text-lg font-semibold leading-none tracking-tight", className),
+	className: cn("text-lg font-semibold leading-none tracking-tight", className),
 	...props
 }));
 DialogTitle.displayName = Title.displayName;
 var DialogDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Description, {
 	ref,
-	className: cn$1("text-sm text-muted-foreground", className),
+	className: cn("text-sm text-muted-foreground", className),
 	...props
 }));
 DialogDescription.displayName = Description.displayName;
 var Input = import_react.forwardRef(({ className, type, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 		type,
-		className: cn$1("flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
+		className: cn("flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
 		ref,
 		...props
 	});
@@ -28305,13 +28305,13 @@ var Root$1 = Label$2;
 var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
 var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$1, {
 	ref,
-	className: cn$1(labelVariants(), className),
+	className: cn(labelVariants(), className),
 	...props
 }));
 Label.displayName = Root$1.displayName;
 var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
-		className: cn$1("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
+		className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
 		ref,
 		...props
 	});
@@ -28602,19 +28602,19 @@ var Content = TabsContent$1;
 var Tabs = Root2$1;
 var TabsList = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(List, {
 	ref,
-	className: cn$1("inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground", className),
+	className: cn("inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground", className),
 	...props
 }));
 TabsList.displayName = List.displayName;
 var TabsTrigger = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trigger$1, {
 	ref,
-	className: cn$1("inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm", className),
+	className: cn("inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm", className),
 	...props
 }));
 TabsTrigger.displayName = Trigger$1.displayName;
 var TabsContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content, {
 	ref,
-	className: cn$1("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className),
+	className: cn("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className),
 	...props
 }));
 TabsContent.displayName = Content.displayName;
@@ -28804,10 +28804,10 @@ function getState$1(checked) {
 }
 var Checkbox = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox$1, {
 	ref,
-	className: cn$1("peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground", className),
+	className: cn("peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground", className),
 	...props,
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CheckboxIndicator, {
-		className: cn$1("flex items-center justify-center text-current"),
+		className: cn("flex items-center justify-center text-current"),
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "h-4 w-4" })
 	})
 }));
@@ -29769,7 +29769,7 @@ var Select = Root2;
 var SelectValue = Value;
 var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Trigger, {
 	ref,
-	className: cn$1("flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background data-[placeholder]:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className),
+	className: cn("flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background data-[placeholder]:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className),
 	...props,
 	children: [children, /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, {
 		asChild: true,
@@ -29779,27 +29779,27 @@ var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, 
 SelectTrigger.displayName = Trigger.displayName;
 var SelectScrollUpButton = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollUpButton, {
 	ref,
-	className: cn$1("flex cursor-default items-center justify-center py-1", className),
+	className: cn("flex cursor-default items-center justify-center py-1", className),
 	...props,
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronUp, { className: "h-4 w-4" })
 }));
 SelectScrollUpButton.displayName = ScrollUpButton.displayName;
 var SelectScrollDownButton = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollDownButton, {
 	ref,
-	className: cn$1("flex cursor-default items-center justify-center py-1", className),
+	className: cn("flex cursor-default items-center justify-center py-1", className),
 	...props,
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: "h-4 w-4" })
 }));
 SelectScrollDownButton.displayName = ScrollDownButton.displayName;
 var SelectContent = import_react.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal$1, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Content2, {
 	ref,
-	className: cn$1("relative z-50 max-h-[--radix-select-content-available-height] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-select-content-transform-origin]", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
+	className: cn("relative z-50 max-h-[--radix-select-content-available-height] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-select-content-transform-origin]", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
 	position,
 	...props,
 	children: [
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectScrollUpButton, {}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport, {
-			className: cn$1("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"),
+			className: cn("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"),
 			children
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectScrollDownButton, {})
@@ -29808,13 +29808,13 @@ var SelectContent = import_react.forwardRef(({ className, children, position = "
 SelectContent.displayName = Content2.displayName;
 var SelectLabel = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label$1, {
 	ref,
-	className: cn$1("py-1.5 pl-8 pr-2 text-sm font-semibold", className),
+	className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className),
 	...props
 }));
 SelectLabel.displayName = Label$1.displayName;
 var SelectItem = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Item, {
 	ref,
-	className: cn$1("relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className),
+	className: cn("relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className),
 	...props,
 	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 		className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
@@ -29824,7 +29824,7 @@ var SelectItem = import_react.forwardRef(({ className, children, ...props }, ref
 SelectItem.displayName = Item.displayName;
 var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator, {
 	ref,
-	className: cn$1("-mx-1 my-1 h-px bg-muted", className),
+	className: cn("-mx-1 my-1 h-px bg-muted", className),
 	...props
 }));
 SelectSeparator.displayName = Separator.displayName;
@@ -30204,7 +30204,7 @@ function TaskCard({ task }) {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex items-center justify-between",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: cn$1("font-medium", task.status === "done" && "line-through text-muted-foreground"),
+						className: cn("font-medium", task.status === "done" && "line-through text-muted-foreground"),
 						children: task.title
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleTrigger, {
 						asChild: true,
@@ -30247,7 +30247,7 @@ function TaskCard({ task }) {
 						onCheckedChange: () => toggleSubtask(st.id, st.status),
 						className: "h-3.5 w-3.5"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: cn$1("text-sm", st.status && "line-through text-muted-foreground"),
+						className: cn("text-sm", st.status && "line-through text-muted-foreground"),
 						children: st.title
 					})]
 				}, st.id)), task.subtasks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -30681,10 +30681,10 @@ function NotificationsPage() {
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: "space-y-4",
 			children: notifications.length > 0 ? notifications.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-				className: cn$1("transition-colors", !n.read ? "border-l-4 border-l-primary" : "opacity-80"),
+				className: cn("transition-colors", !n.read ? "border-l-4 border-l-primary" : "opacity-80"),
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
 					className: "p-4 flex gap-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: cn$1("h-3 w-3 mt-1.5 rounded-full flex-shrink-0", !n.read ? "bg-primary" : "bg-muted") }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: cn("h-3 w-3 mt-1.5 rounded-full flex-shrink-0", !n.read ? "bg-primary" : "bg-muted") }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex-1 space-y-1",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -30796,4 +30796,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-D0Bb2NTd.js.map
+//# sourceMappingURL=index-shvTZepN.js.map

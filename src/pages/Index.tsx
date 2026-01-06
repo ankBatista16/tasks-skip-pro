@@ -4,6 +4,7 @@ import { StatusBadge } from '@/components/pm/StatusBadge'
 import { Users, Building2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
 import { formatDistanceToNow } from 'date-fns'
+import { cn } from '@/lib/utils'
 
 export default function Index() {
   const { state } = useStore()
@@ -13,13 +14,16 @@ export default function Index() {
   const isMaster = currentUser?.role === 'MASTER'
 
   // Filter data based on role
+  // Users and Admins see projects from their company, or projects they are explicitly members of
   const myProjects = isMaster
     ? projects
     : projects.filter(
         (p) =>
-          p.members.includes(currentUser?.id || '') ||
-          p.companyId === currentUser?.companyId,
+          p.companyId === currentUser?.companyId ||
+          p.members.includes(currentUser?.id || ''),
       )
+
+  // Tasks are filtered to those directly assigned to the current user
   const myTasks = tasks.filter((t) =>
     t.assigneeIds.includes(currentUser?.id || ''),
   )
@@ -31,7 +35,11 @@ export default function Index() {
     totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100)
 
   // Recent Activity from notifications
-  const recentActivity = notifications.slice(0, 5)
+  // Filter notifications to only show those for the current user to prevent information leak
+  const myNotifications = notifications.filter(
+    (n) => n.userId === currentUser?.id,
+  )
+  const recentActivity = myNotifications.slice(0, 5)
 
   return (
     <div className="space-y-6 animate-fade-in">
