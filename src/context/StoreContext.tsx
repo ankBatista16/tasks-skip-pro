@@ -18,6 +18,7 @@ import {
 import { supabase } from '@/lib/supabase/client'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/use-auth'
+import { useI18n } from '@/context/I18nContext'
 import { THEME_COLORS, ThemeColor } from '@/lib/utils'
 
 interface StoreState {
@@ -64,6 +65,7 @@ const StoreContext = createContext<
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const { user: authUser, signOut } = useAuth()
+  const { setLocale } = useI18n()
 
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [users, setUsers] = useState<User[]>([])
@@ -80,6 +82,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     theme: 'system',
     primaryColor: 'blue',
     layoutDensity: 'comfortable',
+    language: 'pt-BR',
   }
 
   // Fetch Data on Auth Change
@@ -105,6 +108,9 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (currentUser) {
       applyTheme(currentUser.preferences)
+      if (currentUser.preferences.language) {
+        setLocale(currentUser.preferences.language)
+      }
     } else {
       applyTheme(defaultPreferences)
     }
@@ -234,10 +240,11 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     status: u.status,
     jobTitle: u.job_title,
     permissions: u.permissions || [],
-    preferences: u.preferences || {
-      theme: 'system',
-      primaryColor: 'blue',
-      layoutDensity: 'comfortable',
+    preferences: {
+      theme: u.preferences?.theme || 'system',
+      primaryColor: u.preferences?.primaryColor || 'blue',
+      layoutDensity: u.preferences?.layoutDensity || 'comfortable',
+      language: u.preferences?.language || 'pt-BR',
     },
   })
 
@@ -673,7 +680,12 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Attachment deleted')
     },
     updatePreferences: async (prefs) => {
-      if (!currentUser) return
+      if (!currentUser) {
+        // Guest user - just update i18n context if needed (handled by UI component),
+        // but here we can't save to DB.
+        if (prefs.language) setLocale(prefs.language)
+        return
+      }
 
       const newPreferences = { ...currentUser.preferences, ...prefs }
 

@@ -5,6 +5,7 @@ export interface UserPreferences {
   theme: 'light' | 'dark' | 'system'
   primaryColor: string
   layoutDensity: 'comfortable' | 'compact'
+  language: 'pt-BR' | 'en-US'
 }
 
 export interface User {

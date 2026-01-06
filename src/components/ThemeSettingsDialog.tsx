@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '@/context/StoreContext'
+import { useI18n } from '@/context/I18nContext'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -25,6 +26,7 @@ import {
   Monitor,
   LayoutTemplate,
   Palette,
+  Globe,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -32,11 +34,18 @@ import { Separator } from '@/components/ui/separator'
 export function ThemeSettingsDialog() {
   const { state, actions } = useStore()
   const { currentUser } = state
+  const { t, locale, setLocale } = useI18n()
   const [open, setOpen] = useState(false)
 
-  if (!currentUser) return null
+  // Use current user prefs or fallback to current locale/defaults
+  const preferences = currentUser?.preferences || {
+    theme: 'system',
+    primaryColor: 'blue',
+    layoutDensity: 'comfortable',
+    language: locale
+  }
 
-  const { theme, primaryColor, layoutDensity } = currentUser.preferences
+  const { theme, primaryColor, layoutDensity } = preferences
 
   const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
     actions.updatePreferences({ theme: newTheme })
@@ -50,6 +59,13 @@ export function ThemeSettingsDialog() {
     actions.updatePreferences({ layoutDensity: newDensity })
   }
 
+  const handleLanguageChange = (newLang: 'pt-BR' | 'en-US') => {
+    setLocale(newLang)
+    if (currentUser) {
+      actions.updatePreferences({ language: newLang })
+    }
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -59,17 +75,42 @@ export function ThemeSettingsDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Appearance Settings</DialogTitle>
+          <DialogTitle>{t('settings.title')}</DialogTitle>
           <DialogDescription>
-            Customize how the application looks on your device.
+            {t('settings.subtitle')}
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
+          {/* Language */}
+          <div className="space-y-3">
+            <Label className="text-base flex items-center gap-2">
+              <Globe className="h-4 w-4" /> {t('settings.language')}
+            </Label>
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                variant={locale === 'pt-BR' ? 'default' : 'outline'}
+                className="justify-start gap-2"
+                onClick={() => handleLanguageChange('pt-BR')}
+              >
+                🇧🇷 {t('settings.portuguese')}
+              </Button>
+              <Button
+                variant={locale === 'en-US' ? 'default' : 'outline'}
+                className="justify-start gap-2"
+                onClick={() => handleLanguageChange('en-US')}
+              >
+                🇺🇸 {t('settings.english')}
+              </Button>
+            </div>
+          </div>
+
+          <Separator />
+
           {/* Theme Mode */}
           <div className="space-y-3">
             <Label className="text-base flex items-center gap-2">
-              <Sun className="h-4 w-4" /> Theme Mode
+              <Sun className="h-4 w-4" /> {t('settings.theme_mode')}
             </Label>
             <div className="grid grid-cols-3 gap-2">
               <Button
@@ -77,21 +118,21 @@ export function ThemeSettingsDialog() {
                 className="justify-start gap-2"
                 onClick={() => handleThemeChange('light')}
               >
-                <Sun className="h-4 w-4" /> Light
+                <Sun className="h-4 w-4" /> {t('settings.light')}
               </Button>
               <Button
                 variant={theme === 'dark' ? 'default' : 'outline'}
                 className="justify-start gap-2"
                 onClick={() => handleThemeChange('dark')}
               >
-                <Moon className="h-4 w-4" /> Dark
+                <Moon className="h-4 w-4" /> {t('settings.dark')}
               </Button>
               <Button
                 variant={theme === 'system' ? 'default' : 'outline'}
                 className="justify-start gap-2"
                 onClick={() => handleThemeChange('system')}
               >
-                <Monitor className="h-4 w-4" /> System
+                <Monitor className="h-4 w-4" /> {t('settings.system')}
               </Button>
             </div>
           </div>
@@ -101,7 +142,7 @@ export function ThemeSettingsDialog() {
           {/* Primary Color */}
           <div className="space-y-3">
             <Label className="text-base flex items-center gap-2">
-              <Palette className="h-4 w-4" /> Primary Color
+              <Palette className="h-4 w-4" /> {t('settings.primary_color')}
             </Label>
             <div className="grid grid-cols-5 gap-2">
               {Object.entries(THEME_COLORS).map(([key, value]) => (
@@ -130,7 +171,7 @@ export function ThemeSettingsDialog() {
           {/* Layout Density */}
           <div className="space-y-3">
             <Label className="text-base flex items-center gap-2">
-              <LayoutTemplate className="h-4 w-4" /> Layout Density
+              <LayoutTemplate className="h-4 w-4" /> {t('settings.layout_density')}
             </Label>
             <div className="grid grid-cols-2 gap-2">
               <Button
@@ -144,7 +185,7 @@ export function ThemeSettingsDialog() {
                   <div className="h-2 w-3/4 bg-primary/20 rounded"></div>
                   <div className="h-2 w-1/2 bg-primary/20 rounded"></div>
                 </div>
-                Comfortable
+                {t('settings.comfortable')}
               </Button>
               <Button
                 variant={layoutDensity === 'compact' ? 'default' : 'outline'}
@@ -156,7 +197,7 @@ export function ThemeSettingsDialog() {
                   <div className="h-1.5 w-1/2 bg-primary/20 rounded"></div>
                   <div className="h-1.5 w-2/3 bg-primary/20 rounded"></div>
                 </div>
-                Compact
+                {t('settings.compact')}
               </Button>
             </div>
           </div>

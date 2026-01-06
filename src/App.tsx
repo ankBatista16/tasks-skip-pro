@@ -4,6 +4,7 @@ import { Toaster as Sonner } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { StoreProvider, useStore } from '@/context/StoreContext'
 import { AuthProvider } from '@/hooks/use-auth'
+import { I18nProvider, useI18n } from '@/context/I18nContext'
 import Layout from '@/components/Layout'
 import LoginPage from '@/pages/LoginPage'
 import Index from '@/pages/Index'
@@ -25,11 +26,12 @@ const ProtectedRoute = ({
   allowedRoles?: string[]
 }) => {
   const { state } = useStore()
+  const { t } = useI18n()
 
   if (state.loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Loading...
+        {t('common.loading')}
       </div>
     )
   }
@@ -47,11 +49,12 @@ const ProtectedRoute = ({
 
 const AppRoutes = () => {
   const { state } = useStore()
+  const { t } = useI18n()
 
   if (state.loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Loading Application...
+        {t('common.loading')}
       </div>
     )
   }
@@ -110,13 +113,15 @@ const App = () => (
     future={{ v7_startTransition: false, v7_relativeSplatPath: false }}
   >
     <AuthProvider>
-      <StoreProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <AppRoutes />
-        </TooltipProvider>
-      </StoreProvider>
+      <I18nProvider>
+        <StoreProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <AppRoutes />
+          </TooltipProvider>
+        </StoreProvider>
+      </I18nProvider>
     </AuthProvider>
   </BrowserRouter>
 )

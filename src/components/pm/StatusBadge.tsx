@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { useI18n } from '@/context/I18nContext'
 
 interface StatusBadgeProps {
   status: string
@@ -7,8 +8,10 @@ interface StatusBadgeProps {
 }
 
 export function StatusBadge({ status, className }: StatusBadgeProps) {
+  const { t } = useI18n()
   let colorClass = 'bg-slate-100 text-slate-800 hover:bg-slate-200'
 
+  // Map status to color
   switch (status.toLowerCase()) {
     case 'done':
     case 'completed':
@@ -27,12 +30,15 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
       break
   }
 
+  // Get translation
+  const translatedStatus = t(`status.${status.toLowerCase().replace('-', '_')}`)
+
   return (
     <Badge
       variant="outline"
       className={cn('capitalize border-0 font-medium', colorClass, className)}
     >
-      {status.replace('-', ' ')}
+      {translatedStatus}
     </Badge>
   )
 }
