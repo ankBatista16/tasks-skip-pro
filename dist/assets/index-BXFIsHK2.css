@@ -864,6 +864,10 @@ body{
   margin-bottom: 1rem;
 }
 
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
 .ml-1{
   margin-left: 0.25rem;
 }
@@ -878,6 +882,10 @@ body{
 
 .mr-2{
   margin-right: 0.5rem;
+}
+
+.mt-0\.5{
+  margin-top: 0.125rem;
 }
 
 .mt-1{
@@ -1251,6 +1259,10 @@ body{
   max-width: 42rem;
 }
 
+.max-w-3xl{
+  max-width: 48rem;
+}
+
 .max-w-7xl{
   max-width: 80rem;
 }
@@ -1409,6 +1421,10 @@ body{
   list-style-type: none;
 }
 
+.grid-cols-1{
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1463,6 +1479,10 @@ body{
 
 .justify-around{
   justify-content: space-around;
+}
+
+.gap-0\.5{
+  gap: 0.125rem;
 }
 
 .gap-1{
@@ -1630,6 +1650,10 @@ body{
 .rounded-t-\[10px\]{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+.rounded-tl-none{
+  border-top-left-radius: 0px;
 }
 
 .rounded-tl-sm{
@@ -1803,12 +1827,20 @@ body{
   background-color: hsl(var(--muted));
 }
 
+.bg-muted\/10{
+  background-color: hsl(var(--muted) / 0.1);
+}
+
 .bg-muted\/20{
   background-color: hsl(var(--muted) / 0.2);
 }
 
 .bg-muted\/30{
   background-color: hsl(var(--muted) / 0.3);
+}
+
+.bg-muted\/40{
+  background-color: hsl(var(--muted) / 0.4);
 }
 
 .bg-muted\/50{
@@ -1907,6 +1939,11 @@ body{
   padding: 1px;
 }
 
+.px-0{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .px-1{
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -2002,6 +2039,15 @@ body{
   padding-bottom: 1.5rem;
 }
 
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pb-0{
+  padding-bottom: 0px;
+}
+
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -2016,10 +2062,6 @@ body{
 
 .pb-4{
   padding-bottom: 1rem;
-}
-
-.pl-10{
-  padding-left: 2.5rem;
 }
 
 .pl-2{
@@ -2249,6 +2291,10 @@ body{
   color: hsl(var(--foreground) / 0.5);
 }
 
+.text-foreground\/90{
+  color: hsl(var(--foreground) / 0.9);
+}
+
 .text-gray-600{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
@@ -2273,6 +2319,11 @@ body{
 
 .text-primary-foreground{
   color: hsl(var(--primary-foreground));
+}
+
+.text-purple-500{
+  --tw-text-opacity: 1;
+  color: rgb(168 85 247 / var(--tw-text-opacity, 1));
 }
 
 .text-red-500{
@@ -2316,6 +2367,10 @@ body{
 
 .opacity-0{
   opacity: 0;
+}
+
+.opacity-100{
+  opacity: 1;
 }
 
 .opacity-20{
@@ -2705,6 +2760,10 @@ body{
 .hover\:bg-blue-200:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-destructive\/10:hover{
+  background-color: hsl(var(--destructive) / 0.1);
 }
 
 .hover\:bg-destructive\/80:hover{
@@ -3757,6 +3816,14 @@ body{
 
   .sm\:text-left{
     text-align: left;
+  }
+
+  .sm\:opacity-0{
+    opacity: 0;
+  }
+
+  .group:hover .sm\:group-hover\:opacity-100{
+    opacity: 1;
   }
 
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full[data-state="open"]{

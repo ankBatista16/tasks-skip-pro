@@ -22,24 +22,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Plus,
-  MessageSquare,
-  Paperclip,
-  Settings,
-  Pencil,
-  Calendar,
-} from 'lucide-react'
+import { Plus, Settings, Pencil, Calendar } from 'lucide-react'
 import { toast } from 'sonner'
 import { TaskCard } from './components/TaskCard'
 import { ProjectMembersDialog } from './components/ProjectMembersDialog'
 import { EditProjectDialog } from './components/EditProjectDialog'
+import { CommentSection } from '@/components/pm/CommentSection'
+import { AttachmentSection } from '@/components/pm/AttachmentSection'
 
 export default function ProjectDetailsPage() {
   const { projectId } = useParams()
   const navigate = useNavigate()
   const { state, actions } = useStore()
-  const { projects, tasks, users, comments } = state
+  const {
+    projects,
+    tasks,
+    users,
+    comments,
+    attachments: allAttachments,
+  } = state
   const currentUser = state.currentUser
 
   // Component State
@@ -56,6 +57,14 @@ export default function ProjectDetailsPage() {
   // 1. Fetch Data
   const project = projects.find((p) => p.id === projectId)
   const projectTasks = tasks.filter((t) => t.projectId === projectId)
+
+  // Filter Comments and Attachments for Project (excluding task level)
+  const projectComments = comments.filter(
+    (c) => c.projectId === projectId && !c.taskId,
+  )
+  const projectAttachments = allAttachments.filter(
+    (a) => a.projectId === projectId && !a.taskId,
+  )
 
   // 2. Access Control Logic
   const hasAccess = (() => {
@@ -100,6 +109,7 @@ export default function ProjectDetailsPage() {
     ? Math.round((completedTasks / projectTasks.length) * 100)
     : 0
 
+  // Actions Handlers
   const handleCreateTask = (e: React.FormEvent) => {
     e.preventDefault()
     if (newTask.title && currentUser) {
@@ -116,8 +126,38 @@ export default function ProjectDetailsPage() {
     }
   }
 
+  const handleAddProjectComment = (content: string) => {
+    if (currentUser) {
+      actions.addComment({
+        projectId: project.id,
+        userId: currentUser.id,
+        content,
+      })
+    }
+  }
+
+  const handleUploadProjectFile = (file: File) => {
+    if (currentUser) {
+      actions.addAttachment({
+        projectId: project.id,
+        userId: currentUser.id,
+        fileName: file.name,
+        fileUrl: '#',
+        fileType: file.type,
+        size: file.size,
+      })
+    }
+  }
+
+  const handleDeleteProjectFile = (id: string) => {
+    if (confirm('Are you sure you want to delete this file?')) {
+      actions.deleteAttachment(id)
+    }
+  }
+
   return (
     <div className="space-y-6 pb-20 animate-slide-up">
+      {/* Header Section */}
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <Button
@@ -208,6 +248,7 @@ export default function ProjectDetailsPage() {
         </div>
       </div>
 
+      {/* Content Tabs */}
       <Tabs defaultValue="tasks" className="w-full">
         <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
           <TabsTrigger
@@ -220,16 +261,17 @@ export default function ProjectDetailsPage() {
             value="comments"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-3"
           >
-            Comments
+            Comments ({projectComments.length})
           </TabsTrigger>
           <TabsTrigger
             value="files"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-3"
           >
-            Attachments
+            Attachments ({projectAttachments.length})
           </TabsTrigger>
         </TabsList>
 
+        {/* Tasks Tab */}
         <TabsContent value="tasks" className="mt-6 space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold">
@@ -317,21 +359,30 @@ export default function ProjectDetailsPage() {
           </div>
         </TabsContent>
 
-        <TabsContent value="comments" className="mt-6">
-          <div className="text-center py-12 text-muted-foreground bg-muted/20 rounded-lg">
-            <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-20" />
-            <p>No comments on this project thread yet.</p>
-          </div>
+        {/* Project Comments Tab */}
+        <TabsContent value="comments" className="mt-6 max-w-3xl">
+          <CommentSection
+            comments={projectComments}
+            users={users}
+            currentUser={currentUser}
+            onAddComment={handleAddProjectComment}
+          />
         </TabsContent>
 
-        <TabsContent value="files" className="mt-6">
-          <div className="text-center py-12 text-muted-foreground bg-muted/20 rounded-lg">
-            <Paperclip className="h-10 w-10 mx-auto mb-3 opacity-20" />
-            <p>No attachments uploaded.</p>
-          </div>
+        {/* Project Attachments Tab */}
+        <TabsContent value="files" className="mt-6 max-w-3xl">
+          <AttachmentSection
+            attachments={projectAttachments}
+            users={users}
+            currentUser={currentUser}
+            onUpload={handleUploadProjectFile}
+            onDelete={handleDeleteProjectFile}
+            canDelete={isManager}
+          />
         </TabsContent>
       </Tabs>
 
+      {/* Dialogs */}
       {isManager && (
         <>
           <ProjectMembersDialog

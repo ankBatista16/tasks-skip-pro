@@ -1,4 +1,12 @@
-import { Company, Project, Task, User, Notification, Comment } from '@/types'
+import {
+  Company,
+  Project,
+  Task,
+  User,
+  Notification,
+  Comment,
+  Attachment,
+} from '@/types'
 
 export const mockUsers: User[] = [
   {
@@ -136,4 +144,32 @@ export const mockNotifications: Notification[] = [
   },
 ]
 
-export const mockComments: Comment[] = []
+export const mockComments: Comment[] = [
+  {
+    id: 'cm1',
+    projectId: 'p1',
+    userId: 'u2',
+    content: 'Welcome to the new project everyone! Let’s make it great.',
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+  },
+  {
+    id: 'cm2',
+    taskId: 't1',
+    userId: 'u3',
+    content: 'I have started working on the initial drafts.',
+    createdAt: new Date(Date.now() - 3600000).toISOString(),
+  },
+]
+
+export const mockAttachments: Attachment[] = [
+  {
+    id: 'a1',
+    projectId: 'p1',
+    userId: 'u2',
+    fileName: 'Project_Specs_v1.pdf',
+    fileUrl: '#',
+    fileType: 'application/pdf',
+    size: 2500000,
+    createdAt: new Date(Date.now() - 172800000).toISOString(),
+  },
+]

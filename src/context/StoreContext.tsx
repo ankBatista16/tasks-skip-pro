@@ -12,8 +12,7 @@ import {
   Task,
   Notification,
   Comment,
-  ProjectStatus,
-  TaskStatus,
+  Attachment,
 } from '@/types'
 import {
   mockUsers,
@@ -22,6 +21,7 @@ import {
   mockTasks,
   mockNotifications,
   mockComments,
+  mockAttachments,
 } from '@/lib/mockData'
 import { toast } from 'sonner'
 
@@ -33,6 +33,7 @@ interface StoreState {
   tasks: Task[]
   notifications: Notification[]
   comments: Comment[]
+  attachments: Attachment[]
 }
 
 interface StoreActions {
@@ -53,6 +54,8 @@ interface StoreActions {
   ) => void
   addProjectMember: (projectId: string, userId: string) => void
   removeProjectMember: (projectId: string, userId: string) => void
+  addAttachment: (attachment: Omit<Attachment, 'id' | 'createdAt'>) => void
+  deleteAttachment: (id: string) => void
 }
 
 const StoreContext = createContext<
@@ -68,6 +71,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [notifications, setNotifications] =
     useState<Notification[]>(mockNotifications)
   const [comments, setComments] = useState<Comment[]>(mockComments)
+  const [attachments, setAttachments] = useState<Attachment[]>(mockAttachments)
 
   // Load from local storage on mount
   useEffect(() => {
@@ -136,27 +140,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         const updatedProjects = prevProjects.map((p) =>
           p.id === id ? { ...p, ...data } : p,
         )
-
-        // Notifications for status change
-        if (
-          oldProject &&
-          data.status &&
-          oldProject.status !== data.status &&
-          oldProject.members
-        ) {
-          oldProject.members.forEach((memberId) => {
-            if (memberId !== currentUser?.id) {
-              actions.addNotification({
-                userId: memberId,
-                title: 'Project Status Updated',
-                message: `${oldProject.name} is now ${data.status}`,
-                type: 'info',
-                read: false,
-              })
-            }
-          })
-        }
-
         return updatedProjects
       })
       toast.success('Project updated')
@@ -185,50 +168,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         const updatedTasks = prevTasks.map((t) =>
           t.id === id ? { ...t, ...data } : t,
         )
-
-        // Status Change Notification
-        if (
-          oldTask &&
-          data.status &&
-          oldTask.status !== data.status &&
-          oldTask.assigneeIds
-        ) {
-          oldTask.assigneeIds.forEach((assigneeId) => {
-            if (assigneeId !== currentUser?.id) {
-              actions.addNotification({
-                userId: assigneeId,
-                title: 'Task Status Updated',
-                message: `${oldTask.title} is now ${data.status}`,
-                type: 'info',
-                read: false,
-              })
-            }
-          })
-        }
-
-        // Assignment Notification (Simplified check: if assignment length changed or different IDs)
-        if (
-          oldTask &&
-          data.assigneeIds &&
-          JSON.stringify(oldTask.assigneeIds.sort()) !==
-            JSON.stringify(data.assigneeIds.sort())
-        ) {
-          data.assigneeIds.forEach((assigneeId) => {
-            if (
-              !oldTask.assigneeIds.includes(assigneeId) &&
-              assigneeId !== currentUser?.id
-            ) {
-              actions.addNotification({
-                userId: assigneeId,
-                title: 'Task Assigned',
-                message: `You have been assigned to ${oldTask.title}`,
-                type: 'info',
-                read: false,
-              })
-            }
-          })
-        }
-
         return updatedTasks
       })
       toast.success('Task updated')
@@ -287,6 +226,19 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         read: false,
       })
     },
+    addAttachment: (data) => {
+      const newAttachment = {
+        ...data,
+        id: crypto.randomUUID(),
+        createdAt: new Date().toISOString(),
+      }
+      setAttachments((prev) => [newAttachment, ...prev])
+      toast.success('File uploaded successfully')
+    },
+    deleteAttachment: (id) => {
+      setAttachments((prev) => prev.filter((a) => a.id !== id))
+      toast.success('Attachment deleted')
+    },
   }
 
   return (
@@ -300,6 +252,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
           tasks,
           notifications,
           comments,
+          attachments,
         },
         actions,
       }}

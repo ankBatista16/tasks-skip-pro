@@ -65,6 +65,18 @@ export interface Comment {
   createdAt: string
 }
 
+export interface Attachment {
+  id: string
+  taskId?: string // Can be on task
+  projectId?: string // Can be on project
+  userId: string
+  fileName: string
+  fileUrl: string
+  fileType: string
+  size: number
+  createdAt: string
+}
+
 export interface Notification {
   id: string
   userId: string

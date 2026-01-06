@@ -19021,6 +19021,48 @@ var Download = createLucideIcon("download", [
 		key: "brsn70"
 	}]
 ]);
+var FileImage = createLucideIcon("file-image", [
+	["path", {
+		d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+		key: "1oefj6"
+	}],
+	["path", {
+		d: "M14 2v5a1 1 0 0 0 1 1h5",
+		key: "wfsgrz"
+	}],
+	["circle", {
+		cx: "10",
+		cy: "12",
+		r: "2",
+		key: "737tya"
+	}],
+	["path", {
+		d: "m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22",
+		key: "wt3hpn"
+	}]
+]);
+var FileText = createLucideIcon("file-text", [
+	["path", {
+		d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+		key: "1oefj6"
+	}],
+	["path", {
+		d: "M14 2v5a1 1 0 0 0 1 1h5",
+		key: "wfsgrz"
+	}],
+	["path", {
+		d: "M10 9H8",
+		key: "b1mrlr"
+	}],
+	["path", {
+		d: "M16 13H8",
+		key: "t4e002"
+	}],
+	["path", {
+		d: "M16 17H8",
+		key: "z1uh3a"
+	}]
+]);
 var FolderKanban = createLucideIcon("folder-kanban", [
 	["path", {
 		d: "M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z",
@@ -19118,6 +19160,13 @@ var Search = createLucideIcon("search", [["path", {
 	r: "8",
 	key: "4ej97u"
 }]]);
+var Send = createLucideIcon("send", [["path", {
+	d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+	key: "1ffxy3"
+}], ["path", {
+	d: "m21.854 2.147-10.94 10.939",
+	key: "12cjpa"
+}]]);
 var Settings = createLucideIcon("settings", [["path", {
 	d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
 	key: "1i5ecw"
@@ -19130,6 +19179,13 @@ var Settings = createLucideIcon("settings", [["path", {
 var Shield = createLucideIcon("shield", [["path", {
 	d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 	key: "oel41y"
+}]]);
+var SquareCheckBig = createLucideIcon("square-check-big", [["path", {
+	d: "M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344",
+	key: "2acyp4"
+}], ["path", {
+	d: "m9 11 3 3L22 4",
+	key: "1pflzl"
 }]]);
 var Trash2 = createLucideIcon("trash-2", [
 	["path", {
@@ -19151,6 +19207,20 @@ var Trash2 = createLucideIcon("trash-2", [
 	["path", {
 		d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
 		key: "e791ji"
+	}]
+]);
+var Upload = createLucideIcon("upload", [
+	["path", {
+		d: "M12 3v12",
+		key: "1x0j5s"
+	}],
+	["path", {
+		d: "m17 8-5-5-5 5",
+		key: "7q97r8"
+	}],
+	["path", {
+		d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",
+		key: "ih7n3h"
 	}]
 ]);
 var User = createLucideIcon("user", [["path", {
@@ -23992,7 +24062,29 @@ const mockNotifications = [{
 	read: false,
 	createdAt: (/* @__PURE__ */ new Date()).toISOString()
 }];
-const mockComments = [];
+const mockComments = [{
+	id: "cm1",
+	projectId: "p1",
+	userId: "u2",
+	content: "Welcome to the new project everyone! Let’s make it great.",
+	createdAt: (/* @__PURE__ */ new Date(Date.now() - 864e5)).toISOString()
+}, {
+	id: "cm2",
+	taskId: "t1",
+	userId: "u3",
+	content: "I have started working on the initial drafts.",
+	createdAt: (/* @__PURE__ */ new Date(Date.now() - 36e5)).toISOString()
+}];
+const mockAttachments = [{
+	id: "a1",
+	projectId: "p1",
+	userId: "u2",
+	fileName: "Project_Specs_v1.pdf",
+	fileUrl: "#",
+	fileType: "application/pdf",
+	size: 25e5,
+	createdAt: (/* @__PURE__ */ new Date(Date.now() - 1728e5)).toISOString()
+}];
 var StoreContext = (0, import_react.createContext)(void 0);
 const StoreProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = (0, import_react.useState)(null);
@@ -24002,6 +24094,7 @@ const StoreProvider = ({ children }) => {
 	const [tasks, setTasks] = (0, import_react.useState)(mockTasks);
 	const [notifications, setNotifications] = (0, import_react.useState)(mockNotifications);
 	const [comments, setComments] = (0, import_react.useState)(mockComments);
+	const [attachments, setAttachments] = (0, import_react.useState)(mockAttachments);
 	(0, import_react.useEffect)(() => {
 		const storedUser = localStorage.getItem("currentUser");
 		if (storedUser) {
@@ -24072,21 +24165,11 @@ const StoreProvider = ({ children }) => {
 		},
 		updateProject: (id, data) => {
 			setProjects((prevProjects) => {
-				const oldProject = prevProjects.find((p) => p.id === id);
-				const updatedProjects = prevProjects.map((p) => p.id === id ? {
+				prevProjects.find((p) => p.id === id);
+				return prevProjects.map((p) => p.id === id ? {
 					...p,
 					...data
 				} : p);
-				if (oldProject && data.status && oldProject.status !== data.status && oldProject.members) oldProject.members.forEach((memberId) => {
-					if (memberId !== currentUser?.id) actions.addNotification({
-						userId: memberId,
-						title: "Project Status Updated",
-						message: `${oldProject.name} is now ${data.status}`,
-						type: "info",
-						read: false
-					});
-				});
-				return updatedProjects;
 			});
 			toast.success("Project updated");
 		},
@@ -24109,30 +24192,11 @@ const StoreProvider = ({ children }) => {
 		},
 		updateTask: (id, data) => {
 			setTasks((prevTasks) => {
-				const oldTask = prevTasks.find((t) => t.id === id);
-				const updatedTasks = prevTasks.map((t) => t.id === id ? {
+				prevTasks.find((t) => t.id === id);
+				return prevTasks.map((t) => t.id === id ? {
 					...t,
 					...data
 				} : t);
-				if (oldTask && data.status && oldTask.status !== data.status && oldTask.assigneeIds) oldTask.assigneeIds.forEach((assigneeId) => {
-					if (assigneeId !== currentUser?.id) actions.addNotification({
-						userId: assigneeId,
-						title: "Task Status Updated",
-						message: `${oldTask.title} is now ${data.status}`,
-						type: "info",
-						read: false
-					});
-				});
-				if (oldTask && data.assigneeIds && JSON.stringify(oldTask.assigneeIds.sort()) !== JSON.stringify(data.assigneeIds.sort())) data.assigneeIds.forEach((assigneeId) => {
-					if (!oldTask.assigneeIds.includes(assigneeId) && assigneeId !== currentUser?.id) actions.addNotification({
-						userId: assigneeId,
-						title: "Task Assigned",
-						message: `You have been assigned to ${oldTask.title}`,
-						type: "info",
-						read: false
-					});
-				});
-				return updatedTasks;
 			});
 			toast.success("Task updated");
 		},
@@ -24184,6 +24248,19 @@ const StoreProvider = ({ children }) => {
 				type: "warning",
 				read: false
 			});
+		},
+		addAttachment: (data) => {
+			const newAttachment = {
+				...data,
+				id: crypto.randomUUID(),
+				createdAt: (/* @__PURE__ */ new Date()).toISOString()
+			};
+			setAttachments((prev) => [newAttachment, ...prev]);
+			toast.success("File uploaded successfully");
+		},
+		deleteAttachment: (id) => {
+			setAttachments((prev) => prev.filter((a) => a.id !== id));
+			toast.success("Attachment deleted");
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoreContext.Provider, {
@@ -24195,7 +24272,8 @@ const StoreProvider = ({ children }) => {
 				projects,
 				tasks,
 				notifications,
-				comments
+				comments,
+				attachments
 			},
 			actions
 		},
@@ -24520,7 +24598,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 				var cachedValue = getSnapshot();
 				objectIs(value, cachedValue) || (console.error("The result of getSnapshot should be cached to avoid an infinite loop"), didWarnUncachedGetSnapshot = !0);
 			}
-			cachedValue = useState$12({ inst: {
+			cachedValue = useState$14({ inst: {
 				value,
 				getSnapshot
 			} });
@@ -24557,7 +24635,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 			return getSnapshot();
 		}
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$12 = React$3.useState, useEffect$6 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$14 = React$3.useState, useEffect$6 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
 		exports.useSyncExternalStore = void 0 !== React$3.useSyncExternalStore ? React$3.useSyncExternalStore : shim;
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
 	})();
@@ -31193,13 +31271,190 @@ function EditTaskDialog({ task, open, onOpenChange }) {
 		})
 	});
 }
+function CommentSection({ comments, users, currentUser, onAddComment, className }) {
+	const [newComment, setNewComment] = (0, import_react.useState)("");
+	const [isSubmitting, setIsSubmitting] = (0, import_react.useState)(false);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (!newComment.trim() || !currentUser) return;
+		setIsSubmitting(true);
+		setTimeout(() => {
+			onAddComment(newComment);
+			setNewComment("");
+			setIsSubmitting(false);
+		}, 500);
+	};
+	const sortedComments = [...comments].sort((a, b$1) => new Date(b$1.createdAt).getTime() - new Date(a.createdAt).getTime());
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+			onSubmit: handleSubmit,
+			className: "mb-6 space-y-3",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+				placeholder: "Write a comment...",
+				value: newComment,
+				onChange: (e) => setNewComment(e.target.value),
+				className: "min-h-[80px]"
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex justify-end",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+					type: "submit",
+					disabled: !newComment.trim() || isSubmitting,
+					size: "sm",
+					className: "gap-2",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-4 w-4" }), isSubmitting ? "Posting..." : "Post Comment"]
+				})
+			})]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "space-y-6",
+			children: [sortedComments.map((comment) => {
+				const author = users.find((u) => u.id === comment.userId);
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex gap-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
+						className: "h-8 w-8 mt-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: author?.avatarUrl }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, { children: author?.name?.[0] || "?" })]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex-1 space-y-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-between",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-sm font-semibold",
+								children: author?.name || "Unknown User"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-xs text-muted-foreground",
+								children: formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "text-sm text-foreground/90 bg-muted/40 p-3 rounded-lg rounded-tl-none",
+							children: comment.content
+						})]
+					})]
+				}, comment.id);
+			}), sortedComments.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "text-center py-8 text-muted-foreground bg-muted/20 rounded-lg",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-10 w-10 mx-auto mb-3 opacity-20" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "No comments yet. Be the first to start the discussion!" })]
+			})]
+		})]
+	});
+}
+function AttachmentSection({ attachments, users, currentUser, onUpload, onDelete, canDelete = false, className }) {
+	const fileInputRef = (0, import_react.useRef)(null);
+	const [isUploading, setIsUploading] = (0, import_react.useState)(false);
+	const handleFileChange = (e) => {
+		if (e.target.files && e.target.files[0]) {
+			const file = e.target.files[0];
+			setIsUploading(true);
+			setTimeout(() => {
+				onUpload(file);
+				if (fileInputRef.current) fileInputRef.current.value = "";
+				setIsUploading(false);
+			}, 1e3);
+		}
+	};
+	const formatSize = (bytes) => {
+		if (bytes === 0) return "0 B";
+		const k = 1024;
+		const sizes = [
+			"B",
+			"KB",
+			"MB",
+			"GB"
+		];
+		const i = Math.floor(Math.log(bytes) / Math.log(k));
+		return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+	};
+	const getFileIcon = (type) => {
+		if (type.startsWith("image/")) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileImage, { className: "h-8 w-8 text-purple-500" });
+		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "h-8 w-8 text-blue-500" });
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex justify-between items-center mb-6",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+				className: "text-lg font-semibold",
+				children: "Attachments"
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex gap-2",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+					type: "file",
+					ref: fileInputRef,
+					className: "hidden",
+					onChange: handleFileChange
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+					size: "sm",
+					className: "gap-2",
+					disabled: isUploading || !currentUser,
+					onClick: () => fileInputRef.current?.click(),
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Upload, { className: "h-4 w-4" }), isUploading ? "Uploading..." : "Upload File"]
+				})]
+			})]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "grid grid-cols-1 gap-3",
+			children: [attachments.map((attachment) => {
+				const uploader = users.find((u) => u.id === attachment.userId);
+				const isOwner = currentUser?.id === attachment.userId;
+				const canDeleteThis = canDelete || isOwner;
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex items-center gap-3 p-3 rounded-lg border bg-card hover:bg-accent/10 transition-colors group",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "shrink-0 p-2 bg-muted rounded-md",
+							children: getFileIcon(attachment.fileType)
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex-1 min-w-0",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "font-medium text-sm truncate",
+								children: attachment.fileName
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-2 text-xs text-muted-foreground mt-0.5",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: formatSize(attachment.size) }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "•" }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+										"Uploaded by ",
+										uploader?.name || "Unknown",
+										" ",
+										formatDistanceToNow(new Date(attachment.createdAt), { addSuffix: true })
+									] })
+								]
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+								variant: "ghost",
+								size: "icon",
+								className: "h-8 w-8",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "h-4 w-4 text-muted-foreground" })
+							}), canDeleteThis && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+								variant: "ghost",
+								size: "icon",
+								className: "h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10",
+								onClick: () => onDelete(attachment.id),
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { className: "h-4 w-4" })
+							})]
+						})
+					]
+				}, attachment.id);
+			}), attachments.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "text-center py-10 border border-dashed rounded-lg text-muted-foreground bg-muted/20",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Paperclip, { className: "h-10 w-10 mx-auto mb-3 opacity-20" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "No attachments found." })]
+			})]
+		})]
+	});
+}
 function TaskCard({ task }) {
 	const { actions, state } = useStore();
-	const { users, currentUser, projects } = state;
+	const { users, currentUser, projects, comments: allComments, attachments: allAttachments } = state;
 	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
 	const [isEditDialogOpen, setIsEditDialogOpen] = (0, import_react.useState)(false);
 	const assignee = users.find((u) => u.id === task.assigneeIds[0]);
 	const project = projects.find((p) => p.id === task.projectId);
+	const taskComments = allComments.filter((c) => c.taskId === task.id);
+	const taskAttachments = allAttachments.filter((a) => a.taskId === task.id);
 	const canEdit = (() => {
 		if (!currentUser || !project) return false;
 		if (currentUser.role === "MASTER") return true;
@@ -31219,10 +31474,30 @@ function TaskCard({ task }) {
 		} : st);
 		actions.updateTask(task.id, { subtasks: newSubtasks });
 	};
+	const handleAddComment = (content) => {
+		if (currentUser) actions.addComment({
+			taskId: task.id,
+			userId: currentUser.id,
+			content
+		});
+	};
+	const handleUpload = (file) => {
+		if (currentUser) actions.addAttachment({
+			taskId: task.id,
+			userId: currentUser.id,
+			fileName: file.name,
+			fileUrl: "#",
+			fileType: file.type,
+			size: file.size
+		});
+	};
+	const handleDeleteAttachment = (id) => {
+		if (confirm("Delete this attachment?")) actions.deleteAttachment(id);
+	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Collapsible, {
 		open: isOpen,
 		onOpenChange: setIsOpen,
-		className: "border rounded-lg bg-card text-card-foreground shadow-sm",
+		className: "border rounded-lg bg-card text-card-foreground shadow-sm transition-all duration-200",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "p-4 flex items-start gap-3 relative group",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
@@ -31234,7 +31509,8 @@ function TaskCard({ task }) {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex items-center justify-between",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: cn("font-medium truncate mr-2", task.status === "done" && "line-through text-muted-foreground"),
+						className: cn("font-medium truncate mr-2 cursor-pointer", task.status === "done" && "line-through text-muted-foreground"),
+						onClick: () => setIsOpen(!isOpen),
 						children: task.title
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex items-center gap-1",
@@ -31242,7 +31518,10 @@ function TaskCard({ task }) {
 							variant: "ghost",
 							size: "sm",
 							className: "h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity",
-							onClick: () => setIsEditDialogOpen(true),
+							onClick: (e) => {
+								e.stopPropagation();
+								setIsEditDialogOpen(true);
+							},
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { className: "h-4 w-4 text-muted-foreground" })
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleTrigger, {
 							asChild: true,
@@ -31255,7 +31534,8 @@ function TaskCard({ task }) {
 						})]
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap",
+					className: "flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap cursor-pointer",
+					onClick: () => setIsOpen(!isOpen),
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
 							status: task.priority,
@@ -31283,46 +31563,122 @@ function TaskCard({ task }) {
 						task.dueDate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex items-center gap-1 ml-auto",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: new Date(task.dueDate).toLocaleDateString() })]
+						}),
+						(taskComments.length > 0 || taskAttachments.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex gap-2 ml-2 pl-2 border-l",
+							children: [taskComments.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-0.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-3 w-3" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: taskComments.length })]
+							}), taskAttachments.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-0.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Paperclip, { className: "h-3 w-3" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: taskAttachments.length })]
+							})]
 						})
 					]
 				})]
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleContent, {
-			className: "px-4 pb-4 pl-10 border-t bg-muted/30",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "pt-3 space-y-2",
-				children: [task.description && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "text-sm text-muted-foreground mb-3",
-					children: task.description
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "space-y-1",
-					children: [task.subtasks.map((st) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center justify-between gap-2 group/subtask",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
-								checked: st.status,
-								onCheckedChange: () => toggleSubtask(st.id, st.status),
-								className: "h-3.5 w-3.5"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: cn("text-sm", st.status && "line-through text-muted-foreground"),
-								children: st.title
-							})]
-						}), (st.leaderId || st.memberIds.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center gap-1",
-							children: [st.leaderId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Avatar, {
-								className: "h-4 w-4 border border-background",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: users.find((u) => u.id === st.leaderId)?.avatarUrl })
-							}), st.memberIds.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-								className: "text-[10px] text-muted-foreground",
-								children: [st.memberIds.length, " members"]
-							})]
+			className: "px-0 pb-0 border-t bg-muted/10 animate-slide-down",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
+				defaultValue: "details",
+				className: "w-full",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "px-4 pt-2",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsList, {
+							className: "w-full justify-start h-9 bg-muted/50 p-0",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
+									value: "details",
+									className: "flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "h-3.5 w-3.5 mr-2" }), "Details"]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
+									value: "comments",
+									className: "flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-3.5 w-3.5 mr-2" }),
+										"Comments (",
+										taskComments.length,
+										")"
+									]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
+									value: "files",
+									className: "flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Paperclip, { className: "h-3.5 w-3.5 mr-2" }),
+										"Files (",
+										taskAttachments.length,
+										")"
+									]
+								})
+							]
+						})
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
+						value: "details",
+						className: "p-4 pt-3 space-y-4",
+						children: [task.description && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-sm text-muted-foreground",
+							children: task.description
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-1",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+									className: "text-xs font-semibold uppercase text-muted-foreground mb-2",
+									children: "Subtasks"
+								}),
+								task.subtasks.map((st) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center justify-between gap-2 group/subtask p-1 hover:bg-muted/50 rounded",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
+											checked: st.status,
+											onCheckedChange: () => toggleSubtask(st.id, st.status),
+											className: "h-3.5 w-3.5"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: cn("text-sm", st.status && "line-through text-muted-foreground"),
+											children: st.title
+										})]
+									}), (st.leaderId || st.memberIds.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "flex items-center gap-1",
+										children: st.leaderId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Avatar, {
+											className: "h-4 w-4 border border-background",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: users.find((u) => u.id === st.leaderId)?.avatarUrl })
+										})
+									})]
+								}, st.id)),
+								task.subtasks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-xs text-muted-foreground italic",
+									children: "No subtasks defined."
+								})
+							]
 						})]
-					}, st.id)), task.subtasks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-xs text-muted-foreground italic",
-						children: "No subtasks"
-					})]
-				})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
+						value: "comments",
+						className: "p-4 pt-0",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CommentSection, {
+							comments: taskComments,
+							users,
+							currentUser,
+							onAddComment: handleAddComment
+						})
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
+						value: "files",
+						className: "p-4 pt-0",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AttachmentSection, {
+							attachments: taskAttachments,
+							users,
+							currentUser,
+							onUpload: handleUpload,
+							onDelete: handleDeleteAttachment,
+							canDelete: canEdit
+						})
+					})
+				]
 			})
 		})]
 	}), canEdit && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EditTaskDialog, {
@@ -31589,7 +31945,7 @@ function ProjectDetailsPage() {
 	const { projectId } = useParams();
 	const navigate = useNavigate();
 	const { state, actions } = useStore();
-	const { projects, tasks, users, comments } = state;
+	const { projects, tasks, users, comments, attachments: allAttachments } = state;
 	const currentUser = state.currentUser;
 	const [isTaskOpen, setIsTaskOpen] = (0, import_react.useState)(false);
 	const [isMembersOpen, setIsMembersOpen] = (0, import_react.useState)(false);
@@ -31601,6 +31957,8 @@ function ProjectDetailsPage() {
 	});
 	const project = projects.find((p) => p.id === projectId);
 	const projectTasks = tasks.filter((t) => t.projectId === projectId);
+	const projectComments = comments.filter((c) => c.projectId === projectId && !c.taskId);
+	const projectAttachments = allAttachments.filter((a) => a.projectId === projectId && !a.taskId);
 	const hasAccess = (() => {
 		if (!project || !currentUser) return false;
 		if (currentUser.role === "MASTER") return true;
@@ -31643,6 +32001,26 @@ function ProjectDetailsPage() {
 				assigneeId: ""
 			});
 		}
+	};
+	const handleAddProjectComment = (content) => {
+		if (currentUser) actions.addComment({
+			projectId: project.id,
+			userId: currentUser.id,
+			content
+		});
+	};
+	const handleUploadProjectFile = (file) => {
+		if (currentUser) actions.addAttachment({
+			projectId: project.id,
+			userId: currentUser.id,
+			fileName: file.name,
+			fileUrl: "#",
+			fileType: file.type,
+			size: file.size
+		});
+	};
+	const handleDeleteProjectFile = (id) => {
+		if (confirm("Are you sure you want to delete this file?")) actions.deleteAttachment(id);
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 pb-20 animate-slide-up",
@@ -31750,15 +32128,23 @@ function ProjectDetailsPage() {
 								className: "rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-3",
 								children: "Tasks"
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 								value: "comments",
 								className: "rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-3",
-								children: "Comments"
+								children: [
+									"Comments (",
+									projectComments.length,
+									")"
+								]
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 								value: "files",
 								className: "rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-3",
-								children: "Attachments"
+								children: [
+									"Attachments (",
+									projectAttachments.length,
+									")"
+								]
 							})
 						]
 					}),
@@ -31858,18 +32244,24 @@ function ProjectDetailsPage() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
 						value: "comments",
-						className: "mt-6",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "text-center py-12 text-muted-foreground bg-muted/20 rounded-lg",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-10 w-10 mx-auto mb-3 opacity-20" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "No comments on this project thread yet." })]
+						className: "mt-6 max-w-3xl",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CommentSection, {
+							comments: projectComments,
+							users,
+							currentUser,
+							onAddComment: handleAddProjectComment
 						})
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
 						value: "files",
-						className: "mt-6",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "text-center py-12 text-muted-foreground bg-muted/20 rounded-lg",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Paperclip, { className: "h-10 w-10 mx-auto mb-3 opacity-20" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "No attachments uploaded." })]
+						className: "mt-6 max-w-3xl",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AttachmentSection, {
+							attachments: projectAttachments,
+							users,
+							currentUser,
+							onUpload: handleUploadProjectFile,
+							onDelete: handleDeleteProjectFile,
+							canDelete: isManager
 						})
 					})
 				]
@@ -32424,4 +32816,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-K3xd2GPD.js.map
+//# sourceMappingURL=index-CFUN9jnP.js.map
