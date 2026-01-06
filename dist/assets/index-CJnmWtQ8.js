@@ -32156,30 +32156,52 @@ const StoreProvider = ({ children }) => {
 				toast.error("Missing required fields: Name, Email and Role are required");
 				return false;
 			}
-			const { data: res, error } = await supabase.functions.invoke("create-user", { body: {
-				email: data.email,
-				password: data.password || "password123",
-				fullName: data.name,
-				role: data.role,
-				companyId: data.companyId,
-				jobTitle: data.jobTitle,
-				permissions: data.permissions || []
-			} });
-			if (error) {
-				let message = "Failed to invite user";
-				if (typeof error === "object" && "context" in error) try {
-					const body = await error.context.json();
-					if (body && body.error) message = body.error;
-				} catch (e) {
-					if (error.message) message = error.message;
+			try {
+				const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+				if (sessionError || !session) {
+					console.error("Session error:", sessionError);
+					toast.error("Authentication error: Your session is invalid or has expired. Please log in again.");
+					return false;
 				}
-				else if (error.message) message = error.message;
-				toast.error(message);
+				const token = session.access_token;
+				const { data: res, error } = await supabase.functions.invoke("create-user", {
+					body: {
+						email: data.email,
+						password: data.password || "password123",
+						fullName: data.name,
+						role: data.role,
+						companyId: data.companyId,
+						jobTitle: data.jobTitle,
+						permissions: data.permissions || []
+					},
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json"
+					}
+				});
+				if (error) {
+					let message = "Failed to invite user";
+					if (typeof error === "object" && "status" in error && error.status === 401 || error.message?.includes("401")) message = "Unauthorized: Your session has expired. Please log in again.";
+					if (typeof error === "object" && "context" in error) try {
+						const response = error.context;
+						if (response && response.status === 401) message = "Unauthorized: Your session has expired. Please log in again.";
+						const body = await response.json();
+						if (body && body.error) message = body.error;
+					} catch (e) {
+						if (error.message) message = error.message;
+					}
+					else if (error.message) message = error.message;
+					toast.error(message);
+					return false;
+				}
+				if (session.user) fetchData(session.user.id);
+				toast.success("User invite sent successfully");
+				return true;
+			} catch (err) {
+				console.error("Unexpected error in addUser:", err);
+				toast.error("An unexpected error occurred. Please try again.");
 				return false;
 			}
-			if (authUser) fetchData(authUser.id);
-			toast.success("User invite sent successfully");
-			return true;
 		},
 		updateUser: async (id, data) => {
 			const { error } = await supabase.from("members").update({
@@ -42180,4 +42202,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-BxonLW1F.js.map
+//# sourceMappingURL=index-CJnmWtQ8.js.map

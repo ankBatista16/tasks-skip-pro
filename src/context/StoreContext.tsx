@@ -289,49 +289,93 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         return false
       }
 
-      // 3. Call Edge Function (Auth Header is automatically handled by supabase-js if session exists)
-      const { data: res, error } = await supabase.functions.invoke(
-        'create-user',
-        {
-          body: {
-            email: data.email,
-            password: data.password || 'password123', // Default password for invited users
-            fullName: data.name,
-            role: data.role,
-            companyId: data.companyId,
-            jobTitle: data.jobTitle,
-            permissions: data.permissions || [],
-          },
-        },
-      )
+      try {
+        // 3. Get Session and Token (Ensure valid session immediately before call)
+        const {
+          data: { session },
+          error: sessionError,
+        } = await supabase.auth.getSession()
 
-      if (error) {
-        let message = 'Failed to invite user'
-        // Try to parse detailed error from edge function response
-        if (typeof error === 'object' && 'context' in error) {
-          try {
-            // error.context is the Response object
-            const body = await (error as any).context.json()
-            if (body && body.error) {
-              message = body.error
-            }
-          } catch (e) {
-            // Fallback to error message if JSON parse fails
-            if (error.message) message = error.message
-          }
-        } else if (error.message) {
-          message = error.message
+        if (sessionError || !session) {
+          console.error('Session error:', sessionError)
+          toast.error(
+            'Authentication error: Your session is invalid or has expired. Please log in again.',
+          )
+          return false
         }
 
-        toast.error(message)
+        const token = session.access_token
+
+        // 4. Call Edge Function with Explicit Auth Headers
+        const { data: res, error } = await supabase.functions.invoke(
+          'create-user',
+          {
+            body: {
+              email: data.email,
+              password: data.password || 'password123', // Default password for invited users
+              fullName: data.name,
+              role: data.role,
+              companyId: data.companyId,
+              jobTitle: data.jobTitle,
+              permissions: data.permissions || [],
+            },
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+
+        if (error) {
+          let message = 'Failed to invite user'
+
+          // Handle 401 Unauthorized errors explicitly
+          if (
+            (typeof error === 'object' &&
+              'status' in error &&
+              error.status === 401) ||
+            error.message?.includes('401')
+          ) {
+            message =
+              'Unauthorized: Your session has expired. Please log in again.'
+          }
+
+          // Try to parse detailed error from edge function response
+          if (typeof error === 'object' && 'context' in error) {
+            try {
+              // error.context is typically the Response object
+              const response = (error as any).context as Response
+              if (response && response.status === 401) {
+                message =
+                  'Unauthorized: Your session has expired. Please log in again.'
+              }
+
+              const body = await response.json()
+              if (body && body.error) {
+                message = body.error
+              }
+            } catch (e) {
+              // Fallback to error message if JSON parse fails
+              if (error.message) message = error.message
+            }
+          } else if (error.message) {
+            message = error.message
+          }
+
+          toast.error(message)
+          return false
+        }
+
+        // 5. Refresh Data
+        // Since the trigger handles creation, we can refresh to see the new user
+        if (session.user) fetchData(session.user.id)
+        toast.success('User invite sent successfully')
+        return true
+      } catch (err: any) {
+        console.error('Unexpected error in addUser:', err)
+        toast.error('An unexpected error occurred. Please try again.')
         return false
       }
-
-      // 3. Refresh Data
-      // Since the trigger handles creation, we can refresh to see the new user
-      if (authUser) fetchData(authUser.id)
-      toast.success('User invite sent successfully')
-      return true
     },
     updateUser: async (id, data) => {
       const { error } = await supabase
