@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate, Link, useSearchParams } from 'react-router-dom'
 import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -33,6 +33,8 @@ import { AttachmentSection } from '@/components/pm/AttachmentSection'
 
 export default function ProjectDetailsPage() {
   const { projectId } = useParams()
+  const [searchParams] = useSearchParams()
+  const taskIdFromUrl = searchParams.get('task')
   const navigate = useNavigate()
   const { state, actions } = useStore()
   const {
@@ -206,7 +208,7 @@ export default function ProjectDetailsPage() {
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 <span>
-                  {new Date(project.startDate).toLocaleDateString()} -{' '}
+                  {new Date(project.startDate).toLocaleDateString()()} -{' '}
                   {new Date(project.dueDate).toLocaleDateString()}
                 </span>
               </div>
@@ -341,7 +343,6 @@ export default function ProjectDetailsPage() {
                       <SelectContent>
                         {project.members.map((mid) => {
                           const m = users.find((u) => u.id === mid)
-                          // Only show active members for assignment
                           return m && m.status === 'active' ? (
                             <SelectItem key={m.id} value={m.id}>
                               {m.name}
@@ -361,7 +362,11 @@ export default function ProjectDetailsPage() {
 
           <div className="space-y-3">
             {projectTasks.map((task) => (
-              <TaskCard key={task.id} task={task} />
+              <TaskCard
+                key={task.id}
+                task={task}
+                defaultOpen={taskIdFromUrl === task.id}
+              />
             ))}
             {projectTasks.length === 0 && (
               <div className="text-center py-10 border border-dashed rounded-lg text-muted-foreground">

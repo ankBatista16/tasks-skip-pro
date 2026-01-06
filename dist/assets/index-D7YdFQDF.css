@@ -1053,6 +1053,10 @@ body{
   height: 200px;
 }
 
+.h-\[300px\]{
+  height: 300px;
+}
+
 .h-\[var\(--radix-navigation-menu-viewport-height\)\]{
   height: var(--radix-navigation-menu-viewport-height);
 }
@@ -1199,6 +1203,10 @@ body{
 
 .w-8{
   width: 2rem;
+}
+
+.w-80{
+  width: 20rem;
 }
 
 .w-9{

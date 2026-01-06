@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStore } from '@/context/StoreContext'
 import { Task } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -25,7 +25,12 @@ import { EditTaskDialog } from './EditTaskDialog'
 import { CommentSection } from '@/components/pm/CommentSection'
 import { AttachmentSection } from '@/components/pm/AttachmentSection'
 
-export function TaskCard({ task }: { task: Task }) {
+interface TaskCardProps {
+  task: Task
+  defaultOpen?: boolean
+}
+
+export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
   const { actions, state } = useStore()
   const {
     users,
@@ -34,17 +39,27 @@ export function TaskCard({ task }: { task: Task }) {
     comments: allComments,
     attachments: allAttachments,
   } = state
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(defaultOpen)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+
+  // Sync defaultOpen if it changes (e.g. navigation)
+  useEffect(() => {
+    if (defaultOpen) {
+      setIsOpen(true)
+      // Scroll into view if needed
+      const element = document.getElementById(`task-${task.id}`)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    }
+  }, [defaultOpen, task.id])
 
   const assignee = users.find((u) => u.id === task.assigneeIds[0])
   const project = projects.find((p) => p.id === task.projectId)
 
-  // Derived Data
   const taskComments = allComments.filter((c) => c.taskId === task.id)
   const taskAttachments = allAttachments.filter((a) => a.taskId === task.id)
 
-  // Permissions Logic
   const canEdit = (() => {
     if (!currentUser || !project) return false
     if (currentUser.role === 'MASTER') return true
@@ -55,11 +70,9 @@ export function TaskCard({ task }: { task: Task }) {
       return true
     if (project.leaderId === currentUser.id) return true
     if (task.creatorId === currentUser.id) return true
-    // Assignees can usually edit task status but not delete/full edit, simplified here
     return false
   })()
 
-  // Task Card Actions
   const toggleStatus = () => {
     const newStatus = task.status === 'done' ? 'todo' : 'done'
     actions.updateTask(task.id, { status: newStatus })
@@ -72,7 +85,6 @@ export function TaskCard({ task }: { task: Task }) {
     actions.updateTask(task.id, { subtasks: newSubtasks })
   }
 
-  // Comment Actions
   const handleAddComment = (content: string) => {
     if (currentUser) {
       actions.addComment({
@@ -83,7 +95,6 @@ export function TaskCard({ task }: { task: Task }) {
     }
   }
 
-  // Attachment Actions
   const handleUpload = (file: File) => {
     if (currentUser) {
       actions.addAttachment({
@@ -106,9 +117,13 @@ export function TaskCard({ task }: { task: Task }) {
   return (
     <>
       <Collapsible
+        id={`task-${task.id}`}
         open={isOpen}
         onOpenChange={setIsOpen}
-        className="border rounded-lg bg-card text-card-foreground shadow-sm transition-all duration-200"
+        className={cn(
+          'border rounded-lg bg-card text-card-foreground shadow-sm transition-all duration-200',
+          defaultOpen && 'ring-2 ring-primary border-primary',
+        )}
       >
         <div className="p-4 flex items-start gap-3 relative group">
           <Checkbox
@@ -120,7 +135,7 @@ export function TaskCard({ task }: { task: Task }) {
             <div className="flex items-center justify-between">
               <span
                 className={cn(
-                  'font-medium truncate mr-2 cursor-pointer',
+                  'font-medium truncate mr-2 cursor-pointer select-none',
                   task.status === 'done' &&
                     'line-through text-muted-foreground',
                 )}
@@ -154,7 +169,7 @@ export function TaskCard({ task }: { task: Task }) {
               </div>
             </div>
             <div
-              className="flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap cursor-pointer"
+              className="flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap cursor-pointer select-none"
               onClick={() => setIsOpen(!isOpen)}
             >
               <StatusBadge
@@ -185,7 +200,6 @@ export function TaskCard({ task }: { task: Task }) {
                   <span>{new Date(task.dueDate).toLocaleDateString()}</span>
                 </div>
               )}
-              {/* Indicators for content */}
               {(taskComments.length > 0 || taskAttachments.length > 0) && (
                 <div className="flex gap-2 ml-2 pl-2 border-l">
                   {taskComments.length > 0 && (

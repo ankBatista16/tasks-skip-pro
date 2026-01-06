@@ -31,7 +31,7 @@ interface StoreState {
 }
 
 interface StoreActions {
-  login: (userId: string) => void // Deprecated but kept for compatibility
+  login: (userId: string) => void
   logout: () => void
   addCompany: (company: Omit<Company, 'id'>) => void
   updateCompany: (id: string, data: Partial<Company>) => void
@@ -88,6 +88,43 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }, [authUser])
+
+  // Real-time Subscriptions for Notifications
+  useEffect(() => {
+    if (!currentUser) return
+
+    const channel = supabase
+      .channel('notifications-channel')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${currentUser.id}`,
+        },
+        (payload) => {
+          const newNotification = mapNotification(payload.new)
+          setNotifications((prev) => [newNotification, ...prev])
+          toast(newNotification.title, {
+            description: newNotification.message,
+            action: {
+              label: 'View',
+              onClick: () => {
+                if (newNotification.link) {
+                  window.location.href = newNotification.link
+                }
+              },
+            },
+          })
+        },
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [currentUser])
 
   const fetchData = async (userId: string) => {
     setLoading(true)
@@ -222,9 +259,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
   // Actions
   const actions: StoreActions = {
-    login: () => {
-      // Handled by AuthProvider now
-    },
+    login: () => {},
     logout: async () => {
       await signOut()
       setCurrentUser(null)
@@ -281,23 +316,13 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         return false
       }
 
-      if (!data.email || !data.name || !data.role) {
-        toast.error(
-          'Missing required fields: Name, Email and Role are required',
-        )
-        return false
-      }
-
       try {
         const {
           data: { session },
-          error: sessionError,
         } = await supabase.auth.getSession()
 
-        if (sessionError || !session) {
-          toast.error(
-            'Authentication error: Your session is invalid or has expired.',
-          )
+        if (!session) {
+          toast.error('Authentication error')
           return false
         }
 
@@ -352,30 +377,23 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('User updated')
     },
     deleteUser: async (id) => {
-      toast.error(
-        'Deletion requires admin privilege via backend. Suspending instead.',
-      )
+      toast.error('Suspending instead.')
       actions.updateUser(id, { status: 'suspended' })
     },
     uploadAvatar: async (file: File) => {
       if (!currentUser) return
-
       try {
         const fileExt = file.name.split('.').pop()
         const fileName = `${currentUser.id}/${Date.now()}.${fileExt}`
-        const filePath = fileName
-
         const { error: uploadError } = await supabase.storage
           .from('avatars')
-          .upload(filePath, file, {
-            upsert: true,
-          })
+          .upload(fileName, file, { upsert: true })
 
         if (uploadError) throw uploadError
 
         const {
           data: { publicUrl },
-        } = supabase.storage.from('avatars').getPublicUrl(filePath)
+        } = supabase.storage.from('avatars').getPublicUrl(fileName)
 
         const { error: updateError } = await supabase
           .from('members')
@@ -391,7 +409,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
             u.id === currentUser.id ? { ...u, avatarUrl: publicUrl } : u,
           ),
         )
-
         toast.success('Profile photo updated successfully')
       } catch (error: any) {
         toast.error('Failed to upload avatar: ' + error.message)
@@ -465,29 +482,17 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Task added')
     },
     updateTask: async (id, data) => {
-      // 1. Construct Payload safely
       const payload: any = {}
-
       if (data.title !== undefined) payload.title = data.title
       if (data.status !== undefined) payload.status = data.status
       if (data.priority !== undefined) payload.priority = data.priority
       if (data.description !== undefined) payload.description = data.description
-
-      // Map snake_case fields for JSON columns
-      if (data.assigneeIds !== undefined) {
+      if (data.assigneeIds !== undefined)
         payload.assignee_ids = data.assigneeIds
-      }
-
-      if (data.subtasks !== undefined) {
-        payload.subtasks = data.subtasks
-      }
-
-      // Handle due date: allow clearing (sending null)
-      if (data.dueDate !== undefined) {
+      if (data.subtasks !== undefined) payload.subtasks = data.subtasks
+      if (data.dueDate !== undefined)
         payload.due_date = data.dueDate === '' ? null : data.dueDate
-      }
 
-      // 2. Perform Update
       const { error } = await supabase
         .from('tasks')
         .update(payload)
@@ -498,7 +503,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         return
       }
 
-      // 3. Update Local State
       setTasks(tasks.map((t) => (t.id === id ? { ...t, ...data } : t)))
       toast.success('Task updated')
     },
@@ -528,6 +532,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       )
     },
     addNotification: async (data) => {
+      // Manual add kept for backward compatibility if any, but triggers handle DB now
       const { data: res, error } = await supabase
         .from('notifications')
         .insert({
@@ -540,7 +545,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         .single()
 
       if (!error && res) {
-        setNotifications([mapNotification(res), ...notifications])
+        // Realtime will catch this, but optimistically adding is fine too
+        // setNotifications([mapNotification(res), ...notifications])
       }
     },
     addProjectMember: async (projectId, userId) => {
@@ -549,13 +555,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       if (!project.members.includes(userId)) {
         const newMembers = [...project.members, userId]
         actions.updateProject(projectId, { members: newMembers })
-        actions.addNotification({
-          userId,
-          title: 'Added to Project',
-          message: `You have been added to ${project.name}`,
-          type: 'info',
-          read: false,
-        })
       }
     },
     removeProjectMember: async (projectId, userId) => {
