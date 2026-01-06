@@ -5,7 +5,16 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react'
-import { User, Company, Project, Task, Notification, Comment } from '@/types'
+import {
+  User,
+  Company,
+  Project,
+  Task,
+  Notification,
+  Comment,
+  ProjectStatus,
+  TaskStatus,
+} from '@/types'
 import {
   mockUsers,
   mockCompanies,
@@ -60,7 +69,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     useState<Notification[]>(mockNotifications)
   const [comments, setComments] = useState<Comment[]>(mockComments)
 
-  // Load from local storage on mount (simulated persistence)
+  // Load from local storage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem('currentUser')
     if (storedUser) {
@@ -122,7 +131,34 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       })
     },
     updateProject: (id, data) => {
-      setProjects(projects.map((p) => (p.id === id ? { ...p, ...data } : p)))
+      setProjects((prevProjects) => {
+        const oldProject = prevProjects.find((p) => p.id === id)
+        const updatedProjects = prevProjects.map((p) =>
+          p.id === id ? { ...p, ...data } : p,
+        )
+
+        // Notifications for status change
+        if (
+          oldProject &&
+          data.status &&
+          oldProject.status !== data.status &&
+          oldProject.members
+        ) {
+          oldProject.members.forEach((memberId) => {
+            if (memberId !== currentUser?.id) {
+              actions.addNotification({
+                userId: memberId,
+                title: 'Project Status Updated',
+                message: `${oldProject.name} is now ${data.status}`,
+                type: 'info',
+                read: false,
+              })
+            }
+          })
+        }
+
+        return updatedProjects
+      })
       toast.success('Project updated')
     },
     addTask: (data) => {
@@ -144,7 +180,58 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       })
     },
     updateTask: (id, data) => {
-      setTasks(tasks.map((t) => (t.id === id ? { ...t, ...data } : t)))
+      setTasks((prevTasks) => {
+        const oldTask = prevTasks.find((t) => t.id === id)
+        const updatedTasks = prevTasks.map((t) =>
+          t.id === id ? { ...t, ...data } : t,
+        )
+
+        // Status Change Notification
+        if (
+          oldTask &&
+          data.status &&
+          oldTask.status !== data.status &&
+          oldTask.assigneeIds
+        ) {
+          oldTask.assigneeIds.forEach((assigneeId) => {
+            if (assigneeId !== currentUser?.id) {
+              actions.addNotification({
+                userId: assigneeId,
+                title: 'Task Status Updated',
+                message: `${oldTask.title} is now ${data.status}`,
+                type: 'info',
+                read: false,
+              })
+            }
+          })
+        }
+
+        // Assignment Notification (Simplified check: if assignment length changed or different IDs)
+        if (
+          oldTask &&
+          data.assigneeIds &&
+          JSON.stringify(oldTask.assigneeIds.sort()) !==
+            JSON.stringify(data.assigneeIds.sort())
+        ) {
+          data.assigneeIds.forEach((assigneeId) => {
+            if (
+              !oldTask.assigneeIds.includes(assigneeId) &&
+              assigneeId !== currentUser?.id
+            ) {
+              actions.addNotification({
+                userId: assigneeId,
+                title: 'Task Assigned',
+                message: `You have been assigned to ${oldTask.title}`,
+                type: 'info',
+                read: false,
+              })
+            }
+          })
+        }
+
+        return updatedTasks
+      })
+      toast.success('Task updated')
     },
     addComment: (data) => {
       const newComment = {
@@ -173,12 +260,9 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       if (!project) return
 
       if (!project.members.includes(userId)) {
-        setProjects(
-          projects.map((p) =>
-            p.id === projectId ? { ...p, members: [...p.members, userId] } : p,
-          ),
-        )
-
+        actions.updateProject(projectId, {
+          members: [...project.members, userId],
+        })
         actions.addNotification({
           userId,
           title: 'Added to Project',
@@ -186,22 +270,15 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
           type: 'info',
           read: false,
         })
-
-        toast.success('Member added successfully')
       }
     },
     removeProjectMember: (projectId, userId) => {
       const project = projects.find((p) => p.id === projectId)
       if (!project) return
 
-      setProjects(
-        projects.map((p) =>
-          p.id === projectId
-            ? { ...p, members: p.members.filter((m) => m !== userId) }
-            : p,
-        ),
-      )
-
+      actions.updateProject(projectId, {
+        members: project.members.filter((m) => m !== userId),
+      })
       actions.addNotification({
         userId,
         title: 'Removed from Project',
@@ -209,8 +286,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         type: 'warning',
         read: false,
       })
-
-      toast.success('Member removed successfully')
     },
   }
 

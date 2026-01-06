@@ -22,10 +22,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Plus, MessageSquare, Paperclip, Settings } from 'lucide-react'
+import {
+  Plus,
+  MessageSquare,
+  Paperclip,
+  Settings,
+  Pencil,
+  Calendar,
+} from 'lucide-react'
 import { toast } from 'sonner'
 import { TaskCard } from './components/TaskCard'
 import { ProjectMembersDialog } from './components/ProjectMembersDialog'
+import { EditProjectDialog } from './components/EditProjectDialog'
 
 export default function ProjectDetailsPage() {
   const { projectId } = useParams()
@@ -37,6 +45,8 @@ export default function ProjectDetailsPage() {
   // Component State
   const [isTaskOpen, setIsTaskOpen] = useState(false)
   const [isMembersOpen, setIsMembersOpen] = useState(false)
+  const [isEditProjectOpen, setIsEditProjectOpen] = useState(false)
+
   const [newTask, setNewTask] = useState({
     title: '',
     priority: 'medium' as const,
@@ -63,7 +73,7 @@ export default function ProjectDetailsPage() {
   // 3. Permission Effects
   useEffect(() => {
     if (!project) {
-      // Handled by return null check below but good to have
+      // Handled by return null check
     } else if (!hasAccess) {
       toast.error('Access Denied: You are not authorized to view this project.')
       navigate('/')
@@ -92,10 +102,11 @@ export default function ProjectDetailsPage() {
 
   const handleCreateTask = (e: React.FormEvent) => {
     e.preventDefault()
-    if (newTask.title) {
+    if (newTask.title && currentUser) {
       actions.addTask({
         ...newTask,
         projectId: project.id,
+        creatorId: currentUser.id,
         status: 'todo',
         assigneeIds: newTask.assigneeId ? [newTask.assigneeId] : [],
         subtasks: [],
@@ -108,24 +119,47 @@ export default function ProjectDetailsPage() {
   return (
     <div className="space-y-6 pb-20 animate-slide-up">
       <div className="flex flex-col gap-4">
-        <Button
-          variant="ghost"
-          className="w-fit p-0 hover:bg-transparent text-muted-foreground"
-          onClick={() => navigate('/projects')}
-        >
-          &larr; Back to Projects
-        </Button>
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-3">
+        <div className="flex justify-between items-center">
+          <Button
+            variant="ghost"
+            className="w-fit p-0 hover:bg-transparent text-muted-foreground"
+            onClick={() => navigate('/projects')}
+          >
+            &larr; Back to Projects
+          </Button>
+          {isManager && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={() => setIsEditProjectOpen(true)}
+            >
+              <Pencil className="h-4 w-4" /> Edit Project
+            </Button>
+          )}
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+          <div className="space-y-2">
+            <div className="flex items-center gap-3 flex-wrap">
               <h1 className="text-3xl font-bold tracking-tight">
                 {project.name}
               </h1>
               <StatusBadge status={project.status} />
+              <StatusBadge status={project.priority} />
             </div>
-            <p className="text-muted-foreground mt-1 max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl">
               {project.description}
             </p>
+            <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2">
+              <div className="flex items-center gap-1">
+                <Calendar className="h-4 w-4" />
+                <span>
+                  {new Date(project.startDate).toLocaleDateString()} -{' '}
+                  {new Date(project.dueDate).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <div
@@ -299,11 +333,18 @@ export default function ProjectDetailsPage() {
       </Tabs>
 
       {isManager && (
-        <ProjectMembersDialog
-          project={project}
-          open={isMembersOpen}
-          onOpenChange={setIsMembersOpen}
-        />
+        <>
+          <ProjectMembersDialog
+            project={project}
+            open={isMembersOpen}
+            onOpenChange={setIsMembersOpen}
+          />
+          <EditProjectDialog
+            project={project}
+            open={isEditProjectOpen}
+            onOpenChange={setIsEditProjectOpen}
+          />
+        </>
       )}
     </div>
   )

@@ -17,24 +17,28 @@ export interface Company {
   adminId?: string
 }
 
+export type Priority = 'low' | 'medium' | 'high'
+export type ProjectStatus = 'active' | 'completed' | 'on-hold'
+
 export interface Project {
   id: string
   companyId: string
   name: string
   description: string
   leaderId: string
-  status: 'active' | 'completed' | 'on-hold'
+  status: ProjectStatus
+  priority: Priority
   startDate: string
   dueDate: string
   members: string[] // User IDs
 }
 
-export type Priority = 'low' | 'medium' | 'high'
 export type TaskStatus = 'todo' | 'in-progress' | 'done'
 
 export interface Task {
   id: string
   projectId: string
+  creatorId: string
   title: string
   description?: string
   status: TaskStatus
@@ -48,6 +52,8 @@ export interface Subtask {
   id: string
   title: string
   status: boolean // true = done
+  leaderId?: string
+  memberIds: string[]
 }
 
 export interface Comment {

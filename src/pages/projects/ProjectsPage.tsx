@@ -20,7 +20,15 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useNavigate } from 'react-router-dom'
+import { Priority } from '@/types'
 
 export default function ProjectsPage() {
   const { state, actions } = useStore()
@@ -34,6 +42,7 @@ export default function ProjectsPage() {
     description: '',
     startDate: new Date().toISOString().split('T')[0],
     dueDate: '',
+    priority: 'medium' as Priority,
   })
 
   // Filter projects based on permissions
@@ -68,6 +77,13 @@ export default function ProjectsPage() {
         members: [currentUser?.id || ''],
       })
       setIsOpen(false)
+      setNewProject({
+        name: '',
+        description: '',
+        startDate: new Date().toISOString().split('T')[0],
+        dueDate: '',
+        priority: 'medium',
+      })
     }
   }
 
@@ -112,6 +128,24 @@ export default function ProjectsPage() {
                       })
                     }
                   />
+                </div>
+                <div className="space-y-2">
+                  <Label>Priority</Label>
+                  <Select
+                    value={newProject.priority}
+                    onValueChange={(val: Priority) =>
+                      setNewProject({ ...newProject, priority: val })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="low">Low</SelectItem>
+                      <SelectItem value="medium">Medium</SelectItem>
+                      <SelectItem value="high">High</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -160,12 +194,7 @@ export default function ProjectsPage() {
             <CardHeader>
               <div className="flex justify-between items-start">
                 <StatusBadge status={project.status} />
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  {project.dueDate
-                    ? new Date(project.dueDate).toLocaleDateString()
-                    : 'No due date'}
-                </span>
+                <StatusBadge status={project.priority} />
               </div>
               <CardTitle className="mt-2 group-hover:text-primary transition-colors">
                 {project.name}
@@ -178,11 +207,12 @@ export default function ProjectsPage() {
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" /> {project.members.length} members
               </div>
-              <div>
-                Leader:{' '}
-                {state.users.find((u) => u.id === project.leaderId)?.name ||
-                  'Unknown'}
-              </div>
+              <span className="flex items-center gap-1">
+                <Calendar className="h-3 w-3" />
+                {project.dueDate
+                  ? new Date(project.dueDate).toLocaleDateString()
+                  : 'No due date'}
+              </span>
             </CardFooter>
           </Card>
         ))}

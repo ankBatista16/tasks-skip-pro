@@ -17815,7 +17815,7 @@ function createCollection(name) {
 		createCollectionScope$4
 	];
 }
-var Primitive = [
+var Primitive$1 = [
 	"a",
 	"button",
 	"div",
@@ -17949,7 +17949,7 @@ var DismissableLayer = import_react.forwardRef((props, forwardedRef) => {
 		document.addEventListener(CONTEXT_UPDATE, handleUpdate);
 		return () => document.removeEventListener(CONTEXT_UPDATE, handleUpdate);
 	}, []);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...layerProps,
 		ref: composedRefs,
 		style: {
@@ -17976,7 +17976,7 @@ var DismissableLayerBranch = import_react.forwardRef((props, forwardedRef) => {
 			};
 		}
 	}, [context.branches]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...props,
 		ref: composedRefs
 	});
@@ -18042,7 +18042,7 @@ function handleAndDispatchCustomEvent$1(name, handler, detail, { discrete }) {
 	if (discrete) dispatchDiscreteCustomEvent(target, event);
 	else target.dispatchEvent(event);
 }
-var Root$9 = DismissableLayer;
+var Root$10 = DismissableLayer;
 var Branch = DismissableLayerBranch;
 var useLayoutEffect2 = globalThis?.document ? import_react.useLayoutEffect : () => {};
 var import_react_dom$5 = /* @__PURE__ */ __toESM(require_react_dom(), 1);
@@ -18052,7 +18052,7 @@ var Portal = import_react.forwardRef((props, forwardedRef) => {
 	const [mounted, setMounted] = import_react.useState(false);
 	useLayoutEffect2(() => setMounted(true), []);
 	const container = containerProp || mounted && globalThis?.document?.body;
-	return container ? import_react_dom$5.createPortal(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return container ? import_react_dom$5.createPortal(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...portalProps,
 		ref: forwardedRef
 	}), container) : null;
@@ -18221,9 +18221,9 @@ var VISUALLY_HIDDEN_STYLES = Object.freeze({
 	whiteSpace: "nowrap",
 	wordWrap: "normal"
 });
-var NAME$2 = "VisuallyHidden";
+var NAME$3 = "VisuallyHidden";
 var VisuallyHidden = import_react.forwardRef((props, forwardedRef) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		...props,
 		ref: forwardedRef,
 		style: {
@@ -18232,8 +18232,8 @@ var VisuallyHidden = import_react.forwardRef((props, forwardedRef) => {
 		}
 	});
 });
-VisuallyHidden.displayName = NAME$2;
-var Root$8 = VisuallyHidden;
+VisuallyHidden.displayName = NAME$3;
+var Root$9 = VisuallyHidden;
 var import_react_dom$4 = /* @__PURE__ */ __toESM(require_react_dom(), 1);
 var PROVIDER_NAME$1 = "ToastProvider";
 var [Collection$3, useCollection$3, createCollectionScope$3] = createCollection("Toast");
@@ -18373,7 +18373,7 @@ var ToastViewport$1 = import_react.forwardRef((props, forwardedRef) => {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection$3.Slot, {
 				scope: __scopeToast,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.ol, {
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.ol, {
 					tabIndex: -1,
 					...viewportProps,
 					ref: composedRefs
@@ -18532,13 +18532,13 @@ var ToastImpl = import_react.forwardRef((props, forwardedRef) => {
 		onClose: handleClose,
 		children: import_react_dom$4.createPortal(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection$3.ItemSlot, {
 			scope: __scopeToast,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$9, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$10, {
 				asChild: true,
 				onEscapeKeyDown: composeEventHandlers(onEscapeKeyDown, () => {
 					if (!context.isFocusedToastEscapeKeyDownRef.current) handleClose();
 					context.isFocusedToastEscapeKeyDownRef.current = false;
 				}),
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.li, {
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.li, {
 					tabIndex: 0,
 					"data-state": open ? "open" : "closed",
 					"data-swipe-direction": context.swipeDirection,
@@ -18638,7 +18638,7 @@ var ToastAnnounce = (props) => {
 var TITLE_NAME$1 = "ToastTitle";
 var ToastTitle$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, ...titleProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...titleProps,
 		ref: forwardedRef
 	});
@@ -18647,7 +18647,7 @@ ToastTitle$1.displayName = TITLE_NAME$1;
 var DESCRIPTION_NAME$1 = "ToastDescription";
 var ToastDescription$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, ...descriptionProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...descriptionProps,
 		ref: forwardedRef
 	});
@@ -18676,7 +18676,7 @@ var ToastClose$1 = import_react.forwardRef((props, forwardedRef) => {
 	const interactiveContext = useToastInteractiveContext(CLOSE_NAME$1, __scopeToast);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToastAnnounceExclude, {
 		asChild: true,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			type: "button",
 			...closeProps,
 			ref: forwardedRef,
@@ -18687,7 +18687,7 @@ var ToastClose$1 = import_react.forwardRef((props, forwardedRef) => {
 ToastClose$1.displayName = CLOSE_NAME$1;
 var ToastAnnounceExclude = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, altText, ...announceExcludeProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"data-radix-toast-announce-exclude": "",
 		"data-radix-toast-announce-alt": altText || void 0,
 		...announceExcludeProps,
@@ -19095,6 +19095,13 @@ var Paperclip = createLucideIcon("paperclip", [["path", {
 	d: "m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551",
 	key: "1miecu"
 }]]);
+var Pencil = createLucideIcon("pencil", [["path", {
+	d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+	key: "1a8usu"
+}], ["path", {
+	d: "m15 5 4 4",
+	key: "1mk7zo"
+}]]);
 var Plus = createLucideIcon("plus", [["path", {
 	d: "M5 12h14",
 	key: "1ays0h"
@@ -19124,6 +19131,28 @@ var Shield = createLucideIcon("shield", [["path", {
 	d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 	key: "oel41y"
 }]]);
+var Trash2 = createLucideIcon("trash-2", [
+	["path", {
+		d: "M10 11v6",
+		key: "nco0om"
+	}],
+	["path", {
+		d: "M14 11v6",
+		key: "outv1u"
+	}],
+	["path", {
+		d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+		key: "miytrc"
+	}],
+	["path", {
+		d: "M3 6h18",
+		key: "d0wm0j"
+	}],
+	["path", {
+		d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
+		key: "e791ji"
+	}]
+]);
 var User = createLucideIcon("user", [["path", {
 	d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",
 	key: "975kel"
@@ -20949,10 +20978,10 @@ var Observer = class {
 			if (typeof id !== "string" && typeof id !== "number") return { unwrap };
 			else return Object.assign(id, { unwrap });
 		};
-		this.custom = (jsx$28, data) => {
+		this.custom = (jsx$29, data) => {
 			const id = (data == null ? void 0 : data.id) || toastsCounter++;
 			this.create({
-				jsx: jsx$28(id),
+				jsx: jsx$29(id),
 				id,
 				...data
 			});
@@ -23074,10 +23103,10 @@ var arrow = (options$1, deps) => ({
 	...arrow$1$1(options$1),
 	options: [options$1, deps]
 });
-var NAME$1 = "Arrow";
+var NAME$2 = "Arrow";
 var Arrow$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { children, width = 10, height = 5, ...arrowProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.svg, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.svg, {
 		...arrowProps,
 		ref: forwardedRef,
 		width,
@@ -23087,8 +23116,8 @@ var Arrow$1 = import_react.forwardRef((props, forwardedRef) => {
 		children: props.asChild ? children : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("polygon", { points: "0,0 30,0 15,10" })
 	});
 });
-Arrow$1.displayName = NAME$1;
-var Root$7 = Arrow$1;
+Arrow$1.displayName = NAME$2;
+var Root$8 = Arrow$1;
 function useSize(element) {
 	const [size$3, setSize] = import_react.useState(void 0);
 	useLayoutEffect2(() => {
@@ -23149,7 +23178,7 @@ var PopperAnchor = import_react.forwardRef((props, forwardedRef) => {
 		anchorRef.current = virtualRef?.current || ref.current;
 		if (previousAnchor !== anchorRef.current) context.onAnchorChange(anchorRef.current);
 	});
-	return virtualRef ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return virtualRef ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...anchorProps,
 		ref: composedRefs
 	});
@@ -23259,7 +23288,7 @@ var PopperContent = import_react.forwardRef((props, forwardedRef) => {
 			arrowX,
 			arrowY,
 			shouldHideArrow: cannotCenterArrow,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				"data-side": placedSide,
 				"data-align": placedAlign,
 				...contentProps,
@@ -23305,7 +23334,7 @@ var PopperArrow = import_react.forwardRef(function PopperArrow2(props, forwarded
 			}[contentContext.placedSide],
 			visibility: contentContext.shouldHideArrow ? "hidden" : void 0
 		},
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$7, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$8, {
 			...arrowProps,
 			ref: forwardedRef,
 			style: {
@@ -23502,7 +23531,7 @@ var TooltipTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor, {
 		asChild: true,
 		...popperScope,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			"aria-describedby": context.open ? context.contentId : void 0,
 			"data-state": context.stateAttribute,
 			...triggerProps,
@@ -23687,7 +23716,7 @@ var TooltipContentImpl = import_react.forwardRef((props, forwardedRef) => {
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slottable, { children }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VisuallyHiddenContentContextProvider, {
 				scope: __scopeTooltip,
 				isInside: true,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$8, {
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$9, {
 					id: context.contentId,
 					role: "tooltip",
 					children: ariaLabel || children
@@ -23899,6 +23928,7 @@ const mockProjects = [{
 	description: "Complete overhaul of the corporate website.",
 	leaderId: "u2",
 	status: "active",
+	priority: "high",
 	startDate: "2023-10-01",
 	dueDate: "2023-12-31",
 	members: ["u2", "u3"]
@@ -23909,6 +23939,7 @@ const mockProjects = [{
 	description: "Initial release of the mobile application.",
 	leaderId: "u2",
 	status: "on-hold",
+	priority: "medium",
 	startDate: "2023-11-15",
 	dueDate: "2024-02-28",
 	members: ["u2", "u3"]
@@ -23916,6 +23947,7 @@ const mockProjects = [{
 const mockTasks = [{
 	id: "t1",
 	projectId: "p1",
+	creatorId: "u2",
 	title: "Design Homepage",
 	status: "done",
 	priority: "high",
@@ -23924,15 +23956,20 @@ const mockTasks = [{
 	subtasks: [{
 		id: "st1",
 		title: "Draft layouts",
-		status: true
+		status: true,
+		memberIds: ["u3"],
+		leaderId: "u3"
 	}, {
 		id: "st2",
 		title: "Review with marketing",
-		status: true
+		status: true,
+		memberIds: ["u3"],
+		leaderId: "u3"
 	}]
 }, {
 	id: "t2",
 	projectId: "p1",
+	creatorId: "u2",
 	title: "Implement Footer",
 	status: "in-progress",
 	priority: "medium",
@@ -23941,7 +23978,9 @@ const mockTasks = [{
 	subtasks: [{
 		id: "st3",
 		title: "Responsive CSS",
-		status: false
+		status: false,
+		memberIds: ["u3"],
+		leaderId: "u3"
 	}]
 }];
 const mockNotifications = [{
@@ -24032,10 +24071,23 @@ const StoreProvider = ({ children }) => {
 			});
 		},
 		updateProject: (id, data) => {
-			setProjects(projects.map((p) => p.id === id ? {
-				...p,
-				...data
-			} : p));
+			setProjects((prevProjects) => {
+				const oldProject = prevProjects.find((p) => p.id === id);
+				const updatedProjects = prevProjects.map((p) => p.id === id ? {
+					...p,
+					...data
+				} : p);
+				if (oldProject && data.status && oldProject.status !== data.status && oldProject.members) oldProject.members.forEach((memberId) => {
+					if (memberId !== currentUser?.id) actions.addNotification({
+						userId: memberId,
+						title: "Project Status Updated",
+						message: `${oldProject.name} is now ${data.status}`,
+						type: "info",
+						read: false
+					});
+				});
+				return updatedProjects;
+			});
 			toast.success("Project updated");
 		},
 		addTask: (data) => {
@@ -24056,10 +24108,33 @@ const StoreProvider = ({ children }) => {
 			});
 		},
 		updateTask: (id, data) => {
-			setTasks(tasks.map((t) => t.id === id ? {
-				...t,
-				...data
-			} : t));
+			setTasks((prevTasks) => {
+				const oldTask = prevTasks.find((t) => t.id === id);
+				const updatedTasks = prevTasks.map((t) => t.id === id ? {
+					...t,
+					...data
+				} : t);
+				if (oldTask && data.status && oldTask.status !== data.status && oldTask.assigneeIds) oldTask.assigneeIds.forEach((assigneeId) => {
+					if (assigneeId !== currentUser?.id) actions.addNotification({
+						userId: assigneeId,
+						title: "Task Status Updated",
+						message: `${oldTask.title} is now ${data.status}`,
+						type: "info",
+						read: false
+					});
+				});
+				if (oldTask && data.assigneeIds && JSON.stringify(oldTask.assigneeIds.sort()) !== JSON.stringify(data.assigneeIds.sort())) data.assigneeIds.forEach((assigneeId) => {
+					if (!oldTask.assigneeIds.includes(assigneeId) && assigneeId !== currentUser?.id) actions.addNotification({
+						userId: assigneeId,
+						title: "Task Assigned",
+						message: `You have been assigned to ${oldTask.title}`,
+						type: "info",
+						read: false
+					});
+				});
+				return updatedTasks;
+			});
+			toast.success("Task updated");
 		},
 		addComment: (data) => {
 			const newComment = {
@@ -24088,10 +24163,7 @@ const StoreProvider = ({ children }) => {
 			const project = projects.find((p) => p.id === projectId);
 			if (!project) return;
 			if (!project.members.includes(userId)) {
-				setProjects(projects.map((p) => p.id === projectId ? {
-					...p,
-					members: [...p.members, userId]
-				} : p));
+				actions.updateProject(projectId, { members: [...project.members, userId] });
 				actions.addNotification({
 					userId,
 					title: "Added to Project",
@@ -24099,16 +24171,12 @@ const StoreProvider = ({ children }) => {
 					type: "info",
 					read: false
 				});
-				toast.success("Member added successfully");
 			}
 		},
 		removeProjectMember: (projectId, userId) => {
 			const project = projects.find((p) => p.id === projectId);
 			if (!project) return;
-			setProjects(projects.map((p) => p.id === projectId ? {
-				...p,
-				members: p.members.filter((m) => m !== userId)
-			} : p));
+			actions.updateProject(projectId, { members: project.members.filter((m) => m !== userId) });
 			actions.addNotification({
 				userId,
 				title: "Removed from Project",
@@ -24116,7 +24184,6 @@ const StoreProvider = ({ children }) => {
 				type: "warning",
 				read: false
 			});
-			toast.success("Member removed successfully");
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoreContext.Provider, {
@@ -24397,7 +24464,7 @@ function composeContextScopes(...scopes) {
 	return createScope;
 }
 require_react_dom();
-var Primitive$1 = [
+var Primitive = [
 	"a",
 	"button",
 	"div",
@@ -24453,7 +24520,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 				var cachedValue = getSnapshot();
 				objectIs(value, cachedValue) || (console.error("The result of getSnapshot should be cached to avoid an infinite loop"), didWarnUncachedGetSnapshot = !0);
 			}
-			cachedValue = useState$10({ inst: {
+			cachedValue = useState$12({ inst: {
 				value,
 				getSnapshot
 			} });
@@ -24467,7 +24534,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 				value,
 				getSnapshot
 			]);
-			useEffect$4(function() {
+			useEffect$6(function() {
 				checkIfSnapshotChanged(inst) && forceUpdate({ inst });
 				return subscribe$1(function() {
 					checkIfSnapshotChanged(inst) && forceUpdate({ inst });
@@ -24490,7 +24557,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 			return getSnapshot();
 		}
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$10 = React$3.useState, useEffect$4 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$12 = React$3.useState, useEffect$6 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
 		exports.useSyncExternalStore = void 0 !== React$3.useSyncExternalStore ? React$3.useSyncExternalStore : shim;
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
 	})();
@@ -24514,7 +24581,7 @@ var Avatar$1 = import_react.forwardRef((props, forwardedRef) => {
 		scope: __scopeAvatar,
 		imageLoadingStatus,
 		onImageLoadingStatusChange: setImageLoadingStatus,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
 			...avatarProps,
 			ref: forwardedRef
 		})
@@ -24533,7 +24600,7 @@ var AvatarImage$1 = import_react.forwardRef((props, forwardedRef) => {
 	useLayoutEffect2(() => {
 		if (imageLoadingStatus !== "idle") handleLoadingStatusChange(imageLoadingStatus);
 	}, [imageLoadingStatus, handleLoadingStatusChange]);
-	return imageLoadingStatus === "loaded" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.img, {
+	return imageLoadingStatus === "loaded" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.img, {
 		...imageProps,
 		ref: forwardedRef,
 		src
@@ -24551,7 +24618,7 @@ var AvatarFallback$1 = import_react.forwardRef((props, forwardedRef) => {
 			return () => window.clearTimeout(timerId);
 		}
 	}, [delayMs]);
-	return canRender && context.imageLoadingStatus !== "loaded" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
+	return canRender && context.imageLoadingStatus !== "loaded" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
 		...fallbackProps,
 		ref: forwardedRef
 	}) : null;
@@ -24597,15 +24664,15 @@ function useImageLoadingStatus(src, { referrerPolicy, crossOrigin }) {
 	]);
 	return loadingStatus;
 }
-var Root$6 = Avatar$1;
+var Root$7 = Avatar$1;
 var Image = AvatarImage$1;
 var Fallback = AvatarFallback$1;
-var Avatar = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$6, {
+var Avatar = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$7, {
 	ref,
 	className: cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className),
 	...props
 }));
-Avatar.displayName = Root$6.displayName;
+Avatar.displayName = Root$7.displayName;
 var AvatarImage = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Image, {
 	ref,
 	className: cn("aspect-square h-full w-full", className),
@@ -24757,7 +24824,7 @@ var FocusScope = import_react.forwardRef((props, forwardedRef) => {
 		trapped,
 		focusScope.paused
 	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		tabIndex: -1,
 		...scopeProps,
 		ref: composedRefs,
@@ -24888,7 +24955,7 @@ var RovingFocusGroupImpl = import_react.forwardRef((props, forwardedRef) => {
 		onItemShiftTab: import_react.useCallback(() => setIsTabbingBackOut(true), []),
 		onFocusableItemAdd: import_react.useCallback(() => setFocusableItemsCount((prevCount) => prevCount + 1), []),
 		onFocusableItemRemove: import_react.useCallback(() => setFocusableItemsCount((prevCount) => prevCount - 1), []),
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
 			"data-orientation": orientation,
 			...groupProps,
@@ -24944,7 +25011,7 @@ var RovingFocusGroupItem = import_react.forwardRef((props, forwardedRef) => {
 		id,
 		focusable,
 		active,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 			tabIndex: isCurrentTabStop ? 0 : -1,
 			"data-orientation": context.orientation,
 			...itemProps,
@@ -25013,7 +25080,7 @@ function focusFirst$1(candidates, preventScroll = false) {
 function wrapArray$2(array, startIndex) {
 	return array.map((_$1, index$1) => array[(startIndex + index$1) % array.length]);
 }
-var Root$5 = RovingFocusGroup;
+var Root$6 = RovingFocusGroup;
 var Item$1 = RovingFocusGroupItem;
 var getDefaultParent = function(originalTarget) {
 	if (typeof document === "undefined") return null;
@@ -25947,7 +26014,7 @@ var MenuContentImpl = import_react.forwardRef((props, forwardedRef) => {
 					onFocusOutside,
 					onInteractOutside,
 					onDismiss,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$5, {
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$6, {
 						asChild: true,
 						...rovingFocusGroupScope,
 						dir: rootContext.dir,
@@ -26013,7 +26080,7 @@ MenuContent.displayName = CONTENT_NAME$5;
 var GROUP_NAME$2 = "MenuGroup";
 var MenuGroup = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeMenu, ...groupProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		role: "group",
 		...groupProps,
 		ref: forwardedRef
@@ -26023,7 +26090,7 @@ MenuGroup.displayName = GROUP_NAME$2;
 var LABEL_NAME$2 = "MenuLabel";
 var MenuLabel = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeMenu, ...labelProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...labelProps,
 		ref: forwardedRef
 	});
@@ -26094,7 +26161,7 @@ var MenuItemImpl = import_react.forwardRef((props, forwardedRef) => {
 			asChild: true,
 			...rovingFocusGroupScope,
 			focusable: !disabled,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				role: "menuitem",
 				"data-highlighted": isFocused ? "" : void 0,
 				"aria-disabled": disabled || void 0,
@@ -26177,7 +26244,7 @@ var MenuItemIndicator = import_react.forwardRef((props, forwardedRef) => {
 	const indicatorContext = useItemIndicatorContext(ITEM_INDICATOR_NAME$1, __scopeMenu);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
 		present: forceMount || isIndeterminate$1(indicatorContext.checked) || indicatorContext.checked === true,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 			...itemIndicatorProps,
 			ref: forwardedRef,
 			"data-state": getCheckedState(indicatorContext.checked)
@@ -26188,7 +26255,7 @@ MenuItemIndicator.displayName = ITEM_INDICATOR_NAME$1;
 var SEPARATOR_NAME$2 = "MenuSeparator";
 var MenuSeparator = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeMenu, ...separatorProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		role: "separator",
 		"aria-orientation": "horizontal",
 		...separatorProps,
@@ -26459,7 +26526,7 @@ var CheckboxItem = MenuCheckboxItem;
 var RadioGroup = MenuRadioGroup;
 var RadioItem = MenuRadioItem;
 var ItemIndicator$1 = MenuItemIndicator;
-var Separator$1 = MenuSeparator;
+var Separator$3 = MenuSeparator;
 var Arrow2 = MenuArrow;
 var SubTrigger = MenuSubTrigger;
 var SubContent = MenuSubContent;
@@ -26505,7 +26572,7 @@ var DropdownMenuTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor2, {
 		asChild: true,
 		...menuScope,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			type: "button",
 			id: context.triggerId,
 			"aria-haspopup": "menu",
@@ -26661,7 +26728,7 @@ var SEPARATOR_NAME$1 = "DropdownMenuSeparator";
 var DropdownMenuSeparator$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeDropdownMenu, ...separatorProps } = props;
 	const menuScope = useMenuScope(__scopeDropdownMenu);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator$1, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator$3, {
 		...menuScope,
 		...separatorProps,
 		ref: forwardedRef
@@ -27044,7 +27111,7 @@ var Progress$1 = import_react.forwardRef((props, forwardedRef) => {
 		scope: __scopeProgress,
 		value,
 		max: max$1,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
 			"aria-valuemax": max$1,
 			"aria-valuemin": 0,
 			"aria-valuenow": isNumber(value) ? value : void 0,
@@ -27063,7 +27130,7 @@ var INDICATOR_NAME$1 = "ProgressIndicator";
 var ProgressIndicator = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeProgress, ...indicatorProps } = props;
 	const context = useProgressContext(INDICATOR_NAME$1, __scopeProgress);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
 		"data-state": getProgressState(context.value, context.max),
 		"data-value": context.value ?? void 0,
 		"data-max": context.max,
@@ -27098,9 +27165,9 @@ function getInvalidValueError(propValue, componentName) {
 
 Defaulting to \`null\`.`;
 }
-var Root$4 = Progress$1;
+var Root$5 = Progress$1;
 var Indicator = ProgressIndicator;
-var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$4, {
+var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$5, {
 	ref,
 	className: cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className),
 	...props,
@@ -27109,7 +27176,7 @@ var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => 
 		style: { transform: `translateX(-${100 - (value || 0)}%)` }
 	})
 }));
-Progress.displayName = Root$4.displayName;
+Progress.displayName = Root$5.displayName;
 const daysInYear = 365.2425;
 Math.pow(10, 8) * 24 * 60 * 60 * 1e3;
 const minutesInMonth = 43200;
@@ -28039,7 +28106,7 @@ var DialogTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeDialog, ...triggerProps } = props;
 	const context = useDialogContext(TRIGGER_NAME$4, __scopeDialog);
 	const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 		type: "button",
 		"aria-haspopup": "dialog",
 		"aria-expanded": context.open,
@@ -28092,7 +28159,7 @@ var DialogOverlayImpl = import_react.forwardRef((props, forwardedRef) => {
 		as: Slot$1,
 		allowPinchZoom: true,
 		shards: [context.contentRef],
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			"data-state": getState$2(context.open),
 			...overlayProps,
 			ref: forwardedRef,
@@ -28206,7 +28273,7 @@ var TITLE_NAME = "DialogTitle";
 var DialogTitle$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeDialog, ...titleProps } = props;
 	const context = useDialogContext(TITLE_NAME, __scopeDialog);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.h2, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.h2, {
 		id: context.titleId,
 		...titleProps,
 		ref: forwardedRef
@@ -28217,7 +28284,7 @@ var DESCRIPTION_NAME = "DialogDescription";
 var DialogDescription$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeDialog, ...descriptionProps } = props;
 	const context = useDialogContext(DESCRIPTION_NAME, __scopeDialog);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.p, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.p, {
 		id: context.descriptionId,
 		...descriptionProps,
 		ref: forwardedRef
@@ -28228,7 +28295,7 @@ var CLOSE_NAME = "DialogClose";
 var DialogClose$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeDialog, ...closeProps } = props;
 	const context = useDialogContext(CLOSE_NAME, __scopeDialog);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 		type: "button",
 		...closeProps,
 		ref: forwardedRef,
@@ -28274,7 +28341,7 @@ var DescriptionWarning = ({ contentRef, descriptionId }) => {
 	]);
 	return null;
 };
-var Root$3 = Dialog$1;
+var Root$4 = Dialog$1;
 var Trigger$2 = DialogTrigger$1;
 var Portal$2 = DialogPortal$1;
 var Overlay = DialogOverlay$1;
@@ -28282,7 +28349,7 @@ var Content$1 = DialogContent$1;
 var Title = DialogTitle$1;
 var Description = DialogDescription$1;
 var Close = DialogClose$1;
-var Dialog = Root$3;
+var Dialog = Root$4;
 var DialogTrigger = Trigger$2;
 var DialogPortal = Portal$2;
 var DialogOverlay = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Overlay, {
@@ -28335,9 +28402,9 @@ var Input = import_react.forwardRef(({ className, type, ...props }, ref) => {
 	});
 });
 Input.displayName = "Input";
-var NAME = "Label";
+var NAME$1 = "Label";
 var Label$2 = import_react.forwardRef((props, forwardedRef) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.label, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.label, {
 		...props,
 		ref: forwardedRef,
 		onMouseDown: (event) => {
@@ -28347,15 +28414,15 @@ var Label$2 = import_react.forwardRef((props, forwardedRef) => {
 		}
 	});
 });
-Label$2.displayName = NAME;
-var Root$2 = Label$2;
+Label$2.displayName = NAME$1;
+var Root$3 = Label$2;
 var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$2, {
+var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$3, {
 	ref,
 	className: cn(labelVariants(), className),
 	...props
 }));
-Label.displayName = Root$2.displayName;
+Label.displayName = Root$3.displayName;
 var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
 		className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
@@ -28364,315 +28431,6 @@ var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	});
 });
 Textarea.displayName = "Textarea";
-function ProjectsPage() {
-	const { state, actions } = useStore();
-	const { projects, currentUser } = state;
-	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
-	const navigate = useNavigate();
-	const [newProject, setNewProject] = (0, import_react.useState)({
-		name: "",
-		description: "",
-		startDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
-		dueDate: ""
-	});
-	const filteredProjects = projects.filter((project) => {
-		if (currentUser?.role === "MASTER") return true;
-		if (project.companyId !== currentUser?.companyId) return false;
-		if (currentUser?.role === "ADMIN") return true;
-		return project.members.includes(currentUser?.id || "") || project.leaderId === currentUser?.id;
-	});
-	const canCreate = currentUser?.role === "MASTER" || currentUser?.role === "ADMIN";
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (currentUser?.companyId || currentUser?.role === "MASTER") {
-			actions.addProject({
-				...newProject,
-				companyId: currentUser?.companyId || "c1",
-				leaderId: currentUser?.id || "",
-				status: "active",
-				members: [currentUser?.id || ""]
-			});
-			setIsOpen(false);
-		}
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-6 animate-fade-in",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "flex items-center justify-between",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
-				className: "text-3xl font-bold tracking-tight",
-				children: "Projects"
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "text-muted-foreground",
-				children: "Track ongoing initiatives"
-			})] }), canCreate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
-				open: isOpen,
-				onOpenChange: setIsOpen,
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
-					asChild: true,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-						className: "gap-2 rounded-full md:rounded-md h-12 w-12 md:h-10 md:w-auto p-0 md:px-4 fixed bottom-20 right-4 md:static z-40 shadow-lg md:shadow-none",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-5 w-5 md:mr-2" }),
-							" ",
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "hidden md:inline",
-								children: "Create Project"
-							})
-						]
-					})
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "New Project" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-					onSubmit: handleSubmit,
-					className: "space-y-4 py-4",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Project Name" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								value: newProject.name,
-								onChange: (e) => setNewProject({
-									...newProject,
-									name: e.target.value
-								}),
-								required: true
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Description" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
-								value: newProject.description,
-								onChange: (e) => setNewProject({
-									...newProject,
-									description: e.target.value
-								})
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "grid grid-cols-2 gap-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Start Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-									type: "date",
-									value: newProject.startDate,
-									onChange: (e) => setNewProject({
-										...newProject,
-										startDate: e.target.value
-									})
-								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Due Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-									type: "date",
-									value: newProject.dueDate,
-									onChange: (e) => setNewProject({
-										...newProject,
-										dueDate: e.target.value
-									})
-								})]
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-							type: "submit",
-							className: "w-full",
-							children: "Create Project"
-						})
-					]
-				})] })]
-			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
-			children: [filteredProjects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-				className: "cursor-pointer hover:shadow-elevation transition-all group hover:-translate-y-1 duration-300",
-				onClick: () => navigate(`/projects/${project.id}`),
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex justify-between items-start",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-							className: "text-xs text-muted-foreground flex items-center gap-1",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), project.dueDate ? new Date(project.dueDate).toLocaleDateString() : "No due date"]
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
-						className: "mt-2 group-hover:text-primary transition-colors",
-						children: project.name
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
-						className: "line-clamp-2",
-						children: project.description
-					})
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
-					className: "border-t pt-4 text-xs text-muted-foreground flex justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center gap-1",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "h-3 w-3" }),
-							" ",
-							project.members.length,
-							" members"
-						]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-						"Leader:",
-						" ",
-						state.users.find((u) => u.id === project.leaderId)?.name || "Unknown"
-					] })]
-				})]
-			}, project.id)), filteredProjects.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "col-span-full text-center py-10 text-muted-foreground bg-muted/20 rounded-lg border border-dashed",
-				children: "No projects found."
-			})]
-		})]
-	});
-}
-var TABS_NAME = "Tabs";
-var [createTabsContext, createTabsScope] = createContextScope(TABS_NAME, [createRovingFocusGroupScope]);
-var useRovingFocusGroupScope = createRovingFocusGroupScope();
-var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
-var Tabs$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeTabs, value: valueProp, onValueChange, defaultValue, orientation = "horizontal", dir, activationMode = "automatic", ...tabsProps } = props;
-	const direction = useDirection(dir);
-	const [value, setValue] = useControllableState({
-		prop: valueProp,
-		onChange: onValueChange,
-		defaultProp: defaultValue ?? "",
-		caller: TABS_NAME
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsProvider, {
-		scope: __scopeTabs,
-		baseId: useId(),
-		value,
-		onValueChange: setValue,
-		orientation,
-		dir: direction,
-		activationMode,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-			dir: direction,
-			"data-orientation": orientation,
-			...tabsProps,
-			ref: forwardedRef
-		})
-	});
-});
-Tabs$1.displayName = TABS_NAME;
-var TAB_LIST_NAME = "TabsList";
-var TabsList$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeTabs, loop = true, ...listProps } = props;
-	const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
-	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$5, {
-		asChild: true,
-		...rovingFocusGroupScope,
-		orientation: context.orientation,
-		dir: context.dir,
-		loop,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-			role: "tablist",
-			"aria-orientation": context.orientation,
-			...listProps,
-			ref: forwardedRef
-		})
-	});
-});
-TabsList$1.displayName = TAB_LIST_NAME;
-var TRIGGER_NAME$3 = "TabsTrigger";
-var TabsTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
-	const context = useTabsContext(TRIGGER_NAME$3, __scopeTabs);
-	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-	const triggerId = makeTriggerId(context.baseId, value);
-	const contentId = makeContentId(context.baseId, value);
-	const isSelected = value === context.value;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Item$1, {
-		asChild: true,
-		...rovingFocusGroupScope,
-		focusable: !disabled,
-		active: isSelected,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
-			type: "button",
-			role: "tab",
-			"aria-selected": isSelected,
-			"aria-controls": contentId,
-			"data-state": isSelected ? "active" : "inactive",
-			"data-disabled": disabled ? "" : void 0,
-			disabled,
-			id: triggerId,
-			...triggerProps,
-			ref: forwardedRef,
-			onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
-				if (!disabled && event.button === 0 && event.ctrlKey === false) context.onValueChange(value);
-				else event.preventDefault();
-			}),
-			onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
-				if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
-			}),
-			onFocus: composeEventHandlers(props.onFocus, () => {
-				const isAutomaticActivation = context.activationMode !== "manual";
-				if (!isSelected && !disabled && isAutomaticActivation) context.onValueChange(value);
-			})
-		})
-	});
-});
-TabsTrigger$1.displayName = TRIGGER_NAME$3;
-var CONTENT_NAME$2 = "TabsContent";
-var TabsContent$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
-	const context = useTabsContext(CONTENT_NAME$2, __scopeTabs);
-	const triggerId = makeTriggerId(context.baseId, value);
-	const contentId = makeContentId(context.baseId, value);
-	const isSelected = value === context.value;
-	const isMountAnimationPreventedRef = import_react.useRef(isSelected);
-	import_react.useEffect(() => {
-		const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
-		return () => cancelAnimationFrame(rAF);
-	}, []);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-		present: forceMount || isSelected,
-		children: ({ present }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-			"data-state": isSelected ? "active" : "inactive",
-			"data-orientation": context.orientation,
-			role: "tabpanel",
-			"aria-labelledby": triggerId,
-			hidden: !present,
-			id: contentId,
-			tabIndex: 0,
-			...contentProps,
-			ref: forwardedRef,
-			style: {
-				...props.style,
-				animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
-			},
-			children: present && children
-		})
-	});
-});
-TabsContent$1.displayName = CONTENT_NAME$2;
-function makeTriggerId(baseId, value) {
-	return `${baseId}-trigger-${value}`;
-}
-function makeContentId(baseId, value) {
-	return `${baseId}-content-${value}`;
-}
-var Root2$1 = Tabs$1;
-var List = TabsList$1;
-var Trigger$1 = TabsTrigger$1;
-var Content = TabsContent$1;
-var Tabs = Root2$1;
-var TabsList = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(List, {
-	ref,
-	className: cn("inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground", className),
-	...props
-}));
-TabsList.displayName = List.displayName;
-var TabsTrigger = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trigger$1, {
-	ref,
-	className: cn("inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm", className),
-	...props
-}));
-TabsTrigger.displayName = Trigger$1.displayName;
-var TabsContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content, {
-	ref,
-	className: cn("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className),
-	...props
-}));
-TabsContent.displayName = Content.displayName;
 function clamp(value, [min$1, max$1]) {
 	return Math.min(max$1, Math.max(min$1, value));
 }
@@ -28777,11 +28535,11 @@ var Select$1 = (props) => {
 	});
 };
 Select$1.displayName = SELECT_NAME;
-var TRIGGER_NAME$2 = "SelectTrigger";
+var TRIGGER_NAME$3 = "SelectTrigger";
 var SelectTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, disabled = false, ...triggerProps } = props;
 	const popperScope = usePopperScope(__scopeSelect);
-	const context = useSelectContext(TRIGGER_NAME$2, __scopeSelect);
+	const context = useSelectContext(TRIGGER_NAME$3, __scopeSelect);
 	const isDisabled = context.disabled || disabled;
 	const composedRefs = useComposedRefs(forwardedRef, context.onTriggerChange);
 	const getItems = useCollection(__scopeSelect);
@@ -28804,7 +28562,7 @@ var SelectTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor, {
 		asChild: true,
 		...popperScope,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			type: "button",
 			role: "combobox",
 			"aria-controls": context.contentId,
@@ -28843,7 +28601,7 @@ var SelectTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-SelectTrigger$1.displayName = TRIGGER_NAME$2;
+SelectTrigger$1.displayName = TRIGGER_NAME$3;
 var VALUE_NAME = "SelectValue";
 var SelectValue$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, className, style, children, placeholder = "", ...valueProps } = props;
@@ -28854,7 +28612,7 @@ var SelectValue$1 = import_react.forwardRef((props, forwardedRef) => {
 	useLayoutEffect2(() => {
 		onValueNodeHasChildrenChange(hasChildren);
 	}, [onValueNodeHasChildrenChange, hasChildren]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		...valueProps,
 		ref: composedRefs,
 		style: { pointerEvents: "none" },
@@ -28865,7 +28623,7 @@ SelectValue$1.displayName = VALUE_NAME;
 var ICON_NAME = "SelectIcon";
 var SelectIcon = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, children, ...iconProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		"aria-hidden": true,
 		...iconProps,
 		ref: forwardedRef,
@@ -28881,9 +28639,9 @@ var SelectPortal = (props) => {
 	});
 };
 SelectPortal.displayName = PORTAL_NAME;
-var CONTENT_NAME$1 = "SelectContent";
+var CONTENT_NAME$2 = "SelectContent";
 var SelectContent$1 = import_react.forwardRef((props, forwardedRef) => {
-	const context = useSelectContext(CONTENT_NAME$1, props.__scopeSelect);
+	const context = useSelectContext(CONTENT_NAME$2, props.__scopeSelect);
 	const [fragment, setFragment] = import_react.useState();
 	useLayoutEffect2(() => {
 		setFragment(new DocumentFragment());
@@ -28903,14 +28661,14 @@ var SelectContent$1 = import_react.forwardRef((props, forwardedRef) => {
 		ref: forwardedRef
 	});
 });
-SelectContent$1.displayName = CONTENT_NAME$1;
+SelectContent$1.displayName = CONTENT_NAME$2;
 var CONTENT_MARGIN = 10;
-var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$1);
+var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$2);
 var CONTENT_IMPL_NAME = "SelectContentImpl";
 var Slot = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
 var SelectContentImpl = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, position = "item-aligned", onCloseAutoFocus, onEscapeKeyDown, onPointerDownOutside, side, sideOffset, align, alignOffset, arrowPadding, collisionBoundary, collisionPadding, sticky, hideWhenDetached, avoidCollisions, ...contentProps } = props;
-	const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
+	const context = useSelectContext(CONTENT_NAME$2, __scopeSelect);
 	const [content, setContent] = import_react.useState(null);
 	const [viewport, setViewport] = import_react.useState(null);
 	const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -29100,8 +28858,8 @@ SelectContentImpl.displayName = CONTENT_IMPL_NAME;
 var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
 var SelectItemAlignedPosition = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, onPlaced, ...popperProps } = props;
-	const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
-	const contentContext = useSelectContentContext(CONTENT_NAME$1, __scopeSelect);
+	const context = useSelectContext(CONTENT_NAME$2, __scopeSelect);
+	const contentContext = useSelectContentContext(CONTENT_NAME$2, __scopeSelect);
 	const [contentWrapper, setContentWrapper] = import_react.useState(null);
 	const [content, setContent] = import_react.useState(null);
 	const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -29210,7 +28968,7 @@ var SelectItemAlignedPosition = import_react.forwardRef((props, forwardedRef) =>
 				position: "fixed",
 				zIndex: contentZIndex
 			},
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				...popperProps,
 				ref: composedRefs,
 				style: {
@@ -29245,7 +29003,7 @@ var SelectPopperPosition = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 SelectPopperPosition.displayName = POPPER_POSITION_NAME;
-var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$1, {});
+var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$2, {});
 var VIEWPORT_NAME$1 = "SelectViewport";
 var SelectViewport = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, nonce, ...viewportProps } = props;
@@ -29258,7 +29016,7 @@ var SelectViewport = import_react.forwardRef((props, forwardedRef) => {
 		nonce
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection.Slot, {
 		scope: __scopeSelect,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			"data-radix-select-viewport": "",
 			role: "presentation",
 			...viewportProps,
@@ -29305,7 +29063,7 @@ var SelectGroup$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectGroupContextProvider, {
 		scope: __scopeSelect,
 		id: groupId,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			role: "group",
 			"aria-labelledby": groupId,
 			...groupProps,
@@ -29318,7 +29076,7 @@ var LABEL_NAME = "SelectLabel";
 var SelectLabel$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...labelProps } = props;
 	const groupContext = useSelectGroupContext(LABEL_NAME, __scopeSelect);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		id: groupContext.id,
 		...labelProps,
 		ref: forwardedRef
@@ -29358,7 +29116,7 @@ var SelectItem$1 = import_react.forwardRef((props, forwardedRef) => {
 			value,
 			disabled,
 			textValue,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				role: "option",
 				"aria-labelledby": textId,
 				"data-highlighted": isFocused ? "" : void 0,
@@ -29426,7 +29184,7 @@ var SelectItemText = import_react.forwardRef((props, forwardedRef) => {
 		onNativeOptionRemove,
 		nativeOption
 	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		id: itemContext.textId,
 		...itemTextProps,
 		ref: composedRefs
@@ -29436,7 +29194,7 @@ SelectItemText.displayName = ITEM_TEXT_NAME;
 var ITEM_INDICATOR_NAME = "SelectItemIndicator";
 var SelectItemIndicator = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...itemIndicatorProps } = props;
-	return useSelectItemContext(ITEM_INDICATOR_NAME, __scopeSelect).isSelected ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return useSelectItemContext(ITEM_INDICATOR_NAME, __scopeSelect).isSelected ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		"aria-hidden": true,
 		...itemIndicatorProps,
 		ref: forwardedRef
@@ -29515,7 +29273,7 @@ var SelectScrollButtonImpl = import_react.forwardRef((props, forwardedRef) => {
 	useLayoutEffect2(() => {
 		getItems().find((item) => item.ref.current === document.activeElement)?.ref.current?.scrollIntoView({ block: "nearest" });
 	}, [getItems]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"aria-hidden": true,
 		...scrollIndicatorProps,
 		ref: forwardedRef,
@@ -29538,7 +29296,7 @@ var SelectScrollButtonImpl = import_react.forwardRef((props, forwardedRef) => {
 var SEPARATOR_NAME = "SelectSeparator";
 var SelectSeparator$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...separatorProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"aria-hidden": true,
 		...separatorProps,
 		ref: forwardedRef
@@ -29574,7 +29332,7 @@ var SelectBubbleInput = import_react.forwardRef(({ __scopeSelect, value, ...prop
 			select.dispatchEvent(event);
 		}
 	}, [prevValue, value]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.select, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.select, {
 		...props,
 		style: {
 			...VISUALLY_HIDDEN_STYLES,
@@ -29625,8 +29383,8 @@ function findNextItem(items, search, currentItem) {
 function wrapArray(array, startIndex) {
 	return array.map((_$1, index$1) => array[(startIndex + index$1) % array.length]);
 }
-var Root2 = Select$1;
-var Trigger = SelectTrigger$1;
+var Root2$1 = Select$1;
+var Trigger$1 = SelectTrigger$1;
 var Value = SelectValue$1;
 var Icon = SelectIcon;
 var Portal$1 = SelectPortal;
@@ -29638,10 +29396,10 @@ var ItemText = SelectItemText;
 var ItemIndicator = SelectItemIndicator;
 var ScrollUpButton = SelectScrollUpButton$1;
 var ScrollDownButton = SelectScrollDownButton$1;
-var Separator = SelectSeparator$1;
-var Select = Root2;
+var Separator$2 = SelectSeparator$1;
+var Select = Root2$1;
 var SelectValue = Value;
-var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Trigger, {
+var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Trigger$1, {
 	ref,
 	className: cn("flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background data-[placeholder]:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className),
 	...props,
@@ -29650,7 +29408,7 @@ var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, 
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: "h-4 w-4 opacity-50" })
 	})]
 }));
-SelectTrigger.displayName = Trigger.displayName;
+SelectTrigger.displayName = Trigger$1.displayName;
 var SelectScrollUpButton = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollUpButton, {
 	ref,
 	className: cn("flex cursor-default items-center justify-center py-1", className),
@@ -29696,12 +29454,349 @@ var SelectItem = import_react.forwardRef(({ className, children, ...props }, ref
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ItemText, { children })]
 }));
 SelectItem.displayName = Item.displayName;
-var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator, {
+var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator$2, {
 	ref,
 	className: cn("-mx-1 my-1 h-px bg-muted", className),
 	...props
 }));
-SelectSeparator.displayName = Separator.displayName;
+SelectSeparator.displayName = Separator$2.displayName;
+function ProjectsPage() {
+	const { state, actions } = useStore();
+	const { projects, currentUser } = state;
+	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+	const navigate = useNavigate();
+	const [newProject, setNewProject] = (0, import_react.useState)({
+		name: "",
+		description: "",
+		startDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+		dueDate: "",
+		priority: "medium"
+	});
+	const filteredProjects = projects.filter((project) => {
+		if (currentUser?.role === "MASTER") return true;
+		if (project.companyId !== currentUser?.companyId) return false;
+		if (currentUser?.role === "ADMIN") return true;
+		return project.members.includes(currentUser?.id || "") || project.leaderId === currentUser?.id;
+	});
+	const canCreate = currentUser?.role === "MASTER" || currentUser?.role === "ADMIN";
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (currentUser?.companyId || currentUser?.role === "MASTER") {
+			actions.addProject({
+				...newProject,
+				companyId: currentUser?.companyId || "c1",
+				leaderId: currentUser?.id || "",
+				status: "active",
+				members: [currentUser?.id || ""]
+			});
+			setIsOpen(false);
+			setNewProject({
+				name: "",
+				description: "",
+				startDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+				dueDate: "",
+				priority: "medium"
+			});
+		}
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-6 animate-fade-in",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex items-center justify-between",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+				className: "text-3xl font-bold tracking-tight",
+				children: "Projects"
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "text-muted-foreground",
+				children: "Track ongoing initiatives"
+			})] }), canCreate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
+				open: isOpen,
+				onOpenChange: setIsOpen,
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
+					asChild: true,
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+						className: "gap-2 rounded-full md:rounded-md h-12 w-12 md:h-10 md:w-auto p-0 md:px-4 fixed bottom-20 right-4 md:static z-40 shadow-lg md:shadow-none",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-5 w-5 md:mr-2" }),
+							" ",
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "hidden md:inline",
+								children: "Create Project"
+							})
+						]
+					})
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "New Project" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+					onSubmit: handleSubmit,
+					className: "space-y-4 py-4",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Project Name" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+								value: newProject.name,
+								onChange: (e) => setNewProject({
+									...newProject,
+									name: e.target.value
+								}),
+								required: true
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Description" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+								value: newProject.description,
+								onChange: (e) => setNewProject({
+									...newProject,
+									description: e.target.value
+								})
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Priority" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+								value: newProject.priority,
+								onValueChange: (val) => setNewProject({
+									...newProject,
+									priority: val
+								}),
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "low",
+										children: "Low"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "medium",
+										children: "Medium"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "high",
+										children: "High"
+									})
+								] })]
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "grid grid-cols-2 gap-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Start Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+									type: "date",
+									value: newProject.startDate,
+									onChange: (e) => setNewProject({
+										...newProject,
+										startDate: e.target.value
+									})
+								})]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Due Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+									type: "date",
+									value: newProject.dueDate,
+									onChange: (e) => setNewProject({
+										...newProject,
+										dueDate: e.target.value
+									})
+								})]
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							type: "submit",
+							className: "w-full",
+							children: "Create Project"
+						})
+					]
+				})] })]
+			})]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
+			children: [filteredProjects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+				className: "cursor-pointer hover:shadow-elevation transition-all group hover:-translate-y-1 duration-300",
+				onClick: () => navigate(`/projects/${project.id}`),
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex justify-between items-start",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.priority })]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+						className: "mt-2 group-hover:text-primary transition-colors",
+						children: project.name
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
+						className: "line-clamp-2",
+						children: project.description
+					})
+				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
+					className: "border-t pt-4 text-xs text-muted-foreground flex justify-between",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-1",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "h-3 w-3" }),
+							" ",
+							project.members.length,
+							" members"
+						]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "flex items-center gap-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), project.dueDate ? new Date(project.dueDate).toLocaleDateString() : "No due date"]
+					})]
+				})]
+			}, project.id)), filteredProjects.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "col-span-full text-center py-10 text-muted-foreground bg-muted/20 rounded-lg border border-dashed",
+				children: "No projects found."
+			})]
+		})]
+	});
+}
+var TABS_NAME = "Tabs";
+var [createTabsContext, createTabsScope] = createContextScope(TABS_NAME, [createRovingFocusGroupScope]);
+var useRovingFocusGroupScope = createRovingFocusGroupScope();
+var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
+var Tabs$1 = import_react.forwardRef((props, forwardedRef) => {
+	const { __scopeTabs, value: valueProp, onValueChange, defaultValue, orientation = "horizontal", dir, activationMode = "automatic", ...tabsProps } = props;
+	const direction = useDirection(dir);
+	const [value, setValue] = useControllableState({
+		prop: valueProp,
+		onChange: onValueChange,
+		defaultProp: defaultValue ?? "",
+		caller: TABS_NAME
+	});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsProvider, {
+		scope: __scopeTabs,
+		baseId: useId(),
+		value,
+		onValueChange: setValue,
+		orientation,
+		dir: direction,
+		activationMode,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
+			dir: direction,
+			"data-orientation": orientation,
+			...tabsProps,
+			ref: forwardedRef
+		})
+	});
+});
+Tabs$1.displayName = TABS_NAME;
+var TAB_LIST_NAME = "TabsList";
+var TabsList$1 = import_react.forwardRef((props, forwardedRef) => {
+	const { __scopeTabs, loop = true, ...listProps } = props;
+	const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
+	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$6, {
+		asChild: true,
+		...rovingFocusGroupScope,
+		orientation: context.orientation,
+		dir: context.dir,
+		loop,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
+			role: "tablist",
+			"aria-orientation": context.orientation,
+			...listProps,
+			ref: forwardedRef
+		})
+	});
+});
+TabsList$1.displayName = TAB_LIST_NAME;
+var TRIGGER_NAME$2 = "TabsTrigger";
+var TabsTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
+	const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
+	const context = useTabsContext(TRIGGER_NAME$2, __scopeTabs);
+	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+	const triggerId = makeTriggerId(context.baseId, value);
+	const contentId = makeContentId(context.baseId, value);
+	const isSelected = value === context.value;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Item$1, {
+		asChild: true,
+		...rovingFocusGroupScope,
+		focusable: !disabled,
+		active: isSelected,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
+			type: "button",
+			role: "tab",
+			"aria-selected": isSelected,
+			"aria-controls": contentId,
+			"data-state": isSelected ? "active" : "inactive",
+			"data-disabled": disabled ? "" : void 0,
+			disabled,
+			id: triggerId,
+			...triggerProps,
+			ref: forwardedRef,
+			onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
+				if (!disabled && event.button === 0 && event.ctrlKey === false) context.onValueChange(value);
+				else event.preventDefault();
+			}),
+			onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
+				if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
+			}),
+			onFocus: composeEventHandlers(props.onFocus, () => {
+				const isAutomaticActivation = context.activationMode !== "manual";
+				if (!isSelected && !disabled && isAutomaticActivation) context.onValueChange(value);
+			})
+		})
+	});
+});
+TabsTrigger$1.displayName = TRIGGER_NAME$2;
+var CONTENT_NAME$1 = "TabsContent";
+var TabsContent$1 = import_react.forwardRef((props, forwardedRef) => {
+	const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
+	const context = useTabsContext(CONTENT_NAME$1, __scopeTabs);
+	const triggerId = makeTriggerId(context.baseId, value);
+	const contentId = makeContentId(context.baseId, value);
+	const isSelected = value === context.value;
+	const isMountAnimationPreventedRef = import_react.useRef(isSelected);
+	import_react.useEffect(() => {
+		const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
+		return () => cancelAnimationFrame(rAF);
+	}, []);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
+		present: forceMount || isSelected,
+		children: ({ present }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
+			"data-state": isSelected ? "active" : "inactive",
+			"data-orientation": context.orientation,
+			role: "tabpanel",
+			"aria-labelledby": triggerId,
+			hidden: !present,
+			id: contentId,
+			tabIndex: 0,
+			...contentProps,
+			ref: forwardedRef,
+			style: {
+				...props.style,
+				animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
+			},
+			children: present && children
+		})
+	});
+});
+TabsContent$1.displayName = CONTENT_NAME$1;
+function makeTriggerId(baseId, value) {
+	return `${baseId}-trigger-${value}`;
+}
+function makeContentId(baseId, value) {
+	return `${baseId}-content-${value}`;
+}
+var Root2 = Tabs$1;
+var List = TabsList$1;
+var Trigger = TabsTrigger$1;
+var Content = TabsContent$1;
+var Tabs = Root2;
+var TabsList = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(List, {
+	ref,
+	className: cn("inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground", className),
+	...props
+}));
+TabsList.displayName = List.displayName;
+var TabsTrigger = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trigger, {
+	ref,
+	className: cn("inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm", className),
+	...props
+}));
+TabsTrigger.displayName = Trigger.displayName;
+var TabsContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content, {
+	ref,
+	className: cn("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className),
+	...props
+}));
+TabsContent.displayName = Content.displayName;
 var CHECKBOX_NAME = "Checkbox";
 var [createCheckboxContext, createCheckboxScope] = createContextScope(CHECKBOX_NAME);
 var [CheckboxProviderImpl, useCheckboxContext] = createCheckboxContext(CHECKBOX_NAME);
@@ -29752,7 +29847,7 @@ var CheckboxTrigger = import_react.forwardRef(({ __scopeCheckbox, onKeyDown, onC
 			return () => form.removeEventListener("reset", reset);
 		}
 	}, [control, setChecked]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 		type: "button",
 		role: "checkbox",
 		"aria-checked": isIndeterminate(checked) ? "mixed" : checked,
@@ -29802,7 +29897,7 @@ var CheckboxIndicator = import_react.forwardRef((props, forwardedRef) => {
 	const context = useCheckboxContext(INDICATOR_NAME, __scopeCheckbox);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
 		present: forceMount || isIndeterminate(context.checked) || context.checked === true,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 			"data-state": getState$1(context.checked),
 			"data-disabled": context.disabled ? "" : void 0,
 			...indicatorProps,
@@ -29840,7 +29935,7 @@ var CheckboxBubbleInput = import_react.forwardRef(({ __scopeCheckbox, ...props }
 		hasConsumerStoppedPropagationRef
 	]);
 	const defaultCheckedRef = import_react.useRef(isIndeterminate(checked) ? false : checked);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.input, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.input, {
 		type: "checkbox",
 		"aria-hidden": true,
 		defaultChecked: defaultChecked ?? defaultCheckedRef.current,
@@ -29900,7 +29995,7 @@ var Collapsible$1 = import_react.forwardRef((props, forwardedRef) => {
 		contentId: useId(),
 		open,
 		onOpenToggle: import_react.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			"data-state": getState(open),
 			"data-disabled": disabled ? "" : void 0,
 			...collapsibleProps,
@@ -29913,7 +30008,7 @@ var TRIGGER_NAME = "CollapsibleTrigger";
 var CollapsibleTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeCollapsible, ...triggerProps } = props;
 	const context = useCollapsibleContext(TRIGGER_NAME, __scopeCollapsible);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 		type: "button",
 		"aria-controls": context.contentId,
 		"aria-expanded": context.open || false,
@@ -29976,7 +30071,7 @@ var CollapsibleContentImpl = import_react.forwardRef((props, forwardedRef) => {
 			setIsPresent(present);
 		}
 	}, [context.open, present]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"data-state": getState(context.open),
 		"data-disabled": context.disabled ? "" : void 0,
 		id: context.contentId,
@@ -29997,90 +30092,6 @@ function getState(open) {
 var Collapsible = Collapsible$1;
 var CollapsibleTrigger = CollapsibleTrigger$1;
 var CollapsibleContent = CollapsibleContent$1;
-function TaskCard({ task }) {
-	const { actions, state } = useStore();
-	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
-	const assignee = state.users.find((u) => u.id === task.assigneeIds[0]);
-	const toggleStatus = () => {
-		const newStatus = task.status === "done" ? "todo" : "done";
-		actions.updateTask(task.id, { status: newStatus });
-	};
-	const toggleSubtask = (subtaskId, currentStatus) => {
-		const newSubtasks = task.subtasks.map((st) => st.id === subtaskId ? {
-			...st,
-			status: !currentStatus
-		} : st);
-		actions.updateTask(task.id, { subtasks: newSubtasks });
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Collapsible, {
-		open: isOpen,
-		onOpenChange: setIsOpen,
-		className: "border rounded-lg bg-card text-card-foreground shadow-sm",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "p-4 flex items-start gap-3",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
-				checked: task.status === "done",
-				onCheckedChange: toggleStatus,
-				className: "mt-1"
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex-1",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: cn("font-medium", task.status === "done" && "line-through text-muted-foreground"),
-						children: task.title
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleTrigger, {
-						asChild: true,
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-							variant: "ghost",
-							size: "sm",
-							className: "h-8 w-8 p-0",
-							children: isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: "h-4 w-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "h-4 w-4" })
-						})
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center gap-2 mt-2 text-xs text-muted-foreground",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
-							status: task.priority,
-							className: "text-[10px] px-1.5 py-0 h-5"
-						}),
-						assignee && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center gap-1",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
-								className: "h-4 w-4",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: assignee.avatarUrl }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, { children: assignee.name[0] })]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: assignee.name })]
-						}),
-						task.dueDate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center gap-1 ml-auto",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: new Date(task.dueDate).toLocaleDateString() })]
-						})
-					]
-				})]
-			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleContent, {
-			className: "px-4 pb-4 pl-10 border-t bg-muted/30",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "pt-3 space-y-2",
-				children: [task.subtasks.map((st) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center gap-2",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
-						checked: st.status,
-						onCheckedChange: () => toggleSubtask(st.id, st.status),
-						className: "h-3.5 w-3.5"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: cn("text-sm", st.status && "line-through text-muted-foreground"),
-						children: st.title
-					})]
-				}, st.id)), task.subtasks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "text-xs text-muted-foreground italic",
-					children: "No subtasks"
-				})]
-			})
-		})]
-	});
-}
 function useStateMachine(initialState, machine) {
 	return import_react.useReducer((state, event) => {
 		return machine[state][event] ?? state;
@@ -30122,7 +30133,7 @@ var ScrollArea$1 = import_react.forwardRef((props, forwardedRef) => {
 		onScrollbarYEnabledChange: setScrollbarYEnabled,
 		onCornerWidthChange: setCornerWidth,
 		onCornerHeightChange: setCornerHeight,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			dir: direction,
 			...scrollAreaProps,
 			ref: composedRefs,
@@ -30144,7 +30155,7 @@ var ScrollAreaViewport = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", {
 		dangerouslySetInnerHTML: { __html: `[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}` },
 		nonce
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"data-radix-scroll-area-viewport": "",
 		...viewportProps,
 		ref: composedRefs,
@@ -30511,7 +30522,7 @@ var ScrollAreaScrollbarImpl = import_react.forwardRef((props, forwardedRef) => {
 		onThumbPointerUp: useCallbackRef(onThumbPointerUp),
 		onThumbPositionChange: handleThumbPositionChange,
 		onThumbPointerDown: useCallbackRef(onThumbPointerDown),
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			...scrollbarProps,
 			ref: composeRefs$1,
 			style: {
@@ -30583,7 +30594,7 @@ var ScrollAreaThumbImpl = import_react.forwardRef((props, forwardedRef) => {
 		debounceScrollEnd,
 		onThumbPositionChange
 	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"data-state": scrollbarContext.hasThumb ? "visible" : "hidden",
 		...thumbProps,
 		ref: composedRef,
@@ -30631,7 +30642,7 @@ var ScrollAreaCornerImpl = import_react.forwardRef((props, forwardedRef) => {
 		context.onCornerWidthChange(width2);
 		setWidth(width2);
 	});
-	return hasSize ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return hasSize ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...cornerProps,
 		ref: forwardedRef,
 		style: {
@@ -30733,10 +30744,10 @@ function useResizeObserver(element, onResize) {
 		}
 	}, [element, handleResize]);
 }
-var Root = ScrollArea$1;
+var Root$1 = ScrollArea$1;
 var Viewport = ScrollAreaViewport;
 var Corner = ScrollAreaCorner;
-var ScrollArea = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Root, {
+var ScrollArea = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Root$1, {
 	ref,
 	className: cn("relative overflow-hidden", className),
 	...props,
@@ -30749,7 +30760,7 @@ var ScrollArea = import_react.forwardRef(({ className, children, ...props }, ref
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Corner, {})
 	]
 }));
-ScrollArea.displayName = Root.displayName;
+ScrollArea.displayName = Root$1.displayName;
 var ScrollBar = import_react.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbar, {
 	ref,
 	orientation,
@@ -30758,6 +30769,568 @@ var ScrollBar = import_react.forwardRef(({ className, orientation = "vertical", 
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaThumb, { className: "relative flex-1 rounded-full bg-border" })
 }));
 ScrollBar.displayName = ScrollAreaScrollbar.displayName;
+var NAME = "Separator";
+var DEFAULT_ORIENTATION = "horizontal";
+var ORIENTATIONS = ["horizontal", "vertical"];
+var Separator$1 = import_react.forwardRef((props, forwardedRef) => {
+	const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
+	const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
+	const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+	const semanticProps = decorative ? { role: "none" } : {
+		"aria-orientation": ariaOrientation,
+		role: "separator"
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		"data-orientation": orientation,
+		...semanticProps,
+		...domProps,
+		ref: forwardedRef
+	});
+});
+Separator$1.displayName = NAME;
+function isValidOrientation(orientation) {
+	return ORIENTATIONS.includes(orientation);
+}
+var Root = Separator$1;
+var Separator = import_react.forwardRef(({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root, {
+	ref,
+	decorative,
+	orientation,
+	className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className),
+	...props
+}));
+Separator.displayName = Root.displayName;
+function EditTaskDialog({ task, open, onOpenChange }) {
+	const { actions, state } = useStore();
+	const { users, projects } = state;
+	const project = projects.find((p) => p.id === task.projectId);
+	const [formData, setFormData] = (0, import_react.useState)({
+		title: task.title,
+		description: task.description || "",
+		status: task.status,
+		priority: task.priority,
+		dueDate: task.dueDate || "",
+		assigneeIds: task.assigneeIds
+	});
+	const [subtasks, setSubtasks] = (0, import_react.useState)(task.subtasks);
+	const [isAddingSubtask, setIsAddingSubtask] = (0, import_react.useState)(false);
+	const [editingSubtaskId, setEditingSubtaskId] = (0, import_react.useState)(null);
+	const [tempSubtask, setTempSubtask] = (0, import_react.useState)({
+		title: "",
+		leaderId: "",
+		memberIds: []
+	});
+	(0, import_react.useEffect)(() => {
+		setFormData({
+			title: task.title,
+			description: task.description || "",
+			status: task.status,
+			priority: task.priority,
+			dueDate: task.dueDate || "",
+			assigneeIds: task.assigneeIds
+		});
+		setSubtasks(task.subtasks);
+		setIsAddingSubtask(false);
+		setEditingSubtaskId(null);
+	}, [task, open]);
+	const projectMembers = project ? users.filter((u) => project.members.includes(u.id)) : [];
+	const taskAssignees = users.filter((u) => formData.assigneeIds.includes(u.id));
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		actions.updateTask(task.id, {
+			...formData,
+			subtasks
+		});
+		onOpenChange(false);
+	};
+	const handleToggleAssignee = (userId) => {
+		setFormData((prev) => ({
+			...prev,
+			assigneeIds: prev.assigneeIds.includes(userId) ? prev.assigneeIds.filter((id) => id !== userId) : [...prev.assigneeIds, userId]
+		}));
+	};
+	const handleStartAddSubtask = () => {
+		setTempSubtask({
+			title: "",
+			leaderId: "",
+			memberIds: []
+		});
+		setIsAddingSubtask(true);
+		setEditingSubtaskId(null);
+	};
+	const handleStartEditSubtask = (st) => {
+		setTempSubtask({
+			title: st.title,
+			leaderId: st.leaderId || "",
+			memberIds: st.memberIds || []
+		});
+		setEditingSubtaskId(st.id);
+		setIsAddingSubtask(false);
+	};
+	const handleSaveSubtask = () => {
+		if (!tempSubtask.title) return;
+		if (isAddingSubtask) {
+			const newSubtask = {
+				id: crypto.randomUUID(),
+				title: tempSubtask.title,
+				status: false,
+				leaderId: tempSubtask.leaderId,
+				memberIds: tempSubtask.memberIds
+			};
+			setSubtasks([...subtasks, newSubtask]);
+		} else if (editingSubtaskId) setSubtasks(subtasks.map((st) => st.id === editingSubtaskId ? {
+			...st,
+			title: tempSubtask.title,
+			leaderId: tempSubtask.leaderId,
+			memberIds: tempSubtask.memberIds
+		} : st));
+		setIsAddingSubtask(false);
+		setEditingSubtaskId(null);
+	};
+	const handleDeleteSubtask = (id) => {
+		setSubtasks(subtasks.filter((st) => st.id !== id));
+	};
+	const handleSubtaskMemberToggle = (userId) => {
+		setTempSubtask((prev) => ({
+			...prev,
+			memberIds: prev.memberIds.includes(userId) ? prev.memberIds.filter((id) => id !== userId) : [...prev.memberIds, userId]
+		}));
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dialog, {
+		open,
+		onOpenChange,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, {
+			className: "sm:max-w-[600px] max-h-[90vh] overflow-y-auto",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "Edit Task" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+				onSubmit: handleSubmit,
+				className: "space-y-6 py-2",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-4",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Task Title" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+									value: formData.title,
+									onChange: (e) => setFormData({
+										...formData,
+										title: e.target.value
+									}),
+									required: true
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Description" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+									value: formData.description,
+									onChange: (e) => setFormData({
+										...formData,
+										description: e.target.value
+									}),
+									className: "h-20"
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-2 gap-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Status" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+										value: formData.status,
+										onValueChange: (val) => setFormData({
+											...formData,
+											status: val
+										}),
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+												value: "todo",
+												children: "Todo"
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+												value: "in-progress",
+												children: "In Progress"
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+												value: "done",
+												children: "Done"
+											})
+										] })]
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Priority" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+										value: formData.priority,
+										onValueChange: (val) => setFormData({
+											...formData,
+											priority: val
+										}),
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+												value: "low",
+												children: "Low"
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+												value: "medium",
+												children: "Medium"
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+												value: "high",
+												children: "High"
+											})
+										] })]
+									})]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Due Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+									type: "date",
+									value: formData.dueDate,
+									onChange: (e) => setFormData({
+										...formData,
+										dueDate: e.target.value
+									})
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Assignees" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollArea, {
+									className: "h-32 border rounded-md p-2",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "space-y-2",
+										children: projectMembers.map((user) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex items-center space-x-2 p-1 hover:bg-muted/50 rounded",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
+												id: `assignee-${user.id}`,
+												checked: formData.assigneeIds.includes(user.id),
+												onCheckedChange: () => handleToggleAssignee(user.id)
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+												htmlFor: `assignee-${user.id}`,
+												className: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex-1 cursor-pointer",
+												children: user.name
+											})]
+										}, user.id))
+									})
+								})]
+							})
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-4",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center justify-between",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+									className: "text-base",
+									children: "Subtasks"
+								}), !isAddingSubtask && !editingSubtaskId && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+									type: "button",
+									size: "sm",
+									variant: "outline",
+									onClick: handleStartAddSubtask,
+									className: "gap-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-3.5 w-3.5" }), " Add Subtask"]
+								})]
+							}),
+							(isAddingSubtask || editingSubtaskId) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "bg-muted/30 p-4 rounded-lg border space-y-3",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex justify-between items-center mb-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "font-semibold text-sm",
+											children: isAddingSubtask ? "New Subtask" : "Edit Subtask"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+											type: "button",
+											variant: "ghost",
+											size: "sm",
+											className: "h-6 w-6 p-0",
+											onClick: () => {
+												setIsAddingSubtask(false);
+												setEditingSubtaskId(null);
+											},
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" })
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											className: "text-xs",
+											children: "Title"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+											value: tempSubtask.title,
+											onChange: (e) => setTempSubtask({
+												...tempSubtask,
+												title: e.target.value
+											}),
+											placeholder: "Subtask title"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "grid grid-cols-2 gap-3",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "space-y-2",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+												className: "text-xs",
+												children: "Leader"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+												value: tempSubtask.leaderId,
+												onValueChange: (val) => setTempSubtask({
+													...tempSubtask,
+													leaderId: val
+												}),
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, {
+													className: "h-8 text-xs",
+													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Select leader" })
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectContent, { children: taskAssignees.map((u) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+													value: u.id,
+													children: u.name
+												}, u.id)) })]
+											})]
+										})
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											className: "text-xs",
+											children: "Members"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollArea, {
+											className: "h-20 border rounded-md p-2 bg-background",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "space-y-1",
+												children: [taskAssignees.map((user) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+													className: "flex items-center space-x-2",
+													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
+														id: `st-member-${user.id}`,
+														className: "h-3.5 w-3.5",
+														checked: tempSubtask.memberIds.includes(user.id),
+														onCheckedChange: () => handleSubtaskMemberToggle(user.id)
+													}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+														htmlFor: `st-member-${user.id}`,
+														className: "text-xs font-medium cursor-pointer",
+														children: user.name
+													})]
+												}, user.id)), taskAssignees.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+													className: "text-xs text-muted-foreground",
+													children: "No task assignees available."
+												})]
+											})
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+										type: "button",
+										size: "sm",
+										className: "w-full",
+										onClick: handleSaveSubtask,
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "h-3.5 w-3.5 mr-2" }), isAddingSubtask ? "Add" : "Save"]
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [subtasks.map((st) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: cn("flex items-center justify-between p-3 rounded-md border bg-card hover:bg-accent/10 transition-colors", editingSubtaskId === st.id && "ring-2 ring-primary"),
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex-1 min-w-0",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex items-center gap-2",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "font-medium text-sm truncate",
+												children: st.title
+											}), st.status && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full",
+												children: "Done"
+											})]
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex gap-2 text-xs text-muted-foreground mt-1",
+											children: [st.leaderId && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+												"Leader:",
+												" ",
+												users.find((u) => u.id === st.leaderId)?.name
+											] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: ["Members: ", st.memberIds.length] })]
+										})]
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-1 ml-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+											type: "button",
+											variant: "ghost",
+											size: "icon",
+											className: "h-7 w-7",
+											onClick: () => handleStartEditSubtask(st),
+											disabled: !!editingSubtaskId || isAddingSubtask,
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { className: "h-3.5 w-3.5" })
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+											type: "button",
+											variant: "ghost",
+											size: "icon",
+											className: "h-7 w-7 text-destructive hover:text-destructive",
+											onClick: () => handleDeleteSubtask(st.id),
+											disabled: !!editingSubtaskId || isAddingSubtask,
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { className: "h-3.5 w-3.5" })
+										})]
+									})]
+								}, st.id)), subtasks.length === 0 && !isAddingSubtask && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "text-center py-4 text-sm text-muted-foreground border border-dashed rounded-lg",
+									children: "No subtasks defined."
+								})]
+							})
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex justify-end gap-2 pt-4 border-t",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							type: "button",
+							variant: "outline",
+							onClick: () => onOpenChange(false),
+							children: "Cancel"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							type: "submit",
+							children: "Save All Changes"
+						})]
+					})
+				]
+			})]
+		})
+	});
+}
+function TaskCard({ task }) {
+	const { actions, state } = useStore();
+	const { users, currentUser, projects } = state;
+	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+	const [isEditDialogOpen, setIsEditDialogOpen] = (0, import_react.useState)(false);
+	const assignee = users.find((u) => u.id === task.assigneeIds[0]);
+	const project = projects.find((p) => p.id === task.projectId);
+	const canEdit = (() => {
+		if (!currentUser || !project) return false;
+		if (currentUser.role === "MASTER") return true;
+		if (currentUser.role === "ADMIN" && currentUser.companyId === project.companyId) return true;
+		if (project.leaderId === currentUser.id) return true;
+		if (task.creatorId === currentUser.id) return true;
+		return false;
+	})();
+	const toggleStatus = () => {
+		const newStatus = task.status === "done" ? "todo" : "done";
+		actions.updateTask(task.id, { status: newStatus });
+	};
+	const toggleSubtask = (subtaskId, currentStatus) => {
+		const newSubtasks = task.subtasks.map((st) => st.id === subtaskId ? {
+			...st,
+			status: !currentStatus
+		} : st);
+		actions.updateTask(task.id, { subtasks: newSubtasks });
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Collapsible, {
+		open: isOpen,
+		onOpenChange: setIsOpen,
+		className: "border rounded-lg bg-card text-card-foreground shadow-sm",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "p-4 flex items-start gap-3 relative group",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
+				checked: task.status === "done",
+				onCheckedChange: toggleStatus,
+				className: "mt-1"
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex-1 min-w-0",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex items-center justify-between",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: cn("font-medium truncate mr-2", task.status === "done" && "line-through text-muted-foreground"),
+						children: task.title
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-1",
+						children: [canEdit && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							variant: "ghost",
+							size: "sm",
+							className: "h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity",
+							onClick: () => setIsEditDialogOpen(true),
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { className: "h-4 w-4 text-muted-foreground" })
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleTrigger, {
+							asChild: true,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+								variant: "ghost",
+								size: "sm",
+								className: "h-8 w-8 p-0",
+								children: isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: "h-4 w-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "h-4 w-4" })
+							})
+						})]
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
+							status: task.priority,
+							className: "text-[10px] px-1.5 py-0 h-5"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
+							status: task.status,
+							className: "text-[10px] px-1.5 py-0 h-5"
+						}),
+						assignee && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
+								className: "h-4 w-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: assignee.avatarUrl }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, { children: assignee.name[0] })]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: assignee.name })]
+						}),
+						task.assigneeIds.length > 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "text-[10px] bg-muted px-1.5 py-0.5 rounded-full",
+							children: [
+								"+",
+								task.assigneeIds.length - 1,
+								" more"
+							]
+						}),
+						task.dueDate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1 ml-auto",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: new Date(task.dueDate).toLocaleDateString() })]
+						})
+					]
+				})]
+			})]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CollapsibleContent, {
+			className: "px-4 pb-4 pl-10 border-t bg-muted/30",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "pt-3 space-y-2",
+				children: [task.description && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "text-sm text-muted-foreground mb-3",
+					children: task.description
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "space-y-1",
+					children: [task.subtasks.map((st) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center justify-between gap-2 group/subtask",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
+								checked: st.status,
+								onCheckedChange: () => toggleSubtask(st.id, st.status),
+								className: "h-3.5 w-3.5"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: cn("text-sm", st.status && "line-through text-muted-foreground"),
+								children: st.title
+							})]
+						}), (st.leaderId || st.memberIds.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1",
+							children: [st.leaderId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Avatar, {
+								className: "h-4 w-4 border border-background",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: users.find((u) => u.id === st.leaderId)?.avatarUrl })
+							}), st.memberIds.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "text-[10px] text-muted-foreground",
+								children: [st.memberIds.length, " members"]
+							})]
+						})]
+					}, st.id)), task.subtasks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-xs text-muted-foreground italic",
+						children: "No subtasks"
+					})]
+				})]
+			})
+		})]
+	}), canEdit && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EditTaskDialog, {
+		task,
+		open: isEditDialogOpen,
+		onOpenChange: setIsEditDialogOpen
+	})] });
+}
 function ProjectMembersDialog({ project, open, onOpenChange }) {
 	const { state, actions } = useStore();
 	const { users, currentUser } = state;
@@ -30850,6 +31423,168 @@ function ProjectMembersDialog({ project, open, onOpenChange }) {
 		})
 	});
 }
+function EditProjectDialog({ project, open, onOpenChange }) {
+	const { actions } = useStore();
+	const [formData, setFormData] = (0, import_react.useState)({
+		name: project.name,
+		description: project.description,
+		status: project.status,
+		priority: project.priority || "medium",
+		startDate: project.startDate,
+		dueDate: project.dueDate
+	});
+	(0, import_react.useEffect)(() => {
+		setFormData({
+			name: project.name,
+			description: project.description,
+			status: project.status,
+			priority: project.priority || "medium",
+			startDate: project.startDate,
+			dueDate: project.dueDate
+		});
+	}, [project, open]);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		actions.updateProject(project.id, { ...formData });
+		onOpenChange(false);
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dialog, {
+		open,
+		onOpenChange,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, {
+			className: "sm:max-w-[500px]",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "Edit Project" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+				onSubmit: handleSubmit,
+				className: "space-y-4 py-2",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+							htmlFor: "edit-project-name",
+							children: "Project Name"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+							id: "edit-project-name",
+							value: formData.name,
+							onChange: (e) => setFormData({
+								...formData,
+								name: e.target.value
+							}),
+							required: true
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+							htmlFor: "edit-project-desc",
+							children: "Description"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+							id: "edit-project-desc",
+							value: formData.description,
+							onChange: (e) => setFormData({
+								...formData,
+								description: e.target.value
+							})
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "grid grid-cols-2 gap-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Status" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+								value: formData.status,
+								onValueChange: (val) => setFormData({
+									...formData,
+									status: val
+								}),
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "active",
+										children: "Active"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "on-hold",
+										children: "On Hold"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "completed",
+										children: "Completed"
+									})
+								] })]
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Priority" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+								value: formData.priority,
+								onValueChange: (val) => setFormData({
+									...formData,
+									priority: val
+								}),
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "low",
+										children: "Low"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "medium",
+										children: "Medium"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: "high",
+										children: "High"
+									})
+								] })]
+							})]
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "grid grid-cols-2 gap-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+								htmlFor: "edit-start-date",
+								children: "Start Date"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+								id: "edit-start-date",
+								type: "date",
+								value: formData.startDate,
+								onChange: (e) => setFormData({
+									...formData,
+									startDate: e.target.value
+								})
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+								htmlFor: "edit-due-date",
+								children: "Due Date"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+								id: "edit-due-date",
+								type: "date",
+								value: formData.dueDate,
+								onChange: (e) => setFormData({
+									...formData,
+									dueDate: e.target.value
+								})
+							})]
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex justify-end gap-2 pt-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							type: "button",
+							variant: "outline",
+							onClick: () => onOpenChange(false),
+							children: "Cancel"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							type: "submit",
+							children: "Save Changes"
+						})]
+					})
+				]
+			})]
+		})
+	});
+}
 function ProjectDetailsPage() {
 	const { projectId } = useParams();
 	const navigate = useNavigate();
@@ -30858,6 +31593,7 @@ function ProjectDetailsPage() {
 	const currentUser = state.currentUser;
 	const [isTaskOpen, setIsTaskOpen] = (0, import_react.useState)(false);
 	const [isMembersOpen, setIsMembersOpen] = (0, import_react.useState)(false);
+	const [isEditProjectOpen, setIsEditProjectOpen] = (0, import_react.useState)(false);
 	const [newTask, setNewTask] = (0, import_react.useState)({
 		title: "",
 		priority: "medium",
@@ -30891,10 +31627,11 @@ function ProjectDetailsPage() {
 	const progress = projectTasks.length ? Math.round(completedTasks / projectTasks.length * 100) : 0;
 	const handleCreateTask = (e) => {
 		e.preventDefault();
-		if (newTask.title) {
+		if (newTask.title && currentUser) {
 			actions.addTask({
 				...newTask,
 				projectId: project.id,
+				creatorId: currentUser.id,
 				status: "todo",
 				assigneeIds: newTask.assigneeId ? [newTask.assigneeId] : [],
 				subtasks: []
@@ -30913,24 +31650,55 @@ function ProjectDetailsPage() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "flex flex-col gap-4",
 				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-						variant: "ghost",
-						className: "w-fit p-0 hover:bg-transparent text-muted-foreground",
-						onClick: () => navigate("/projects"),
-						children: "← Back to Projects"
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex justify-between items-center",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							variant: "ghost",
+							className: "w-fit p-0 hover:bg-transparent text-muted-foreground",
+							onClick: () => navigate("/projects"),
+							children: "← Back to Projects"
+						}), isManager && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+							variant: "outline",
+							size: "sm",
+							className: "gap-2",
+							onClick: () => setIsEditProjectOpen(true),
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { className: "h-4 w-4" }), " Edit Project"]
+						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-col md:flex-row md:items-center justify-between gap-4",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center gap-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
-								className: "text-3xl font-bold tracking-tight",
-								children: project.name
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status })]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-muted-foreground mt-1 max-w-2xl",
-							children: project.description
-						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-col md:flex-row md:items-start justify-between gap-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-3 flex-wrap",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+											className: "text-3xl font-bold tracking-tight",
+											children: project.name
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.priority })
+									]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-muted-foreground max-w-2xl",
+									children: project.description
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "flex items-center gap-4 text-sm text-muted-foreground pt-2",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-1",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+											new Date(project.startDate).toLocaleDateString(),
+											" -",
+											" ",
+											new Date(project.dueDate).toLocaleDateString()
+										] })]
+									})
+								})
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex items-center gap-2",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "flex -space-x-2 mr-2 cursor-pointer hover:opacity-80 transition-opacity",
@@ -31106,11 +31874,15 @@ function ProjectDetailsPage() {
 					})
 				]
 			}),
-			isManager && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProjectMembersDialog, {
+			isManager && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProjectMembersDialog, {
 				project,
 				open: isMembersOpen,
 				onOpenChange: setIsMembersOpen
-			})
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EditProjectDialog, {
+				project,
+				open: isEditProjectOpen,
+				onOpenChange: setIsEditProjectOpen
+			})] })
 		]
 	});
 }
@@ -31652,4 +32424,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-Bx1pG-Yl.js.map
+//# sourceMappingURL=index-K3xd2GPD.js.map
