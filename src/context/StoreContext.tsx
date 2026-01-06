@@ -276,13 +276,11 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Company deleted')
     },
     addUser: async (data) => {
-      // 1. Client-side Permission Check
       if (currentUser?.role !== 'MASTER' && currentUser?.role !== 'ADMIN') {
         toast.error('Permission denied: Only Master or Admin can create users')
         return false
       }
 
-      // 2. Validate Payload
       if (!data.email || !data.name || !data.role) {
         toast.error(
           'Missing required fields: Name, Email and Role are required',
@@ -291,90 +289,46 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       }
 
       try {
-        // 3. Get Session and Token (Ensure valid session immediately before call)
         const {
           data: { session },
           error: sessionError,
         } = await supabase.auth.getSession()
 
         if (sessionError || !session) {
-          console.error('Session error:', sessionError)
           toast.error(
-            'Authentication error: Your session is invalid or has expired. Please log in again.',
+            'Authentication error: Your session is invalid or has expired.',
           )
           return false
         }
 
         const token = session.access_token
 
-        // 4. Call Edge Function with Explicit Auth Headers
-        const { data: res, error } = await supabase.functions.invoke(
-          'create-user',
-          {
-            body: {
-              email: data.email,
-              password: data.password, // Pass provided password
-              fullName: data.name,
-              role: data.role,
-              companyId: data.companyId,
-              jobTitle: data.jobTitle,
-              permissions: data.permissions || [],
-            },
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
+        const { error } = await supabase.functions.invoke('create-user', {
+          body: {
+            email: data.email,
+            password: data.password,
+            fullName: data.name,
+            role: data.role,
+            companyId: data.companyId,
+            jobTitle: data.jobTitle,
+            permissions: data.permissions || [],
           },
-        )
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
 
         if (error) {
-          let message = 'Failed to create user'
-
-          // Handle 401 Unauthorized errors explicitly
-          if (
-            (typeof error === 'object' &&
-              'status' in error &&
-              error.status === 401) ||
-            error.message?.includes('401')
-          ) {
-            message =
-              'Unauthorized: Your session has expired. Please log in again.'
-          }
-
-          // Try to parse detailed error from edge function response
-          if (typeof error === 'object' && 'context' in error) {
-            try {
-              // error.context is typically the Response object
-              const response = (error as any).context as Response
-              if (response && response.status === 401) {
-                message =
-                  'Unauthorized: Your session has expired. Please log in again.'
-              }
-
-              const body = await response.json()
-              if (body && body.error) {
-                message = body.error
-              }
-            } catch (e) {
-              // Fallback to error message if JSON parse fails
-              if (error.message) message = error.message
-            }
-          } else if (error.message) {
-            message = error.message
-          }
-
-          toast.error(message)
+          toast.error(error.message || 'Failed to create user')
           return false
         }
 
-        // 5. Refresh Data
-        // Since the trigger handles creation, we can refresh to see the new user
         if (session.user) fetchData(session.user.id)
         toast.success('User created successfully')
         return true
       } catch (err: any) {
-        console.error('Unexpected error in addUser:', err)
-        toast.error('An unexpected error occurred. Please try again.')
+        toast.error('An unexpected error occurred.')
         return false
       }
     },
@@ -411,7 +365,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         const fileName = `${currentUser.id}/${Date.now()}.${fileExt}`
         const filePath = fileName
 
-        // 1. Upload file to Supabase Storage
         const { error: uploadError } = await supabase.storage
           .from('avatars')
           .upload(filePath, file, {
@@ -420,12 +373,10 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
         if (uploadError) throw uploadError
 
-        // 2. Get Public URL
         const {
           data: { publicUrl },
         } = supabase.storage.from('avatars').getPublicUrl(filePath)
 
-        // 3. Update User Profile in DB
         const { error: updateError } = await supabase
           .from('members')
           .update({ avatar_url: publicUrl })
@@ -433,7 +384,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
         if (updateError) throw updateError
 
-        // 4. Update Local State
         const updatedUser = { ...currentUser, avatarUrl: publicUrl }
         setCurrentUser(updatedUser)
         setUsers(
@@ -444,7 +394,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
         toast.success('Profile photo updated successfully')
       } catch (error: any) {
-        console.error('Error uploading avatar:', error)
         toast.error('Failed to upload avatar: ' + error.message)
       }
     },
@@ -516,23 +465,40 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Task added')
     },
     updateTask: async (id, data) => {
+      // 1. Construct Payload safely
+      const payload: any = {}
+
+      if (data.title !== undefined) payload.title = data.title
+      if (data.status !== undefined) payload.status = data.status
+      if (data.priority !== undefined) payload.priority = data.priority
+      if (data.description !== undefined) payload.description = data.description
+
+      // Map snake_case fields for JSON columns
+      if (data.assigneeIds !== undefined) {
+        payload.assignee_ids = data.assigneeIds
+      }
+
+      if (data.subtasks !== undefined) {
+        payload.subtasks = data.subtasks
+      }
+
+      // Handle due date: allow clearing (sending null)
+      if (data.dueDate !== undefined) {
+        payload.due_date = data.dueDate === '' ? null : data.dueDate
+      }
+
+      // 2. Perform Update
       const { error } = await supabase
         .from('tasks')
-        .update({
-          title: data.title,
-          status: data.status,
-          priority: data.priority,
-          assignee_ids: data.assigneeIds,
-          subtasks: data.subtasks,
-          description: data.description,
-          due_date: data.dueDate,
-        })
+        .update(payload)
         .eq('id', id)
 
       if (error) {
-        toast.error(error.message)
+        toast.error('Failed to update task: ' + error.message)
         return
       }
+
+      // 3. Update Local State
       setTasks(tasks.map((t) => (t.id === id ? { ...t, ...data } : t)))
       toast.success('Task updated')
     },

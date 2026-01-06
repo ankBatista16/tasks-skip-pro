@@ -32168,12 +32168,11 @@ const StoreProvider = ({ children }) => {
 			try {
 				const { data: { session }, error: sessionError } = await supabase.auth.getSession();
 				if (sessionError || !session) {
-					console.error("Session error:", sessionError);
-					toast.error("Authentication error: Your session is invalid or has expired. Please log in again.");
+					toast.error("Authentication error: Your session is invalid or has expired.");
 					return false;
 				}
 				const token = session.access_token;
-				const { data: res, error } = await supabase.functions.invoke("create-user", {
+				const { error } = await supabase.functions.invoke("create-user", {
 					body: {
 						email: data.email,
 						password: data.password,
@@ -32189,26 +32188,14 @@ const StoreProvider = ({ children }) => {
 					}
 				});
 				if (error) {
-					let message = "Failed to create user";
-					if (typeof error === "object" && "status" in error && error.status === 401 || error.message?.includes("401")) message = "Unauthorized: Your session has expired. Please log in again.";
-					if (typeof error === "object" && "context" in error) try {
-						const response = error.context;
-						if (response && response.status === 401) message = "Unauthorized: Your session has expired. Please log in again.";
-						const body = await response.json();
-						if (body && body.error) message = body.error;
-					} catch (e) {
-						if (error.message) message = error.message;
-					}
-					else if (error.message) message = error.message;
-					toast.error(message);
+					toast.error(error.message || "Failed to create user");
 					return false;
 				}
 				if (session.user) fetchData(session.user.id);
 				toast.success("User created successfully");
 				return true;
 			} catch (err) {
-				console.error("Unexpected error in addUser:", err);
-				toast.error("An unexpected error occurred. Please try again.");
+				toast.error("An unexpected error occurred.");
 				return false;
 			}
 		},
@@ -32254,7 +32241,6 @@ const StoreProvider = ({ children }) => {
 				} : u));
 				toast.success("Profile photo updated successfully");
 			} catch (error) {
-				console.error("Error uploading avatar:", error);
 				toast.error("Failed to upload avatar: " + error.message);
 			}
 		},
@@ -32315,17 +32301,17 @@ const StoreProvider = ({ children }) => {
 			toast.success("Task added");
 		},
 		updateTask: async (id, data) => {
-			const { error } = await supabase.from("tasks").update({
-				title: data.title,
-				status: data.status,
-				priority: data.priority,
-				assignee_ids: data.assigneeIds,
-				subtasks: data.subtasks,
-				description: data.description,
-				due_date: data.dueDate
-			}).eq("id", id);
+			const payload = {};
+			if (data.title !== void 0) payload.title = data.title;
+			if (data.status !== void 0) payload.status = data.status;
+			if (data.priority !== void 0) payload.priority = data.priority;
+			if (data.description !== void 0) payload.description = data.description;
+			if (data.assigneeIds !== void 0) payload.assignee_ids = data.assigneeIds;
+			if (data.subtasks !== void 0) payload.subtasks = data.subtasks;
+			if (data.dueDate !== void 0) payload.due_date = data.dueDate === "" ? null : data.dueDate;
+			const { error } = await supabase.from("tasks").update(payload).eq("id", id);
 			if (error) {
-				toast.error(error.message);
+				toast.error("Failed to update task: " + error.message);
 				return;
 			}
 			setTasks(tasks.map((t) => t.id === id ? {
@@ -39273,6 +39259,10 @@ function EditTaskDialog({ task, open, onOpenChange }) {
 	const taskAssignees = users.filter((u) => formData.assigneeIds.includes(u.id));
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (!formData.title.trim()) {
+			toast.error("Task title is required");
+			return;
+		}
 		actions.updateTask(task.id, {
 			...formData,
 			subtasks
@@ -39304,7 +39294,10 @@ function EditTaskDialog({ task, open, onOpenChange }) {
 		setIsAddingSubtask(false);
 	};
 	const handleSaveSubtask = () => {
-		if (!tempSubtask.title) return;
+		if (!tempSubtask.title.trim()) {
+			toast.error("Subtask title is required");
+			return;
+		}
 		if (isAddingSubtask) {
 			const newSubtask = {
 				id: crypto.randomUUID(),
@@ -39431,9 +39424,9 @@ function EditTaskDialog({ task, open, onOpenChange }) {
 								className: "space-y-2",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Assignees" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollArea, {
 									className: "h-32 border rounded-md p-2",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "space-y-2",
-										children: projectMembers.map((user) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										children: [projectMembers.map((user) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 											className: "flex items-center space-x-2 p-1 hover:bg-muted/50 rounded",
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
 												id: `assignee-${user.id}`,
@@ -39444,7 +39437,10 @@ function EditTaskDialog({ task, open, onOpenChange }) {
 												className: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex-1 cursor-pointer",
 												children: user.name
 											})]
-										}, user.id))
+										}, user.id)), projectMembers.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-sm text-muted-foreground p-2",
+											children: "No active project members found."
+										})]
 									})
 								})]
 							})
@@ -42344,4 +42340,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-X3sZn7jj.js.map
+//# sourceMappingURL=index-vza-2bOY.js.map

@@ -21,16 +21,9 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Separator } from '@/components/ui/separator'
-import {
-  Trash2,
-  Plus,
-  Pencil,
-  Check,
-  X,
-  ChevronDown,
-  ChevronUp,
-} from 'lucide-react'
+import { Trash2, Plus, Pencil, Check, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { toast } from 'sonner'
 
 interface EditTaskDialogProps {
   task: Task
@@ -101,6 +94,12 @@ export function EditTaskDialog({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!formData.title.trim()) {
+      toast.error('Task title is required')
+      return
+    }
+
     actions.updateTask(task.id, {
       ...formData,
       subtasks: subtasks,
@@ -135,7 +134,10 @@ export function EditTaskDialog({
   }
 
   const handleSaveSubtask = () => {
-    if (!tempSubtask.title) return
+    if (!tempSubtask.title.trim()) {
+      toast.error('Subtask title is required')
+      return
+    }
 
     if (isAddingSubtask) {
       const newSubtask: Subtask = {
@@ -277,6 +279,11 @@ export function EditTaskDialog({
                       </label>
                     </div>
                   ))}
+                  {projectMembers.length === 0 && (
+                    <div className="text-sm text-muted-foreground p-2">
+                      No active project members found.
+                    </div>
+                  )}
                 </div>
               </ScrollArea>
             </div>
