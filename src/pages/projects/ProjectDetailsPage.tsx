@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { StatusBadge } from '@/components/pm/StatusBadge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
 import {
   Dialog,
   DialogContent,
@@ -22,7 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Plus, Settings, Pencil, Calendar } from 'lucide-react'
+import { Plus, Settings, Pencil, Calendar, Building2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { TaskCard } from './components/TaskCard'
 import { ProjectMembersDialog } from './components/ProjectMembersDialog'
@@ -40,6 +41,7 @@ export default function ProjectDetailsPage() {
     users,
     comments,
     attachments: allAttachments,
+    companies,
   } = state
   const currentUser = state.currentUser
 
@@ -57,6 +59,7 @@ export default function ProjectDetailsPage() {
   // 1. Fetch Data
   const project = projects.find((p) => p.id === projectId)
   const projectTasks = tasks.filter((t) => t.projectId === projectId)
+  const company = companies.find((c) => c.id === project?.companyId)
 
   // Filter Comments and Attachments for Project (excluding task level)
   const projectComments = comments.filter(
@@ -187,6 +190,14 @@ export default function ProjectDetailsPage() {
               </h1>
               <StatusBadge status={project.status} />
               <StatusBadge status={project.priority} />
+              {company && (
+                <Link to={`/companies/${company.id}`}>
+                  <Badge variant="outline" className="gap-1 hover:bg-secondary">
+                    <Building2 className="h-3 w-3" />
+                    {company.name}
+                  </Badge>
+                </Link>
+              )}
             </div>
             <p className="text-muted-foreground max-w-2xl">
               {project.description}

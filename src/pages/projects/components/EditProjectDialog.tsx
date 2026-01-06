@@ -30,14 +30,17 @@ export function EditProjectDialog({
   open,
   onOpenChange,
 }: EditProjectDialogProps) {
-  const { actions } = useStore()
+  const { state, actions } = useStore()
+  const { currentUser, companies } = state
+
   const [formData, setFormData] = useState({
     name: project.name,
     description: project.description,
     status: project.status,
-    priority: project.priority || 'medium', // Default to medium if missing
+    priority: project.priority || 'medium',
     startDate: project.startDate,
     dueDate: project.dueDate,
+    companyId: project.companyId,
   })
 
   // Reset form when project changes or dialog opens
@@ -49,6 +52,7 @@ export function EditProjectDialog({
       priority: project.priority || 'medium',
       startDate: project.startDate,
       dueDate: project.dueDate,
+      companyId: project.companyId,
     })
   }, [project, open])
 
@@ -60,6 +64,8 @@ export function EditProjectDialog({
     onOpenChange(false)
   }
 
+  const isMaster = currentUser?.role === 'MASTER'
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
@@ -67,6 +73,29 @@ export function EditProjectDialog({
           <DialogTitle>Edit Project</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-2">
+          {isMaster && (
+            <div className="space-y-2">
+              <Label>Company</Label>
+              <Select
+                value={formData.companyId}
+                onValueChange={(val) =>
+                  setFormData({ ...formData, companyId: val })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Company" />
+                </SelectTrigger>
+                <SelectContent>
+                  {companies.map((c) => (
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
           <div className="space-y-2">
             <Label htmlFor="edit-project-name">Project Name</Label>
             <Input

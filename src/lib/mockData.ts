@@ -46,12 +46,14 @@ export const mockCompanies: Company[] = [
   {
     id: 'c1',
     name: 'TechCorp',
+    description: 'Leading technology solutions provider specializing in SaaS.',
     logoUrl: 'https://img.usecurling.com/i?q=tech&color=blue',
     adminId: 'u2',
   },
   {
     id: 'c2',
     name: 'DesignStudio',
+    description: 'Creative agency for modern digital experiences.',
     logoUrl: 'https://img.usecurling.com/i?q=art&color=rose',
     adminId: 'u4',
   },

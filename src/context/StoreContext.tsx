@@ -41,6 +41,7 @@ interface StoreActions {
   logout: () => void
   addCompany: (company: Omit<Company, 'id'>) => void
   updateCompany: (id: string, data: Partial<Company>) => void
+  deleteCompany: (id: string) => void
   addUser: (user: Omit<User, 'id'>) => void
   updateUser: (id: string, data: Partial<User>) => void
   addProject: (project: Omit<Project, 'id'>) => void
@@ -107,6 +108,21 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       setCompanies(companies.map((c) => (c.id === id ? { ...c, ...data } : c)))
       toast.success('Company updated')
     },
+    deleteCompany: (id) => {
+      // Check for dependencies
+      const hasProjects = projects.some((p) => p.companyId === id)
+      const hasUsers = users.some((u) => u.companyId === id)
+
+      if (hasProjects || hasUsers) {
+        toast.error(
+          'Cannot delete company with active projects or assigned users.',
+        )
+        return
+      }
+
+      setCompanies(companies.filter((c) => c.id !== id))
+      toast.success('Company deleted successfully')
+    },
     addUser: (data) => {
       const newUser = { ...data, id: crypto.randomUUID() }
       setUsers([...users, newUser])
@@ -136,11 +152,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     },
     updateProject: (id, data) => {
       setProjects((prevProjects) => {
-        const oldProject = prevProjects.find((p) => p.id === id)
-        const updatedProjects = prevProjects.map((p) =>
-          p.id === id ? { ...p, ...data } : p,
-        )
-        return updatedProjects
+        return prevProjects.map((p) => (p.id === id ? { ...p, ...data } : p))
       })
       toast.success('Project updated')
     },
@@ -164,11 +176,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     },
     updateTask: (id, data) => {
       setTasks((prevTasks) => {
-        const oldTask = prevTasks.find((t) => t.id === id)
-        const updatedTasks = prevTasks.map((t) =>
-          t.id === id ? { ...t, ...data } : t,
-        )
-        return updatedTasks
+        return prevTasks.map((t) => (t.id === id ? { ...t, ...data } : t))
       })
       toast.success('Task updated')
     },

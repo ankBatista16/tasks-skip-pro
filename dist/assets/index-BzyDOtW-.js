@@ -18885,6 +18885,13 @@ var createLucideIcon = (iconName, iconNode) => {
 	Component.displayName = toPascalCase(iconName);
 	return Component;
 };
+var ArrowLeft = createLucideIcon("arrow-left", [["path", {
+	d: "m12 19-7-7 7-7",
+	key: "1l729n"
+}], ["path", {
+	d: "M19 12H5",
+	key: "x3x0zl"
+}]]);
 var Bell = createLucideIcon("bell", [["path", {
 	d: "M10.268 21a2 2 0 0 0 3.464 0",
 	key: "vwvbt9"
@@ -19081,6 +19088,10 @@ var FolderKanban = createLucideIcon("folder-kanban", [
 		key: "1d6xys"
 	}]
 ]);
+var Folder = createLucideIcon("folder", [["path", {
+	d: "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
+	key: "1kt360"
+}]]);
 var LayoutDashboard = createLucideIcon("layout-dashboard", [
 	["rect", {
 		width: "7",
@@ -23983,11 +23994,13 @@ const mockUsers = [
 const mockCompanies = [{
 	id: "c1",
 	name: "TechCorp",
+	description: "Leading technology solutions provider specializing in SaaS.",
 	logoUrl: "https://img.usecurling.com/i?q=tech&color=blue",
 	adminId: "u2"
 }, {
 	id: "c2",
 	name: "DesignStudio",
+	description: "Creative agency for modern digital experiences.",
 	logoUrl: "https://img.usecurling.com/i?q=art&color=rose",
 	adminId: "u4"
 }];
@@ -24131,6 +24144,16 @@ const StoreProvider = ({ children }) => {
 			} : c));
 			toast.success("Company updated");
 		},
+		deleteCompany: (id) => {
+			const hasProjects = projects.some((p) => p.companyId === id);
+			const hasUsers = users.some((u) => u.companyId === id);
+			if (hasProjects || hasUsers) {
+				toast.error("Cannot delete company with active projects or assigned users.");
+				return;
+			}
+			setCompanies(companies.filter((c) => c.id !== id));
+			toast.success("Company deleted successfully");
+		},
 		addUser: (data) => {
 			const newUser = {
 				...data,
@@ -24165,7 +24188,6 @@ const StoreProvider = ({ children }) => {
 		},
 		updateProject: (id, data) => {
 			setProjects((prevProjects) => {
-				prevProjects.find((p) => p.id === id);
 				return prevProjects.map((p) => p.id === id ? {
 					...p,
 					...data
@@ -24192,7 +24214,6 @@ const StoreProvider = ({ children }) => {
 		},
 		updateTask: (id, data) => {
 			setTasks((prevTasks) => {
-				prevTasks.find((t) => t.id === id);
 				return prevTasks.map((t) => t.id === id ? {
 					...t,
 					...data
@@ -24435,7 +24456,11 @@ function Sidebar() {
 					label: "Projects",
 					path: "/projects",
 					icon: FolderKanban,
-					roles: ["ADMIN", "USER"]
+					roles: [
+						"ADMIN",
+						"USER",
+						"MASTER"
+					]
 				},
 				{
 					label: "Users",
@@ -24447,7 +24472,7 @@ function Sidebar() {
 					label: "Companies",
 					path: "/companies",
 					icon: Building2,
-					roles: ["MASTER"]
+					roles: ["MASTER", "ADMIN"]
 				},
 				{
 					label: "Profile",
@@ -24598,7 +24623,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 				var cachedValue = getSnapshot();
 				objectIs(value, cachedValue) || (console.error("The result of getSnapshot should be cached to avoid an infinite loop"), didWarnUncachedGetSnapshot = !0);
 			}
-			cachedValue = useState$14({ inst: {
+			cachedValue = useState$15({ inst: {
 				value,
 				getSnapshot
 			} });
@@ -24612,7 +24637,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 				value,
 				getSnapshot
 			]);
-			useEffect$6(function() {
+			useEffect$7(function() {
 				checkIfSnapshotChanged(inst) && forceUpdate({ inst });
 				return subscribe$1(function() {
 					checkIfSnapshotChanged(inst) && forceUpdate({ inst });
@@ -24635,7 +24660,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 			return getSnapshot();
 		}
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$14 = React$3.useState, useEffect$6 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$15 = React$3.useState, useEffect$7 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
 		exports.useSyncExternalStore = void 0 !== React$3.useSyncExternalStore ? React$3.useSyncExternalStore : shim;
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
 	})();
@@ -29540,186 +29565,238 @@ var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => 
 SelectSeparator.displayName = Separator$2.displayName;
 function ProjectsPage() {
 	const { state, actions } = useStore();
-	const { projects, currentUser } = state;
+	const { projects, currentUser, companies } = state;
 	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+	const [filterCompanyId, setFilterCompanyId] = (0, import_react.useState)("all");
 	const navigate = useNavigate();
 	const [newProject, setNewProject] = (0, import_react.useState)({
 		name: "",
 		description: "",
 		startDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
 		dueDate: "",
-		priority: "medium"
+		priority: "medium",
+		companyId: currentUser?.companyId || ""
 	});
+	const isMaster = currentUser?.role === "MASTER";
 	const filteredProjects = projects.filter((project) => {
-		if (currentUser?.role === "MASTER") return true;
-		if (project.companyId !== currentUser?.companyId) return false;
-		if (currentUser?.role === "ADMIN") return true;
-		return project.members.includes(currentUser?.id || "") || project.leaderId === currentUser?.id;
+		let hasPermission = false;
+		if (isMaster) hasPermission = true;
+		else if (project.companyId === currentUser?.companyId) hasPermission = true;
+		else if (project.members.includes(currentUser?.id || "") || project.leaderId === currentUser?.id) hasPermission = true;
+		if (!hasPermission) return false;
+		if (filterCompanyId !== "all" && project.companyId !== filterCompanyId) return false;
+		return true;
 	});
 	const canCreate = currentUser?.role === "MASTER" || currentUser?.role === "ADMIN";
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (currentUser?.companyId || currentUser?.role === "MASTER") {
-			actions.addProject({
-				...newProject,
-				companyId: currentUser?.companyId || "c1",
-				leaderId: currentUser?.id || "",
-				status: "active",
-				members: [currentUser?.id || ""]
-			});
-			setIsOpen(false);
-			setNewProject({
-				name: "",
-				description: "",
-				startDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
-				dueDate: "",
-				priority: "medium"
-			});
-		}
+		if (!newProject.companyId) return;
+		actions.addProject({
+			...newProject,
+			leaderId: currentUser?.id || "",
+			status: "active",
+			members: [currentUser?.id || ""]
+		});
+		setIsOpen(false);
+		setNewProject({
+			name: "",
+			description: "",
+			startDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+			dueDate: "",
+			priority: "medium",
+			companyId: currentUser?.companyId || ""
+		});
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "flex items-center justify-between",
+			className: "flex flex-col md:flex-row items-start md:items-center justify-between gap-4",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 				className: "text-3xl font-bold tracking-tight",
 				children: "Projects"
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-muted-foreground",
 				children: "Track ongoing initiatives"
-			})] }), canCreate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
-				open: isOpen,
-				onOpenChange: setIsOpen,
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
-					asChild: true,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-						className: "gap-2 rounded-full md:rounded-md h-12 w-12 md:h-10 md:w-auto p-0 md:px-4 fixed bottom-20 right-4 md:static z-40 shadow-lg md:shadow-none",
+			})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex items-center gap-2",
+				children: [isMaster && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+					value: filterCompanyId,
+					onValueChange: setFilterCompanyId,
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, {
+						className: "w-[180px]",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Filter by Company" })
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+						value: "all",
+						children: "All Companies"
+					}), companies.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+						value: c.id,
+						children: c.name
+					}, c.id))] })]
+				}), canCreate && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
+					open: isOpen,
+					onOpenChange: setIsOpen,
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
+						asChild: true,
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+							className: "gap-2 rounded-full md:rounded-md h-12 w-12 md:h-10 md:w-auto p-0 md:px-4 fixed bottom-20 right-4 md:static z-40 shadow-lg md:shadow-none",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-5 w-5 md:mr-2" }),
+								" ",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "hidden md:inline",
+									children: "Create Project"
+								})
+							]
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "New Project" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+						onSubmit: handleSubmit,
+						className: "space-y-4 py-4",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "h-5 w-5 md:mr-2" }),
-							" ",
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "hidden md:inline",
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Project Name" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+									value: newProject.name,
+									onChange: (e) => setNewProject({
+										...newProject,
+										name: e.target.value
+									}),
+									required: true
+								})]
+							}),
+							isMaster && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Label, { children: ["Company ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-red-500",
+									children: "*"
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+									value: newProject.companyId,
+									onValueChange: (val) => setNewProject({
+										...newProject,
+										companyId: val
+									}),
+									required: true,
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Select Company" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectContent, { children: companies.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+										value: c.id,
+										children: c.name
+									}, c.id)) })]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Description" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+									value: newProject.description,
+									onChange: (e) => setNewProject({
+										...newProject,
+										description: e.target.value
+									})
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Priority" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+									value: newProject.priority,
+									onValueChange: (val) => setNewProject({
+										...newProject,
+										priority: val
+									}),
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+											value: "low",
+											children: "Low"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+											value: "medium",
+											children: "Medium"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+											value: "high",
+											children: "High"
+										})
+									] })]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-2 gap-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Start Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										type: "date",
+										value: newProject.startDate,
+										onChange: (e) => setNewProject({
+											...newProject,
+											startDate: e.target.value
+										})
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Due Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										type: "date",
+										value: newProject.dueDate,
+										onChange: (e) => setNewProject({
+											...newProject,
+											dueDate: e.target.value
+										})
+									})]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+								type: "submit",
+								className: "w-full",
 								children: "Create Project"
 							})
 						]
-					})
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "New Project" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-					onSubmit: handleSubmit,
-					className: "space-y-4 py-4",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Project Name" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								value: newProject.name,
-								onChange: (e) => setNewProject({
-									...newProject,
-									name: e.target.value
-								}),
-								required: true
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Description" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
-								value: newProject.description,
-								onChange: (e) => setNewProject({
-									...newProject,
-									description: e.target.value
-								})
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Priority" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
-								value: newProject.priority,
-								onValueChange: (val) => setNewProject({
-									...newProject,
-									priority: val
-								}),
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-										value: "low",
-										children: "Low"
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-										value: "medium",
-										children: "Medium"
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-										value: "high",
-										children: "High"
-									})
-								] })]
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "grid grid-cols-2 gap-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Start Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-									type: "date",
-									value: newProject.startDate,
-									onChange: (e) => setNewProject({
-										...newProject,
-										startDate: e.target.value
-									})
-								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Due Date" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-									type: "date",
-									value: newProject.dueDate,
-									onChange: (e) => setNewProject({
-										...newProject,
-										dueDate: e.target.value
-									})
-								})]
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-							type: "submit",
-							className: "w-full",
-							children: "Create Project"
-						})
-					]
-				})] })]
+					})] })]
+				})]
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
-			children: [filteredProjects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-				className: "cursor-pointer hover:shadow-elevation transition-all group hover:-translate-y-1 duration-300",
-				onClick: () => navigate(`/projects/${project.id}`),
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex justify-between items-start",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.priority })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
-						className: "mt-2 group-hover:text-primary transition-colors",
-						children: project.name
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
-						className: "line-clamp-2",
-						children: project.description
-					})
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
-					className: "border-t pt-4 text-xs text-muted-foreground flex justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center gap-1",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "h-3 w-3" }),
-							" ",
-							project.members.length,
-							" members"
-						]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-						className: "flex items-center gap-1",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), project.dueDate ? new Date(project.dueDate).toLocaleDateString() : "No due date"]
+			children: [filteredProjects.map((project) => {
+				const company = companies.find((c) => c.id === project.companyId);
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+					className: "cursor-pointer hover:shadow-elevation transition-all group hover:-translate-y-1 duration-300",
+					onClick: () => navigate(`/projects/${project.id}`),
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex justify-between items-start mb-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }), isMaster && company && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Badge, {
+								variant: "secondary",
+								className: "text-[10px] h-5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "h-3 w-3 mr-1" }), company.name]
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex justify-between items-start",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+								className: "group-hover:text-primary transition-colors text-xl",
+								children: project.name
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
+								status: project.priority,
+								className: "ml-2 scale-90"
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
+							className: "line-clamp-2 mt-1",
+							children: project.description
+						})
+					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
+						className: "border-t pt-4 text-xs text-muted-foreground flex justify-between",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "h-3 w-3" }),
+								" ",
+								project.members.length,
+								" members"
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "flex items-center gap-1",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-3 w-3" }), project.dueDate ? new Date(project.dueDate).toLocaleDateString() : "No due date"]
+						})]
 					})]
-				})]
-			}, project.id)), filteredProjects.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				}, project.id);
+			}), filteredProjects.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "col-span-full text-center py-10 text-muted-foreground bg-muted/20 rounded-lg border border-dashed",
-				children: "No projects found."
+				children: "No projects found matching the criteria."
 			})]
 		})]
 	});
@@ -31780,14 +31857,16 @@ function ProjectMembersDialog({ project, open, onOpenChange }) {
 	});
 }
 function EditProjectDialog({ project, open, onOpenChange }) {
-	const { actions } = useStore();
+	const { state, actions } = useStore();
+	const { currentUser, companies } = state;
 	const [formData, setFormData] = (0, import_react.useState)({
 		name: project.name,
 		description: project.description,
 		status: project.status,
 		priority: project.priority || "medium",
 		startDate: project.startDate,
-		dueDate: project.dueDate
+		dueDate: project.dueDate,
+		companyId: project.companyId
 	});
 	(0, import_react.useEffect)(() => {
 		setFormData({
@@ -31796,7 +31875,8 @@ function EditProjectDialog({ project, open, onOpenChange }) {
 			status: project.status,
 			priority: project.priority || "medium",
 			startDate: project.startDate,
-			dueDate: project.dueDate
+			dueDate: project.dueDate,
+			companyId: project.companyId
 		});
 	}, [project, open]);
 	const handleSubmit = (e) => {
@@ -31804,6 +31884,7 @@ function EditProjectDialog({ project, open, onOpenChange }) {
 		actions.updateProject(project.id, { ...formData });
 		onOpenChange(false);
 	};
+	const isMaster = currentUser?.role === "MASTER";
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dialog, {
 		open,
 		onOpenChange,
@@ -31813,6 +31894,20 @@ function EditProjectDialog({ project, open, onOpenChange }) {
 				onSubmit: handleSubmit,
 				className: "space-y-4 py-2",
 				children: [
+					isMaster && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Company" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+							value: formData.companyId,
+							onValueChange: (val) => setFormData({
+								...formData,
+								companyId: val
+							}),
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Select Company" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectContent, { children: companies.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
+								value: c.id,
+								children: c.name
+							}, c.id)) })]
+						})]
+					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "space-y-2",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
@@ -31945,7 +32040,7 @@ function ProjectDetailsPage() {
 	const { projectId } = useParams();
 	const navigate = useNavigate();
 	const { state, actions } = useStore();
-	const { projects, tasks, users, comments, attachments: allAttachments } = state;
+	const { projects, tasks, users, comments, attachments: allAttachments, companies } = state;
 	const currentUser = state.currentUser;
 	const [isTaskOpen, setIsTaskOpen] = (0, import_react.useState)(false);
 	const [isMembersOpen, setIsMembersOpen] = (0, import_react.useState)(false);
@@ -31957,6 +32052,7 @@ function ProjectDetailsPage() {
 	});
 	const project = projects.find((p) => p.id === projectId);
 	const projectTasks = tasks.filter((t) => t.projectId === projectId);
+	const company = companies.find((c) => c.id === project?.companyId);
 	const projectComments = comments.filter((c) => c.projectId === projectId && !c.taskId);
 	const projectAttachments = allAttachments.filter((a) => a.projectId === projectId && !a.taskId);
 	const hasAccess = (() => {
@@ -32056,7 +32152,15 @@ function ProjectDetailsPage() {
 											children: project.name
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.priority })
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.priority }),
+										company && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+											to: `/companies/${company.id}`,
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Badge, {
+												variant: "outline",
+												className: "gap-1 hover:bg-secondary",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "h-3 w-3" }), company.name]
+											})
+										})
 									]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -32460,11 +32564,18 @@ function UsersPage() {
 }
 function CompaniesPage() {
 	const { state, actions } = useStore();
-	const { companies, users } = state;
+	const { companies, users, currentUser } = state;
 	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
 	const [newCompany, setNewCompany] = (0, import_react.useState)({
 		name: "",
+		description: "",
 		adminId: ""
+	});
+	const navigate = useNavigate();
+	const isMaster = currentUser?.role === "MASTER";
+	const filteredCompanies = companies.filter((c) => {
+		if (isMaster) return true;
+		return c.id === currentUser?.companyId;
 	});
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -32473,11 +32584,11 @@ function CompaniesPage() {
 			setIsOpen(false);
 			setNewCompany({
 				name: "",
+				description: "",
 				adminId: ""
 			});
 		}
 	};
-	const potentialAdmins = users;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -32488,7 +32599,7 @@ function CompaniesPage() {
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-muted-foreground",
 				children: "Manage system tenants"
-			})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
+			})] }), (isMaster || currentUser?.role === "ADMIN") && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
 				open: isOpen,
 				onOpenChange: setIsOpen,
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
@@ -32520,6 +32631,21 @@ function CompaniesPage() {
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "space-y-2",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+								htmlFor: "description",
+								children: "Description"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+								id: "description",
+								value: newCompany.description,
+								onChange: (e) => setNewCompany({
+									...newCompany,
+									description: e.target.value
+								}),
+								placeholder: "Brief description about the company"
+							})]
+						}),
+						isMaster && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
 								htmlFor: "admin",
 								children: "Assign Admin (Optional)"
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
@@ -32527,7 +32653,7 @@ function CompaniesPage() {
 									...newCompany,
 									adminId: val
 								}),
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Select a user" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectContent, { children: potentialAdmins.map((u) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectItem, {
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Select a user" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectContent, { children: users.map((u) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectItem, {
 									value: u.id,
 									children: [
 										u.name,
@@ -32546,43 +32672,294 @@ function CompaniesPage() {
 					]
 				})] })]
 			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "grid gap-4 md:grid-cols-2 lg:grid-cols-3",
-			children: companies.map((company) => {
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
+			children: [filteredCompanies.map((company) => {
 				const admin = users.find((u) => u.id === company.adminId);
 				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-					className: "hover:shadow-md transition-shadow",
+					className: "hover:shadow-elevation transition-all cursor-pointer group hover:-translate-y-1",
+					onClick: () => navigate(`/companies/${company.id}`),
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
 						className: "flex flex-row items-center gap-4",
 						children: [company.logoUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 							src: company.logoUrl,
-							className: "h-12 w-12 rounded-lg object-contain bg-muted",
+							className: "h-12 w-12 rounded-lg object-contain bg-muted p-1",
 							alt: company.name
 						}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 							className: "h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold text-lg",
 							children: company.name.charAt(0)
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
-							className: "text-lg",
+							className: "text-lg group-hover:text-primary transition-colors",
 							children: company.name
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardDescription, { children: [
-							"ID: ",
-							company.id.slice(0, 8),
-							"..."
-						] })] })]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "text-sm text-muted-foreground",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "font-medium text-foreground",
-								children: "Admin:"
-							}),
-							" ",
-							admin ? admin.name : "Unassigned"
-						]
-					}) })]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
+							className: "line-clamp-1",
+							children: company.description || "No description"
+						})] })]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
+						className: "border-t pt-4 text-xs text-muted-foreground flex justify-between",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "h-3 w-3" }),
+								" ",
+								admin ? admin.name : "Unassigned"
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "flex items-center gap-1 text-primary font-medium",
+							children: "View Details →"
+						})]
+					})]
 				}, company.id);
-			})
+			}), filteredCompanies.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "col-span-full text-center py-10 text-muted-foreground border border-dashed rounded-lg",
+				children: "No companies found."
+			})]
 		})]
+	});
+}
+function CompanyDetailsPage() {
+	const { companyId } = useParams();
+	const navigate = useNavigate();
+	const { state, actions } = useStore();
+	const { companies, projects, users, currentUser } = state;
+	const [isEditOpen, setIsEditOpen] = (0, import_react.useState)(false);
+	const company = companies.find((c) => c.id === companyId);
+	const companyProjects = projects.filter((p) => p.companyId === companyId);
+	const companyAdmin = users.find((u) => u.id === company?.adminId);
+	const [editForm, setEditForm] = (0, import_react.useState)({
+		name: "",
+		description: "",
+		adminId: ""
+	});
+	const canManage = currentUser?.role === "MASTER" || currentUser?.role === "ADMIN" && currentUser.companyId === companyId;
+	(0, import_react.useEffect)(() => {
+		if (company) setEditForm({
+			name: company.name,
+			description: company.description || "",
+			adminId: company.adminId || ""
+		});
+	}, [company]);
+	if (!company) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "flex flex-col items-center justify-center min-h-[50vh]",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "h-16 w-16 text-muted-foreground mb-4 opacity-50" }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+				className: "text-2xl font-bold",
+				children: "Company Not Found"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+				variant: "link",
+				onClick: () => navigate("/companies"),
+				children: "Back to Companies"
+			})
+		]
+	});
+	const handleUpdate = (e) => {
+		e.preventDefault();
+		if (!canManage) return;
+		actions.updateCompany(company.id, editForm);
+		setIsEditOpen(false);
+	};
+	const handleDelete = () => {
+		if (!canManage) return;
+		if (confirm("Are you sure you want to delete this company? This action cannot be undone.")) {
+			if (companyProjects.length > 0) {
+				toast.error("Cannot delete company with active projects.");
+				return;
+			}
+			actions.deleteCompany(company.id);
+			navigate("/companies");
+		}
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-6 animate-fade-in",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex items-center gap-2 mb-4",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+					variant: "ghost",
+					size: "sm",
+					className: "p-0 h-auto hover:bg-transparent text-muted-foreground",
+					onClick: () => navigate("/companies"),
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "h-4 w-4 mr-1" }), " Back to Companies"]
+				})
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex flex-col md:flex-row justify-between items-start gap-6",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex items-center gap-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "h-20 w-20 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary/20",
+						children: company.logoUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+							src: company.logoUrl,
+							alt: company.name,
+							className: "h-full w-full object-contain p-2"
+						}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "h-10 w-10 text-primary" })
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+						className: "text-3xl font-bold tracking-tight",
+						children: company.name
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-muted-foreground mt-1 max-w-xl",
+						children: company.description || "No description provided."
+					})] })]
+				}), canManage && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex gap-2",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
+						open: isEditOpen,
+						onOpenChange: setIsEditOpen,
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
+							asChild: true,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+								variant: "outline",
+								className: "gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { className: "h-4 w-4" }), " Edit Details"]
+							})
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "Edit Company" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+							onSubmit: handleUpdate,
+							className: "space-y-4 py-4",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Company Name" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										value: editForm.name,
+										onChange: (e) => setEditForm({
+											...editForm,
+											name: e.target.value
+										}),
+										required: true
+									})]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Description" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+										value: editForm.description,
+										onChange: (e) => setEditForm({
+											...editForm,
+											description: e.target.value
+										})
+									})]
+								}),
+								currentUser?.role === "MASTER" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Admin" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+										value: editForm.adminId,
+										onValueChange: (val) => setEditForm({
+											...editForm,
+											adminId: val
+										}),
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Select admin" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectContent, { children: users.map((u) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectItem, {
+											value: u.id,
+											children: [
+												u.name,
+												" (",
+												u.email,
+												")"
+											]
+										}, u.id)) })]
+									})]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									type: "submit",
+									className: "w-full",
+									children: "Save Changes"
+								})
+							]
+						})] })]
+					}), currentUser?.role === "MASTER" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+						variant: "destructive",
+						className: "gap-2",
+						onClick: handleDelete,
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { className: "h-4 w-4" }), " Delete"]
+					})]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "grid gap-6 md:grid-cols-3",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
+						className: "pb-2",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+							className: "text-sm font-medium text-muted-foreground",
+							children: "Company Admin"
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
+							className: "h-8 w-8",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: companyAdmin?.avatarUrl }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, { children: companyAdmin?.name?.[0] })]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-medium",
+								children: companyAdmin?.name || "Unassigned"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-xs text-muted-foreground",
+								children: companyAdmin?.email
+							})]
+						})]
+					}) })] }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
+						className: "pb-2",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+							className: "text-sm font-medium text-muted-foreground",
+							children: "Total Projects"
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "text-2xl font-bold",
+						children: companyProjects.length
+					}) })] }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
+						className: "pb-2",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+							className: "text-sm font-medium text-muted-foreground",
+							children: "Team Members"
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "text-2xl font-bold",
+						children: users.filter((u) => u.companyId === company.id).length
+					}) })] })
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+				className: "text-xl font-bold mb-4",
+				children: "Projects"
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "grid gap-4 md:grid-cols-2 lg:grid-cols-3",
+				children: [companyProjects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+					className: "cursor-pointer hover:shadow-md transition-all hover:-translate-y-1",
+					onClick: () => navigate(`/projects/${project.id}`),
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex justify-between items-start",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.priority })]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+							className: "mt-2 text-lg",
+							children: project.name
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
+							className: "line-clamp-2",
+							children: project.description
+						})
+					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFooter, {
+						className: "border-t pt-4 text-xs text-muted-foreground",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-1",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Folder, { className: "h-3 w-3" }),
+								" ",
+								project.members.length,
+								" ",
+								"members"
+							]
+						})
+					})]
+				}, project.id)), companyProjects.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "col-span-full text-center py-10 border border-dashed rounded-lg bg-muted/20 text-muted-foreground",
+					children: "No projects associated with this company yet."
+				})]
+			})] })
+		]
 	});
 }
 function ProfilePage() {
@@ -32782,8 +33159,15 @@ var AppRoutes = () => {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
 					path: "/companies",
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProtectedRoute, {
-						allowedRoles: ["MASTER"],
+						allowedRoles: ["MASTER", "ADMIN"],
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CompaniesPage, {})
+					})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+					path: "/companies/:companyId",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProtectedRoute, {
+						allowedRoles: ["MASTER", "ADMIN"],
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CompanyDetailsPage, {})
 					})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
@@ -32816,4 +33200,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-CFUN9jnP.js.map
+//# sourceMappingURL=index-BzyDOtW-.js.map

@@ -29,14 +29,14 @@ export function Sidebar() {
       label: 'Projects',
       path: '/projects',
       icon: FolderKanban,
-      roles: ['ADMIN', 'USER'],
+      roles: ['ADMIN', 'USER', 'MASTER'],
     },
     { label: 'Users', path: '/users', icon: Users, roles: ['MASTER', 'ADMIN'] },
     {
       label: 'Companies',
       path: '/companies',
       icon: Building2,
-      roles: ['MASTER'],
+      roles: ['MASTER', 'ADMIN'],
     },
     {
       label: 'Profile',

@@ -11,6 +11,7 @@ import ProjectsPage from '@/pages/projects/ProjectsPage'
 import ProjectDetailsPage from '@/pages/projects/ProjectDetailsPage'
 import UsersPage from '@/pages/users/UsersPage'
 import CompaniesPage from '@/pages/companies/CompaniesPage'
+import CompanyDetailsPage from '@/pages/companies/CompanyDetailsPage'
 import ProfilePage from '@/pages/profile/ProfilePage'
 import NotificationsPage from '@/pages/notifications/NotificationsPage'
 
@@ -63,8 +64,17 @@ const AppRoutes = () => {
         <Route
           path="/companies"
           element={
-            <ProtectedRoute allowedRoles={['MASTER']}>
+            <ProtectedRoute allowedRoles={['MASTER', 'ADMIN']}>
               <CompaniesPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/companies/:companyId"
+          element={
+            <ProtectedRoute allowedRoles={['MASTER', 'ADMIN']}>
+              <CompanyDetailsPage />
             </ProtectedRoute>
           }
         />
