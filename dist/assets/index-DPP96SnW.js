@@ -19146,6 +19146,10 @@ var LayoutDashboard = createLucideIcon("layout-dashboard", [
 		key: "ldoo1y"
 	}]
 ]);
+var LoaderCircle = createLucideIcon("loader-circle", [["path", {
+	d: "M21 12a9 9 0 1 1-6.219-8.56",
+	key: "13zald"
+}]]);
 var LogOut = createLucideIcon("log-out", [
 	["path", {
 		d: "m16 17 5-5-5-5",
@@ -32144,6 +32148,10 @@ const StoreProvider = ({ children }) => {
 			toast.success("Company deleted");
 		},
 		addUser: async (data) => {
+			if (currentUser?.role !== "MASTER" && currentUser?.role !== "ADMIN") {
+				toast.error("Permission denied: Only Master or Admin can create users");
+				return false;
+			}
 			const { data: res, error } = await supabase.functions.invoke("create-user", { body: {
 				email: data.email,
 				password: data.password || "password123",
@@ -32153,11 +32161,17 @@ const StoreProvider = ({ children }) => {
 				jobTitle: data.jobTitle
 			} });
 			if (error) {
-				toast.error("Failed to invite user: " + error.message);
-				return;
+				let message = error.message;
+				if (error && typeof error === "object" && "context" in error) try {
+					const body = await error.context.json();
+					if (body && body.error) message = body.error;
+				} catch (e) {}
+				toast.error("Failed to invite user: " + message);
+				return false;
 			}
 			if (authUser) fetchData(authUser.id);
 			toast.success("User invite sent");
+			return true;
 		},
 		updateUser: async (id, data) => {
 			const { error } = await supabase.from("members").update({
@@ -41335,6 +41349,7 @@ function UsersPage() {
 	const { users, currentUser, companies } = state;
 	const [searchTerm, setSearchTerm] = (0, import_react.useState)("");
 	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+	const [isSubmitting, setIsSubmitting] = (0, import_react.useState)(false);
 	const [newUser, setNewUser] = (0, import_react.useState)({
 		name: "",
 		email: "",
@@ -41348,23 +41363,27 @@ function UsersPage() {
 		const searchLower = searchTerm.toLowerCase();
 		return user.name.toLowerCase().includes(searchLower) || user.email.toLowerCase().includes(searchLower);
 	});
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (newUser.name && newUser.email) {
-			actions.addUser({
+			setIsSubmitting(true);
+			const success = await actions.addUser({
 				...newUser,
 				role: newUser.role,
 				avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`,
 				permissions: []
 			});
-			setIsOpen(false);
-			setNewUser({
-				name: "",
-				email: "",
-				role: "USER",
-				companyId: currentUser?.companyId || "",
-				jobTitle: ""
-			});
+			setIsSubmitting(false);
+			if (success) {
+				setIsOpen(false);
+				setNewUser({
+					name: "",
+					email: "",
+					role: "USER",
+					companyId: currentUser?.companyId || "",
+					jobTitle: ""
+				});
+			}
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -41478,7 +41497,8 @@ function UsersPage() {
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 								type: "submit",
 								className: "w-full",
-								children: "Send Invitation"
+								disabled: isSubmitting,
+								children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }), " Sending..."] }) : "Send Invitation"
 							})
 						]
 					})] })]
@@ -42148,4 +42168,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-C-HNPi8Q.js.map
+//# sourceMappingURL=index-DPP96SnW.js.map

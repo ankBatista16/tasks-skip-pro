@@ -13,23 +13,96 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    const authHeader = req.headers.get('Authorization')
+    if (!authHeader) {
+      throw new Error('Missing Authorization header')
+    }
+
+    // 1. Verify the user calling the function (using Anon key + User JWT)
+    // This ensures we know exactly who is calling the function
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
       {
+        global: {
+          headers: { Authorization: authHeader },
+        },
         auth: {
-          autoRefreshToken: false,
           persistSession: false,
         },
       },
     )
 
+    const {
+      data: { user },
+      error: userError,
+    } = await supabaseClient.auth.getUser()
+
+    if (userError || !user) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized', details: userError }),
+        {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      )
+    }
+
+    // 2. Create Admin Client for privileged operations (Service Role)
+    const supabaseAdmin = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+      {
+        auth: {
+          persistSession: false,
+        },
+      },
+    )
+
+    // 3. Check caller's role in members table
+    const { data: member, error: memberError } = await supabaseAdmin
+      .from('members')
+      .select('role, company_id')
+      .eq('id', user.id)
+      .single()
+
+    if (memberError || !member) {
+      return new Response(JSON.stringify({ error: 'Profile not found' }), {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    if (member.role !== 'MASTER' && member.role !== 'ADMIN') {
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: Insufficient permissions' }),
+        {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      )
+    }
+
     const { email, password, fullName, role, companyId, jobTitle } =
       await req.json()
 
-    // 1. Create Auth User
+    // 4. Additional validation for ADMIN: can only create users for their own company
+    if (member.role === 'ADMIN' && companyId !== member.company_id) {
+      return new Response(
+        JSON.stringify({
+          error:
+            'Forbidden: Admins can only create users for their own company',
+        }),
+        {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      )
+    }
+
+    // 5. Create Auth User
     const { data: authUser, error: authError } =
-      await supabaseClient.auth.admin.createUser({
+      await supabaseAdmin.auth.admin.createUser({
         email,
         password,
         email_confirm: true,
@@ -39,27 +112,30 @@ Deno.serve(async (req: Request) => {
     if (authError) throw authError
 
     if (authUser.user) {
-      // 2. Update Member Profile (The trigger creates it, we update it)
-      // Wait a bit for trigger? Or update directly. Trigger is sync, so it should be there.
-
-      const { error: updateError } = await supabaseClient
+      // 6. Update Member Profile
+      const { error: updateError } = await supabaseAdmin
         .from('members')
         .update({
-          role,
+          role: role || 'USER',
           company_id: companyId,
           job_title: jobTitle,
           full_name: fullName,
         })
         .eq('id', authUser.user.id)
 
-      if (updateError) throw updateError
+      if (updateError) {
+        console.error('Failed to update profile:', updateError)
+        // We throw to return error, but user is created in Auth
+        throw updateError
+      }
     }
 
     return new Response(JSON.stringify(authUser), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     })
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Error creating user:', error)
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,

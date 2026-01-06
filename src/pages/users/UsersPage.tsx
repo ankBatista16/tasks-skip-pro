@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
-import { Plus, Search } from 'lucide-react'
+import { Plus, Search, Loader2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import {
   Dialog,
@@ -25,6 +25,7 @@ export default function UsersPage() {
   const { users, currentUser, companies } = state
   const [searchTerm, setSearchTerm] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [newUser, setNewUser] = useState({
     name: '',
     email: '',
@@ -47,23 +48,28 @@ export default function UsersPage() {
     )
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (newUser.name && newUser.email) {
-      actions.addUser({
+      setIsSubmitting(true)
+      const success = await actions.addUser({
         ...newUser,
         role: newUser.role,
         avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`, // Randomize later
         permissions: [],
       })
-      setIsOpen(false)
-      setNewUser({
-        name: '',
-        email: '',
-        role: 'USER',
-        companyId: currentUser?.companyId || '',
-        jobTitle: '',
-      })
+      setIsSubmitting(false)
+
+      if (success) {
+        setIsOpen(false)
+        setNewUser({
+          name: '',
+          email: '',
+          role: 'USER',
+          companyId: currentUser?.companyId || '',
+          jobTitle: '',
+        })
+      }
     }
   }
 
@@ -161,8 +167,14 @@ export default function UsersPage() {
                   </Select>
                 </div>
               )}
-              <Button type="submit" className="w-full">
-                Send Invitation
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                  </>
+                ) : (
+                  'Send Invitation'
+                )}
               </Button>
             </form>
           </DialogContent>

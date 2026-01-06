@@ -36,7 +36,7 @@ interface StoreActions {
   addCompany: (company: Omit<Company, 'id'>) => void
   updateCompany: (id: string, data: Partial<Company>) => void
   deleteCompany: (id: string) => void
-  addUser: (user: Omit<User, 'id'>) => void
+  addUser: (user: Omit<User, 'id'>) => Promise<boolean>
   updateUser: (id: string, data: Partial<User>) => void
   deleteUser: (id: string) => void
   addProject: (project: Omit<Project, 'id'>) => void
@@ -275,7 +275,13 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Company deleted')
     },
     addUser: async (data) => {
-      // Use Edge Function to create user
+      // 1. Client-side Permission Check
+      if (currentUser?.role !== 'MASTER' && currentUser?.role !== 'ADMIN') {
+        toast.error('Permission denied: Only Master or Admin can create users')
+        return false
+      }
+
+      // 2. Call Edge Function (Auth Header is automatically handled by supabase-js if session exists)
       const { data: res, error } = await supabase.functions.invoke(
         'create-user',
         {
@@ -291,15 +297,27 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       )
 
       if (error) {
-        toast.error('Failed to invite user: ' + error.message)
-        return
+        let message = error.message
+        // Try to parse detailed error from edge function response
+        if (error && typeof error === 'object' && 'context' in error) {
+          try {
+            const body = await (error as any).context.json()
+            if (body && body.error) message = body.error
+          } catch (e) {
+            // Failed to parse JSON body, stick to message
+          }
+        }
+        toast.error('Failed to invite user: ' + message)
+        return false
       }
 
+      // 3. Refresh Data
       // We rely on realtime or refresh for the user list to update,
       // but for now we can optimistically add if we knew the ID.
       // Since we don't return the full profile from EF easily without another query, let's refresh.
       if (authUser) fetchData(authUser.id)
       toast.success('User invite sent')
+      return true
     },
     updateUser: async (id, data) => {
       const { error } = await supabase
