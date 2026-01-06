@@ -30,6 +30,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { Priority } from '@/types'
 import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 
 export default function ProjectsPage() {
   const { state, actions } = useStore()
@@ -49,6 +50,7 @@ export default function ProjectsPage() {
   })
 
   const isMaster = currentUser?.role === 'MASTER'
+  const isCompact = currentUser?.preferences.layoutDensity === 'compact'
 
   // Filter projects based on permissions AND selection
   const filteredProjects = projects.filter((project) => {
@@ -101,7 +103,7 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className={cn('space-y-6 animate-fade-in', isCompact && 'space-y-3')}>
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
@@ -241,7 +243,12 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div
+        className={cn(
+          'grid gap-6 md:grid-cols-2 lg:grid-cols-3',
+          isCompact && 'gap-3',
+        )}
+      >
         {filteredProjects.map((project) => {
           const company = companies.find((c) => c.id === project.companyId)
           return (
@@ -250,9 +257,12 @@ export default function ProjectsPage() {
               className="cursor-pointer hover:shadow-elevation transition-all group hover:-translate-y-1 duration-300"
               onClick={() => navigate(`/projects/${project.id}`)}
             >
-              <CardHeader>
+              <CardHeader className={cn(isCompact && 'p-4')}>
                 <div className="flex justify-between items-start mb-2">
-                  <StatusBadge status={project.status} />
+                  <StatusBadge
+                    status={project.status}
+                    className={cn(isCompact && 'scale-90 origin-left')}
+                  />
                   {isMaster && company && (
                     <Badge variant="secondary" className="text-[10px] h-5">
                       <Building2 className="h-3 w-3 mr-1" />
@@ -261,7 +271,12 @@ export default function ProjectsPage() {
                   )}
                 </div>
                 <div className="flex justify-between items-start">
-                  <CardTitle className="group-hover:text-primary transition-colors text-xl">
+                  <CardTitle
+                    className={cn(
+                      'group-hover:text-primary transition-colors',
+                      isCompact ? 'text-lg' : 'text-xl',
+                    )}
+                  >
                     {project.name}
                   </CardTitle>
                   <StatusBadge
@@ -269,11 +284,18 @@ export default function ProjectsPage() {
                     className="ml-2 scale-90"
                   />
                 </div>
-                <CardDescription className="line-clamp-2 mt-1">
+                <CardDescription
+                  className={cn('line-clamp-2 mt-1', isCompact && 'text-xs')}
+                >
                   {project.description}
                 </CardDescription>
               </CardHeader>
-              <CardFooter className="border-t pt-4 text-xs text-muted-foreground flex justify-between">
+              <CardFooter
+                className={cn(
+                  'border-t pt-4 text-xs text-muted-foreground flex justify-between',
+                  isCompact && 'p-3 pt-3',
+                )}
+              >
                 <div className="flex items-center gap-1">
                   <User className="h-3 w-3" /> {project.members.length} members
                 </div>

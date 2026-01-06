@@ -19183,6 +19183,32 @@ var LayoutDashboard = createLucideIcon("layout-dashboard", [
 		key: "ldoo1y"
 	}]
 ]);
+var LayoutTemplate = createLucideIcon("layout-template", [
+	["rect", {
+		width: "18",
+		height: "7",
+		x: "3",
+		y: "3",
+		rx: "1",
+		key: "f1a2em"
+	}],
+	["rect", {
+		width: "9",
+		height: "7",
+		x: "3",
+		y: "14",
+		rx: "1",
+		key: "jqznyg"
+	}],
+	["rect", {
+		width: "5",
+		height: "7",
+		x: "16",
+		y: "14",
+		rx: "1",
+		key: "q5h2i8"
+	}]
+]);
 var LoaderCircle = createLucideIcon("loader-circle", [["path", {
 	d: "M21 12a9 9 0 1 1-6.219-8.56",
 	key: "13zald"
@@ -19219,6 +19245,68 @@ var MessageSquare = createLucideIcon("message-square", [["path", {
 	d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 	key: "18887p"
 }]]);
+var Monitor = createLucideIcon("monitor", [
+	["rect", {
+		width: "20",
+		height: "14",
+		x: "2",
+		y: "3",
+		rx: "2",
+		key: "48i651"
+	}],
+	["line", {
+		x1: "8",
+		x2: "16",
+		y1: "21",
+		y2: "21",
+		key: "1svkeh"
+	}],
+	["line", {
+		x1: "12",
+		x2: "12",
+		y1: "17",
+		y2: "21",
+		key: "vw1qmm"
+	}]
+]);
+var Moon = createLucideIcon("moon", [["path", {
+	d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+	key: "kfwtm"
+}]]);
+var Palette = createLucideIcon("palette", [
+	["path", {
+		d: "M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z",
+		key: "e79jfc"
+	}],
+	["circle", {
+		cx: "13.5",
+		cy: "6.5",
+		r: ".5",
+		fill: "currentColor",
+		key: "1okk4w"
+	}],
+	["circle", {
+		cx: "17.5",
+		cy: "10.5",
+		r: ".5",
+		fill: "currentColor",
+		key: "f64h9f"
+	}],
+	["circle", {
+		cx: "6.5",
+		cy: "12.5",
+		r: ".5",
+		fill: "currentColor",
+		key: "qy21gx"
+	}],
+	["circle", {
+		cx: "8.5",
+		cy: "7.5",
+		r: ".5",
+		fill: "currentColor",
+		key: "fotxhn"
+	}]
+]);
 var Paperclip = createLucideIcon("paperclip", [["path", {
 	d: "m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551",
 	key: "1miecu"
@@ -19262,6 +19350,28 @@ var Settings = createLucideIcon("settings", [["path", {
 	r: "3",
 	key: "1v7zrd"
 }]]);
+var Settings2 = createLucideIcon("settings-2", [
+	["path", {
+		d: "M14 17H5",
+		key: "gfn3mx"
+	}],
+	["path", {
+		d: "M19 7h-9",
+		key: "6i9tg"
+	}],
+	["circle", {
+		cx: "17",
+		cy: "17",
+		r: "3",
+		key: "18b49y"
+	}],
+	["circle", {
+		cx: "7",
+		cy: "7",
+		r: "3",
+		key: "dfmy0x"
+	}]
+]);
 var Shield = createLucideIcon("shield", [["path", {
 	d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 	key: "oel41y"
@@ -19273,6 +19383,46 @@ var SquareCheckBig = createLucideIcon("square-check-big", [["path", {
 	d: "m9 11 3 3L22 4",
 	key: "1pflzl"
 }]]);
+var Sun = createLucideIcon("sun", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "4",
+		key: "4exip2"
+	}],
+	["path", {
+		d: "M12 2v2",
+		key: "tus03m"
+	}],
+	["path", {
+		d: "M12 20v2",
+		key: "1lh1kg"
+	}],
+	["path", {
+		d: "m4.93 4.93 1.41 1.41",
+		key: "149t6j"
+	}],
+	["path", {
+		d: "m17.66 17.66 1.41 1.41",
+		key: "ptbguv"
+	}],
+	["path", {
+		d: "M2 12h2",
+		key: "1t8f8n"
+	}],
+	["path", {
+		d: "M20 12h2",
+		key: "1q8mjw"
+	}],
+	["path", {
+		d: "m6.34 17.66-1.41 1.41",
+		key: "1m8zz5"
+	}],
+	["path", {
+		d: "m19.07 4.93-1.41 1.41",
+		key: "1shlcs"
+	}]
+]);
 var Trash2 = createLucideIcon("trash-2", [
 	["path", {
 		d: "M10 11v6",
@@ -20783,6 +20933,38 @@ var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
 function cn(...inputs) {
 	return twMerge(clsx(inputs));
 }
+const THEME_COLORS = {
+	blue: {
+		primary: "243 75% 59%",
+		foreground: "210 40% 98%",
+		label: "Blue",
+		color: "#4F46E5"
+	},
+	green: {
+		primary: "142 71% 45%",
+		foreground: "210 40% 98%",
+		label: "Green",
+		color: "#16a34a"
+	},
+	violet: {
+		primary: "262 83% 58%",
+		foreground: "210 40% 98%",
+		label: "Violet",
+		color: "#8b5cf6"
+	},
+	rose: {
+		primary: "346 84% 61%",
+		foreground: "210 40% 98%",
+		label: "Rose",
+		color: "#e11d48"
+	},
+	orange: {
+		primary: "24 95% 53%",
+		foreground: "210 40% 98%",
+		label: "Orange",
+		color: "#f97316"
+	}
+};
 var ToastProvider = Provider$1;
 var ToastViewport = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport$2, {
 	ref,
@@ -32024,6 +32206,11 @@ const StoreProvider = ({ children }) => {
 	const [comments, setComments] = (0, import_react.useState)([]);
 	const [attachments, setAttachments] = (0, import_react.useState)([]);
 	const [loading, setLoading] = (0, import_react.useState)(true);
+	const defaultPreferences = {
+		theme: "system",
+		primaryColor: "blue",
+		layoutDensity: "comfortable"
+	};
 	(0, import_react.useEffect)(() => {
 		if (authUser) fetchData(authUser.id);
 		else {
@@ -32036,8 +32223,24 @@ const StoreProvider = ({ children }) => {
 			setComments([]);
 			setAttachments([]);
 			setLoading(false);
+			applyTheme(defaultPreferences);
 		}
 	}, [authUser]);
+	(0, import_react.useEffect)(() => {
+		if (currentUser) applyTheme(currentUser.preferences);
+		else applyTheme(defaultPreferences);
+	}, [currentUser?.preferences]);
+	const applyTheme = (prefs) => {
+		const root = window.document.documentElement;
+		root.classList.remove("light", "dark");
+		if (prefs.theme === "system") {
+			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+			root.classList.add(systemTheme);
+		} else root.classList.add(prefs.theme);
+		const themeColor = THEME_COLORS[prefs.primaryColor] || THEME_COLORS["blue"];
+		root.style.setProperty("--primary", themeColor.primary);
+		root.style.setProperty("--primary-foreground", themeColor.foreground);
+	};
 	(0, import_react.useEffect)(() => {
 		if (!currentUser) return;
 		const channel = supabase.channel("notifications-channel").on("postgres_changes", {
@@ -32100,7 +32303,12 @@ const StoreProvider = ({ children }) => {
 		avatarUrl: u.avatar_url,
 		status: u.status,
 		jobTitle: u.job_title,
-		permissions: u.permissions || []
+		permissions: u.permissions || [],
+		preferences: u.preferences || {
+			theme: "system",
+			primaryColor: "blue",
+			layoutDensity: "comfortable"
+		}
 	});
 	const mapCompany = (c) => ({
 		id: c.id,
@@ -32433,6 +32641,22 @@ const StoreProvider = ({ children }) => {
 			await supabase.from("attachments").delete().eq("id", id);
 			setAttachments(attachments.filter((a) => a.id !== id));
 			toast.success("Attachment deleted");
+		},
+		updatePreferences: async (prefs) => {
+			if (!currentUser) return;
+			const newPreferences = {
+				...currentUser.preferences,
+				...prefs
+			};
+			setCurrentUser({
+				...currentUser,
+				preferences: newPreferences
+			});
+			const { error } = await supabase.from("members").update({ preferences: newPreferences }).eq("id", currentUser.id);
+			if (error) {
+				toast.error("Failed to save preferences");
+				console.error(error);
+			} else toast.success("Preferences saved");
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoreContext.Provider, {
@@ -32775,7 +32999,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 				var cachedValue = getSnapshot();
 				objectIs(value, cachedValue) || (console.error("The result of getSnapshot should be cached to avoid an infinite loop"), didWarnUncachedGetSnapshot = !0);
 			}
-			cachedValue = useState$20({ inst: {
+			cachedValue = useState$21({ inst: {
 				value,
 				getSnapshot
 			} });
@@ -32812,7 +33036,7 @@ var require_use_sync_external_store_shim_development = /* @__PURE__ */ __commonJ
 			return getSnapshot();
 		}
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$20 = React$3.useState, useEffect$10 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+		var React$3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState$21 = React$3.useState, useEffect$10 = React$3.useEffect, useLayoutEffect$1 = React$3.useLayoutEffect, useDebugValue = React$3.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
 		exports.useSyncExternalStore = void 0 !== React$3.useSyncExternalStore ? React$3.useSyncExternalStore : shim;
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
 	})();
@@ -36677,164 +36901,6 @@ function formatDistance(laterDate, earlierDate, options$1) {
 function formatDistanceToNow(date, options$1) {
 	return formatDistance(date, constructNow(date), options$1);
 }
-function Header() {
-	const { state, actions } = useStore();
-	const { currentUser, companies, notifications } = state;
-	const navigate = useNavigate();
-	const isOnline = useOnlineStatus();
-	const currentCompany = companies.find((c) => c.id === currentUser?.companyId);
-	const unreadCount = notifications.filter((n) => !n.read).length;
-	const recentNotifications = notifications.slice(0, 10);
-	const handleNotificationClick = (id, link) => {
-		actions.markNotificationRead(id);
-		if (link) navigate(link);
-	};
-	const markAllRead = () => {
-		notifications.forEach((n) => {
-			if (!n.read) actions.markNotificationRead(n.id);
-		});
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
-		className: "fixed top-0 left-0 right-0 h-16 bg-background border-b z-40 flex items-center justify-between px-4 md:px-6",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "flex items-center gap-3",
-				children: currentUser?.role === "MASTER" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "font-bold text-xl text-primary tracking-tight",
-					children: "SaaS Manager"
-				}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [currentCompany?.logoUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-					src: currentCompany.logoUrl,
-					alt: "Logo",
-					className: "h-8 w-8 rounded-md object-contain"
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-					className: "font-semibold text-lg hidden sm:block",
-					children: currentCompany?.name || "My Workspace"
-				})] })
-			}),
-			!isOnline && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "absolute top-16 left-0 right-0 bg-destructive text-destructive-foreground text-center text-xs py-1 animate-in slide-in-from-top-2",
-				children: "You are currently offline. Changes will not be saved."
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex items-center gap-2",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Popover, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverTrigger, {
-					asChild: true,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-						variant: "ghost",
-						size: "icon",
-						className: "relative",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bell, { className: cn(unreadCount > 0 && "text-foreground") }), unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "absolute top-2 right-2 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-background animate-pulse" })]
-					})
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PopoverContent, {
-					className: "w-80 p-0",
-					align: "end",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center justify-between p-4 border-b",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-								className: "font-semibold text-sm",
-								children: "Notifications"
-							}), unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-								variant: "ghost",
-								size: "sm",
-								className: "text-xs h-auto p-0 text-primary",
-								onClick: markAllRead,
-								children: "Mark all read"
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollArea, {
-							className: "h-[300px]",
-							children: recentNotifications.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "flex flex-col",
-								children: recentNotifications.map((notification) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-									className: cn("flex flex-col items-start gap-1 p-4 text-left hover:bg-muted/50 transition-colors border-b last:border-0", !notification.read && "bg-muted/20"),
-									onClick: () => handleNotificationClick(notification.id, notification.link),
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center justify-between w-full",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "font-medium text-sm",
-												children: notification.title
-											}), !notification.read && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "h-2 w-2 rounded-full bg-primary" })]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-muted-foreground line-clamp-2",
-											children: notification.message
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-											className: "text-[10px] text-muted-foreground mt-1",
-											children: formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })
-										})
-									]
-								}, notification.id))
-							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "p-4 text-center text-sm text-muted-foreground",
-								children: "No notifications"
-							})
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "p-2 border-t text-center",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-								variant: "ghost",
-								size: "sm",
-								className: "w-full text-xs",
-								onClick: () => navigate("/notifications"),
-								children: "View all notifications"
-							})
-						})
-					]
-				})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DropdownMenu, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuTrigger, {
-					asChild: true,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-						variant: "ghost",
-						className: "relative h-9 w-9 rounded-full",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
-							className: "h-9 w-9 border",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, {
-								src: currentUser?.avatarUrl,
-								alt: currentUser?.name
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, { children: currentUser?.name?.charAt(0) })]
-						})
-					})
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DropdownMenuContent, {
-					className: "w-56",
-					align: "end",
-					forceMount: true,
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuLabel, {
-							className: "font-normal",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex flex-col space-y-1",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-sm font-medium leading-none",
-									children: currentUser?.name
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-xs leading-none text-muted-foreground",
-									children: currentUser?.email
-								})]
-							})
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuSeparator, {}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuItem, {
-							onClick: () => navigate("/profile"),
-							children: "Profile"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuItem, {
-							onClick: () => navigate("/notifications"),
-							children: "Notifications"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuSeparator, {}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuItem, {
-							onClick: actions.logout,
-							className: "text-red-500 focus:text-red-500",
-							children: "Log out"
-						})
-					]
-				})] })]
-			})
-		]
-	});
-}
 var DIALOG_NAME = "Dialog";
 var [createDialogContext, createDialogScope] = createContextScope(DIALOG_NAME);
 var [DialogProvider, useDialogContext] = createDialogContext(DIALOG_NAME);
@@ -37111,6 +37177,382 @@ var Content$1 = DialogContent$1;
 var Title = DialogTitle$1;
 var Description = DialogDescription$1;
 var Close = DialogClose$1;
+var Dialog = Root$5;
+var DialogTrigger = Trigger$2;
+var DialogPortal = Portal$2;
+var DialogOverlay = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Overlay, {
+	ref,
+	className: cn("fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className),
+	...props
+}));
+DialogOverlay.displayName = Overlay.displayName;
+var DialogContent = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogPortal, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogOverlay, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Content$1, {
+	ref,
+	className: cn("fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg overflow-y-auto max-h-screen", className),
+	...props,
+	children: [children, /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Close, {
+		className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: "sr-only",
+			children: "Close"
+		})]
+	})]
+})] }));
+DialogContent.displayName = Content$1.displayName;
+var DialogHeader = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	className: cn("flex flex-col space-y-1.5 text-center sm:text-left", className),
+	...props
+});
+DialogHeader.displayName = "DialogHeader";
+var DialogFooter = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	className: cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className),
+	...props
+});
+DialogFooter.displayName = "DialogFooter";
+var DialogTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Title, {
+	ref,
+	className: cn("text-lg font-semibold leading-none tracking-tight", className),
+	...props
+}));
+DialogTitle.displayName = Title.displayName;
+var DialogDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Description, {
+	ref,
+	className: cn("text-sm text-muted-foreground", className),
+	...props
+}));
+DialogDescription.displayName = Description.displayName;
+var NAME$1 = "Label";
+var Label$2 = import_react.forwardRef((props, forwardedRef) => {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.label, {
+		...props,
+		ref: forwardedRef,
+		onMouseDown: (event) => {
+			if (event.target.closest("button, input, select, textarea")) return;
+			props.onMouseDown?.(event);
+			if (!event.defaultPrevented && event.detail > 1) event.preventDefault();
+		}
+	});
+});
+Label$2.displayName = NAME$1;
+var Root$4 = Label$2;
+var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
+var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$4, {
+	ref,
+	className: cn(labelVariants(), className),
+	...props
+}));
+Label.displayName = Root$4.displayName;
+var NAME = "Separator";
+var DEFAULT_ORIENTATION = "horizontal";
+var ORIENTATIONS = ["horizontal", "vertical"];
+var Separator$2 = import_react.forwardRef((props, forwardedRef) => {
+	const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
+	const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
+	const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+	const semanticProps = decorative ? { role: "none" } : {
+		"aria-orientation": ariaOrientation,
+		role: "separator"
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
+		"data-orientation": orientation,
+		...semanticProps,
+		...domProps,
+		ref: forwardedRef
+	});
+});
+Separator$2.displayName = NAME;
+function isValidOrientation(orientation) {
+	return ORIENTATIONS.includes(orientation);
+}
+var Root$3 = Separator$2;
+var Separator = import_react.forwardRef(({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$3, {
+	ref,
+	decorative,
+	orientation,
+	className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className),
+	...props
+}));
+Separator.displayName = Root$3.displayName;
+function ThemeSettingsDialog() {
+	const { state, actions } = useStore();
+	const { currentUser } = state;
+	const [open, setOpen] = (0, import_react.useState)(false);
+	if (!currentUser) return null;
+	const { theme, primaryColor, layoutDensity } = currentUser.preferences;
+	const handleThemeChange = (newTheme) => {
+		actions.updatePreferences({ theme: newTheme });
+	};
+	const handleColorChange = (newColor) => {
+		actions.updatePreferences({ primaryColor: newColor });
+	};
+	const handleDensityChange = (newDensity) => {
+		actions.updatePreferences({ layoutDensity: newDensity });
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Dialog, {
+		open,
+		onOpenChange: setOpen,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTrigger, {
+			asChild: true,
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+				variant: "ghost",
+				size: "icon",
+				className: "relative",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Settings2, { className: "h-[1.2rem] w-[1.2rem]" })
+			})
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, {
+			className: "sm:max-w-[425px]",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogHeader, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: "Appearance Settings" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogDescription, { children: "Customize how the application looks on your device." })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-6 py-4",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Label, {
+							className: "text-base flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sun, { className: "h-4 w-4" }), " Theme Mode"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "grid grid-cols-3 gap-2",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+									variant: theme === "light" ? "default" : "outline",
+									className: "justify-start gap-2",
+									onClick: () => handleThemeChange("light"),
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sun, { className: "h-4 w-4" }), " Light"]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+									variant: theme === "dark" ? "default" : "outline",
+									className: "justify-start gap-2",
+									onClick: () => handleThemeChange("dark"),
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Moon, { className: "h-4 w-4" }), " Dark"]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+									variant: theme === "system" ? "default" : "outline",
+									className: "justify-start gap-2",
+									onClick: () => handleThemeChange("system"),
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Monitor, { className: "h-4 w-4" }), " System"]
+								})
+							]
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Label, {
+							className: "text-base flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Palette, { className: "h-4 w-4" }), " Primary Color"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "grid grid-cols-5 gap-2",
+							children: Object.entries(THEME_COLORS).map(([key, value]) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex flex-col items-center gap-1",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+									className: cn("h-8 w-8 rounded-full border-2 transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2", primaryColor === key ? "border-foreground ring-2 ring-offset-2" : "border-transparent"),
+									style: { backgroundColor: value.color },
+									onClick: () => handleColorChange(key),
+									title: value.label
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-[10px] text-muted-foreground",
+									children: value.label
+								})]
+							}, key))
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Label, {
+							className: "text-base flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LayoutTemplate, { className: "h-4 w-4" }), " Layout Density"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "grid grid-cols-2 gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+								variant: layoutDensity === "comfortable" ? "default" : "outline",
+								onClick: () => handleDensityChange("comfortable"),
+								className: "h-20 flex-col gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-1 w-full border rounded p-1 bg-background/50",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-2 w-3/4 bg-primary/20 rounded" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-2 w-1/2 bg-primary/20 rounded" })]
+								}), "Comfortable"]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+								variant: layoutDensity === "compact" ? "default" : "outline",
+								onClick: () => handleDensityChange("compact"),
+								className: "h-20 flex-col gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-0.5 w-full border rounded p-1 bg-background/50",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-1.5 w-3/4 bg-primary/20 rounded" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-1.5 w-1/2 bg-primary/20 rounded" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-1.5 w-2/3 bg-primary/20 rounded" })
+									]
+								}), "Compact"]
+							})]
+						})]
+					})
+				]
+			})]
+		})]
+	});
+}
+function Header() {
+	const { state, actions } = useStore();
+	const { currentUser, companies, notifications } = state;
+	const navigate = useNavigate();
+	const isOnline = useOnlineStatus();
+	const currentCompany = companies.find((c) => c.id === currentUser?.companyId);
+	const unreadCount = notifications.filter((n) => !n.read).length;
+	const recentNotifications = notifications.slice(0, 10);
+	const handleNotificationClick = (id, link) => {
+		actions.markNotificationRead(id);
+		if (link) navigate(link);
+	};
+	const markAllRead = () => {
+		notifications.forEach((n) => {
+			if (!n.read) actions.markNotificationRead(n.id);
+		});
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+		className: "fixed top-0 left-0 right-0 h-16 bg-background border-b z-40 flex items-center justify-between px-4 md:px-6",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex items-center gap-3",
+				children: currentUser?.role === "MASTER" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "font-bold text-xl text-primary tracking-tight",
+					children: "SaaS Manager"
+				}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [currentCompany?.logoUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+					src: currentCompany.logoUrl,
+					alt: "Logo",
+					className: "h-8 w-8 rounded-md object-contain"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "font-semibold text-lg hidden sm:block",
+					children: currentCompany?.name || "My Workspace"
+				})] })
+			}),
+			!isOnline && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "absolute top-16 left-0 right-0 bg-destructive text-destructive-foreground text-center text-xs py-1 animate-in slide-in-from-top-2",
+				children: "You are currently offline. Changes will not be saved."
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex items-center gap-2",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeSettingsDialog, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Popover, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverTrigger, {
+						asChild: true,
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+							variant: "ghost",
+							size: "icon",
+							className: "relative",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bell, { className: cn(unreadCount > 0 && "text-foreground") }), unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "absolute top-2 right-2 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-background animate-pulse" })]
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PopoverContent, {
+						className: "w-80 p-0",
+						align: "end",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center justify-between p-4 border-b",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+									className: "font-semibold text-sm",
+									children: "Notifications"
+								}), unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									variant: "ghost",
+									size: "sm",
+									className: "text-xs h-auto p-0 text-primary",
+									onClick: markAllRead,
+									children: "Mark all read"
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollArea, {
+								className: "h-[300px]",
+								children: recentNotifications.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "flex flex-col",
+									children: recentNotifications.map((notification) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+										className: cn("flex flex-col items-start gap-1 p-4 text-left hover:bg-muted/50 transition-colors border-b last:border-0", !notification.read && "bg-muted/20"),
+										onClick: () => handleNotificationClick(notification.id, notification.link),
+										children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "flex items-center justify-between w-full",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "font-medium text-sm",
+													children: notification.title
+												}), !notification.read && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "h-2 w-2 rounded-full bg-primary" })]
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+												className: "text-xs text-muted-foreground line-clamp-2",
+												children: notification.message
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-[10px] text-muted-foreground mt-1",
+												children: formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })
+											})
+										]
+									}, notification.id))
+								}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "p-4 text-center text-sm text-muted-foreground",
+									children: "No notifications"
+								})
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "p-2 border-t text-center",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									variant: "ghost",
+									size: "sm",
+									className: "w-full text-xs",
+									onClick: () => navigate("/notifications"),
+									children: "View all notifications"
+								})
+							})
+						]
+					})] }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DropdownMenu, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuTrigger, {
+						asChild: true,
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							variant: "ghost",
+							className: "relative h-9 w-9 rounded-full",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
+								className: "h-9 w-9 border",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, {
+									src: currentUser?.avatarUrl,
+									alt: currentUser?.name
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, { children: currentUser?.name?.charAt(0) })]
+							})
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DropdownMenuContent, {
+						className: "w-56",
+						align: "end",
+						forceMount: true,
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuLabel, {
+								className: "font-normal",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex flex-col space-y-1",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-sm font-medium leading-none",
+										children: currentUser?.name
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-xs leading-none text-muted-foreground",
+										children: currentUser?.email
+									})]
+								})
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuSeparator, {}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuItem, {
+								onClick: () => navigate("/profile"),
+								children: "Profile"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuItem, {
+								onClick: () => navigate("/notifications"),
+								children: "Notifications"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuSeparator, {}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DropdownMenuItem, {
+								onClick: actions.logout,
+								className: "text-red-500 focus:text-red-500",
+								children: "Log out"
+							})
+						]
+					})] })
+				]
+			})
+		]
+	});
+}
 var Sheet = Root$5;
 var SheetTrigger = Trigger$2;
 var SheetPortal = Portal$2;
@@ -37318,27 +37760,6 @@ var Input = import_react.forwardRef(({ className, type, ...props }, ref) => {
 	});
 });
 Input.displayName = "Input";
-var NAME$1 = "Label";
-var Label$2 = import_react.forwardRef((props, forwardedRef) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.label, {
-		...props,
-		ref: forwardedRef,
-		onMouseDown: (event) => {
-			if (event.target.closest("button, input, select, textarea")) return;
-			props.onMouseDown?.(event);
-			if (!event.defaultPrevented && event.detail > 1) event.preventDefault();
-		}
-	});
-});
-Label$2.displayName = NAME$1;
-var Root$4 = Label$2;
-var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$4, {
-	ref,
-	className: cn(labelVariants(), className),
-	...props
-}));
-Label.displayName = Root$4.displayName;
 function LoginPage() {
 	const { signIn, signUp } = useAuth();
 	const [isSignUp, setIsSignUp] = (0, import_react.useState)(false);
@@ -37527,9 +37948,9 @@ function getInvalidValueError(propValue, componentName) {
 
 Defaulting to \`null\`.`;
 }
-var Root$3 = Progress$1;
+var Root$2 = Progress$1;
 var Indicator = ProgressIndicator;
-var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$3, {
+var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$2, {
 	ref,
 	className: cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className),
 	...props,
@@ -37538,7 +37959,7 @@ var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => 
 		style: { transform: `translateX(-${100 - (value || 0)}%)` }
 	})
 }));
-Progress.displayName = Root$3.displayName;
+Progress.displayName = Root$2.displayName;
 function Index() {
 	const { state } = useStore();
 	const { currentUser, companies, projects, tasks, notifications, users } = state;
@@ -37788,50 +38209,6 @@ function StatusBadge({ status, className }) {
 		children: status.replace("-", " ")
 	});
 }
-var Dialog = Root$5;
-var DialogTrigger = Trigger$2;
-var DialogPortal = Portal$2;
-var DialogOverlay = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Overlay, {
-	ref,
-	className: cn("fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className),
-	...props
-}));
-DialogOverlay.displayName = Overlay.displayName;
-var DialogContent = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogPortal, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogOverlay, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Content$1, {
-	ref,
-	className: cn("fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg overflow-y-auto max-h-screen", className),
-	...props,
-	children: [children, /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Close, {
-		className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-			className: "sr-only",
-			children: "Close"
-		})]
-	})]
-})] }));
-DialogContent.displayName = Content$1.displayName;
-var DialogHeader = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	className: cn("flex flex-col space-y-1.5 text-center sm:text-left", className),
-	...props
-});
-DialogHeader.displayName = "DialogHeader";
-var DialogFooter = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	className: cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className),
-	...props
-});
-DialogFooter.displayName = "DialogFooter";
-var DialogTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Title, {
-	ref,
-	className: cn("text-lg font-semibold leading-none tracking-tight", className),
-	...props
-}));
-DialogTitle.displayName = Title.displayName;
-var DialogDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Description, {
-	ref,
-	className: cn("text-sm text-muted-foreground", className),
-	...props
-}));
-DialogDescription.displayName = Description.displayName;
 var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
 		className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
@@ -38802,7 +39179,7 @@ var ItemText = SelectItemText;
 var ItemIndicator = SelectItemIndicator;
 var ScrollUpButton = SelectScrollUpButton$1;
 var ScrollDownButton = SelectScrollDownButton$1;
-var Separator$2 = SelectSeparator$1;
+var Separator$1 = SelectSeparator$1;
 var Select = Root2$2;
 var SelectValue = Value;
 var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Trigger$1, {
@@ -38860,12 +39237,12 @@ var SelectItem = import_react.forwardRef(({ className, children, ...props }, ref
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ItemText, { children })]
 }));
 SelectItem.displayName = Item.displayName;
-var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator$2, {
+var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Separator$1, {
 	ref,
 	className: cn("-mx-1 my-1 h-px bg-muted", className),
 	...props
 }));
-SelectSeparator.displayName = Separator$2.displayName;
+SelectSeparator.displayName = Separator$1.displayName;
 function ProjectsPage() {
 	const { state, actions } = useStore();
 	const { projects, currentUser, companies } = state;
@@ -38881,6 +39258,7 @@ function ProjectsPage() {
 		companyId: currentUser?.companyId || ""
 	});
 	const isMaster = currentUser?.role === "MASTER";
+	const isCompact = currentUser?.preferences.layoutDensity === "compact";
 	const filteredProjects = projects.filter((project) => {
 		let hasPermission = false;
 		if (isMaster) hasPermission = true;
@@ -38911,7 +39289,7 @@ function ProjectsPage() {
 		});
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-6 animate-fade-in",
+		className: cn("space-y-6 animate-fade-in", isCompact && "space-y-3"),
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "flex flex-col md:flex-row items-start md:items-center justify-between gap-4",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
@@ -39052,37 +39430,43 @@ function ProjectsPage() {
 				})]
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
+			className: cn("grid gap-6 md:grid-cols-2 lg:grid-cols-3", isCompact && "gap-3"),
 			children: [filteredProjects.map((project) => {
 				const company = companies.find((c) => c.id === project.companyId);
 				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
 					className: "cursor-pointer hover:shadow-elevation transition-all group hover:-translate-y-1 duration-300",
 					onClick: () => navigate(`/projects/${project.id}`),
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between items-start mb-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, { status: project.status }), isMaster && company && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Badge, {
-								variant: "secondary",
-								className: "text-[10px] h-5",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "h-3 w-3 mr-1" }), company.name]
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between items-start",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
-								className: "group-hover:text-primary transition-colors text-xl",
-								children: project.name
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
-								status: project.priority,
-								className: "ml-2 scale-90"
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
-							className: "line-clamp-2 mt-1",
-							children: project.description
-						})
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
-						className: "border-t pt-4 text-xs text-muted-foreground flex justify-between",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
+						className: cn(isCompact && "p-4"),
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between items-start mb-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
+									status: project.status,
+									className: cn(isCompact && "scale-90 origin-left")
+								}), isMaster && company && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Badge, {
+									variant: "secondary",
+									className: "text-[10px] h-5",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "h-3 w-3 mr-1" }), company.name]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between items-start",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, {
+									className: cn("group-hover:text-primary transition-colors", isCompact ? "text-lg" : "text-xl"),
+									children: project.name
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
+									status: project.priority,
+									className: "ml-2 scale-90"
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
+								className: cn("line-clamp-2 mt-1", isCompact && "text-xs"),
+								children: project.description
+							})
+						]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFooter, {
+						className: cn("border-t pt-4 text-xs text-muted-foreground flex justify-between", isCompact && "p-3 pt-3"),
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex items-center gap-1",
 							children: [
@@ -39550,37 +39934,6 @@ function getState$1(open) {
 var Collapsible = Collapsible$1;
 var CollapsibleTrigger = CollapsibleTrigger$1;
 var CollapsibleContent = CollapsibleContent$1;
-var NAME = "Separator";
-var DEFAULT_ORIENTATION = "horizontal";
-var ORIENTATIONS = ["horizontal", "vertical"];
-var Separator$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
-	const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
-	const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-	const semanticProps = decorative ? { role: "none" } : {
-		"aria-orientation": ariaOrientation,
-		role: "separator"
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
-		"data-orientation": orientation,
-		...semanticProps,
-		...domProps,
-		ref: forwardedRef
-	});
-});
-Separator$1.displayName = NAME;
-function isValidOrientation(orientation) {
-	return ORIENTATIONS.includes(orientation);
-}
-var Root$1 = Separator$1;
-var Separator = import_react.forwardRef(({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$1, {
-	ref,
-	decorative,
-	orientation,
-	className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className),
-	...props
-}));
-Separator.displayName = Root$1.displayName;
 function EditTaskDialog({ task, open, onOpenChange }) {
 	const { actions, state } = useStore();
 	const { users, projects } = state;
@@ -40164,6 +40517,7 @@ function TaskCard({ task, defaultOpen = false }) {
 	const { users, currentUser, projects, comments: allComments, attachments: allAttachments } = state;
 	const [isOpen, setIsOpen] = (0, import_react.useState)(defaultOpen);
 	const [isEditDialogOpen, setIsEditDialogOpen] = (0, import_react.useState)(false);
+	const isCompact = currentUser?.preferences.layoutDensity === "compact";
 	(0, import_react.useEffect)(() => {
 		if (defaultOpen) {
 			setIsOpen(true);
@@ -40223,7 +40577,7 @@ function TaskCard({ task, defaultOpen = false }) {
 		onOpenChange: setIsOpen,
 		className: cn("border rounded-lg bg-card text-card-foreground shadow-sm transition-all duration-200", defaultOpen && "ring-2 ring-primary border-primary"),
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "p-4 flex items-start gap-3 relative group",
+			className: cn("flex items-start gap-3 relative group", isCompact ? "p-2" : "p-4"),
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
 				checked: task.status === "done",
 				onCheckedChange: toggleStatus,
@@ -40233,7 +40587,7 @@ function TaskCard({ task, defaultOpen = false }) {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex items-center justify-between",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: cn("font-medium truncate mr-2 cursor-pointer select-none", task.status === "done" && "line-through text-muted-foreground"),
+						className: cn("font-medium truncate mr-2 cursor-pointer select-none", task.status === "done" && "line-through text-muted-foreground", isCompact && "text-sm"),
 						onClick: () => setIsOpen(!isOpen),
 						children: task.title
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -40258,7 +40612,7 @@ function TaskCard({ task, defaultOpen = false }) {
 						})]
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap cursor-pointer select-none",
+					className: cn("flex items-center gap-2 text-xs text-muted-foreground flex-wrap cursor-pointer select-none", isCompact ? "mt-1" : "mt-2"),
 					onClick: () => setIsOpen(!isOpen),
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatusBadge, {
@@ -40308,18 +40662,18 @@ function TaskCard({ task, defaultOpen = false }) {
 				className: "w-full",
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "px-4 pt-2",
+						className: cn("px-4", isCompact ? "pt-1" : "pt-2"),
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsList, {
-							className: "w-full justify-start h-9 bg-muted/50 p-0",
+							className: cn("w-full justify-start bg-muted/50 p-0", isCompact ? "h-7" : "h-9"),
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 									value: "details",
-									className: "flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm",
+									className: cn("flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm", isCompact && "py-1"),
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "h-3.5 w-3.5 mr-2" }), "Details"]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 									value: "comments",
-									className: "flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm",
+									className: cn("flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm", isCompact && "py-1"),
 									children: [
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-3.5 w-3.5 mr-2" }),
 										"Comments (",
@@ -40329,7 +40683,7 @@ function TaskCard({ task, defaultOpen = false }) {
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 									value: "files",
-									className: "flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm",
+									className: cn("flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm", isCompact && "py-1"),
 									children: [
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Paperclip, { className: "h-3.5 w-3.5 mr-2" }),
 										"Files (",
@@ -40342,7 +40696,7 @@ function TaskCard({ task, defaultOpen = false }) {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
 						value: "details",
-						className: "p-4 pt-3 space-y-4",
+						className: cn("space-y-4", isCompact ? "p-3" : "p-4 pt-3"),
 						children: [task.description && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-sm text-muted-foreground",
 							children: task.description
@@ -40382,7 +40736,7 @@ function TaskCard({ task, defaultOpen = false }) {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
 						value: "comments",
-						className: "p-4 pt-0",
+						className: cn(isCompact ? "p-3 pt-0" : "p-4 pt-0"),
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CommentSection, {
 							comments: taskComments,
 							users,
@@ -40392,7 +40746,7 @@ function TaskCard({ task, defaultOpen = false }) {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
 						value: "files",
-						className: "p-4 pt-0",
+						className: cn(isCompact ? "p-3 pt-0" : "p-4 pt-0"),
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AttachmentSection, {
 							attachments: taskAttachments,
 							users,
@@ -42715,4 +43069,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-BZnGB5ky.js.map
+//# sourceMappingURL=index-DMi-4ZV7.js.map

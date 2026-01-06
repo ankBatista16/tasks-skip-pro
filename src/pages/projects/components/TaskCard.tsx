@@ -41,6 +41,7 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
   } = state
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+  const isCompact = currentUser?.preferences.layoutDensity === 'compact'
 
   // Sync defaultOpen if it changes (e.g. navigation)
   useEffect(() => {
@@ -125,7 +126,12 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
           defaultOpen && 'ring-2 ring-primary border-primary',
         )}
       >
-        <div className="p-4 flex items-start gap-3 relative group">
+        <div
+          className={cn(
+            'flex items-start gap-3 relative group',
+            isCompact ? 'p-2' : 'p-4',
+          )}
+        >
           <Checkbox
             checked={task.status === 'done'}
             onCheckedChange={toggleStatus}
@@ -138,6 +144,7 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
                   'font-medium truncate mr-2 cursor-pointer select-none',
                   task.status === 'done' &&
                     'line-through text-muted-foreground',
+                  isCompact && 'text-sm',
                 )}
                 onClick={() => setIsOpen(!isOpen)}
               >
@@ -169,7 +176,10 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
               </div>
             </div>
             <div
-              className="flex items-center gap-2 mt-2 text-xs text-muted-foreground flex-wrap cursor-pointer select-none"
+              className={cn(
+                'flex items-center gap-2 text-xs text-muted-foreground flex-wrap cursor-pointer select-none',
+                isCompact ? 'mt-1' : 'mt-2',
+              )}
               onClick={() => setIsOpen(!isOpen)}
             >
               <StatusBadge
@@ -222,25 +232,39 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
 
         <CollapsibleContent className="px-0 pb-0 border-t bg-muted/10 animate-slide-down">
           <Tabs defaultValue="details" className="w-full">
-            <div className="px-4 pt-2">
-              <TabsList className="w-full justify-start h-9 bg-muted/50 p-0">
+            <div className={cn('px-4', isCompact ? 'pt-1' : 'pt-2')}>
+              <TabsList
+                className={cn(
+                  'w-full justify-start bg-muted/50 p-0',
+                  isCompact ? 'h-7' : 'h-9',
+                )}
+              >
                 <TabsTrigger
                   value="details"
-                  className="flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  className={cn(
+                    'flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm',
+                    isCompact && 'py-1',
+                  )}
                 >
                   <CheckSquare className="h-3.5 w-3.5 mr-2" />
                   Details
                 </TabsTrigger>
                 <TabsTrigger
                   value="comments"
-                  className="flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  className={cn(
+                    'flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm',
+                    isCompact && 'py-1',
+                  )}
                 >
                   <MessageSquare className="h-3.5 w-3.5 mr-2" />
                   Comments ({taskComments.length})
                 </TabsTrigger>
                 <TabsTrigger
                   value="files"
-                  className="flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  className={cn(
+                    'flex-1 text-xs data-[state=active]:bg-background data-[state=active]:shadow-sm',
+                    isCompact && 'py-1',
+                  )}
                 >
                   <Paperclip className="h-3.5 w-3.5 mr-2" />
                   Files ({taskAttachments.length})
@@ -248,7 +272,10 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
               </TabsList>
             </div>
 
-            <TabsContent value="details" className="p-4 pt-3 space-y-4">
+            <TabsContent
+              value="details"
+              className={cn('space-y-4', isCompact ? 'p-3' : 'p-4 pt-3')}
+            >
               {task.description && (
                 <p className="text-sm text-muted-foreground">
                   {task.description}
@@ -302,7 +329,10 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
               </div>
             </TabsContent>
 
-            <TabsContent value="comments" className="p-4 pt-0">
+            <TabsContent
+              value="comments"
+              className={cn(isCompact ? 'p-3 pt-0' : 'p-4 pt-0')}
+            >
               <CommentSection
                 comments={taskComments}
                 users={users}
@@ -311,7 +341,10 @@ export function TaskCard({ task, defaultOpen = false }: TaskCardProps) {
               />
             </TabsContent>
 
-            <TabsContent value="files" className="p-4 pt-0">
+            <TabsContent
+              value="files"
+              className={cn(isCompact ? 'p-3 pt-0' : 'p-4 pt-0')}
+            >
               <AttachmentSection
                 attachments={taskAttachments}
                 users={users}

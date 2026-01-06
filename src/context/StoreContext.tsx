@@ -13,10 +13,12 @@ import {
   Notification,
   Comment,
   Attachment,
+  UserPreferences,
 } from '@/types'
 import { supabase } from '@/lib/supabase/client'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/use-auth'
+import { THEME_COLORS, ThemeColor } from '@/lib/utils'
 
 interface StoreState {
   currentUser: User | null
@@ -53,6 +55,7 @@ interface StoreActions {
   removeProjectMember: (projectId: string, userId: string) => void
   addAttachment: (attachment: Omit<Attachment, 'id' | 'createdAt'>) => void
   deleteAttachment: (id: string) => void
+  updatePreferences: (preferences: Partial<UserPreferences>) => void
 }
 
 const StoreContext = createContext<
@@ -72,6 +75,13 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [attachments, setAttachments] = useState<Attachment[]>([])
   const [loading, setLoading] = useState(true)
 
+  // Default preferences for guests or initial load
+  const defaultPreferences: UserPreferences = {
+    theme: 'system',
+    primaryColor: 'blue',
+    layoutDensity: 'comfortable',
+  }
+
   // Fetch Data on Auth Change
   useEffect(() => {
     if (authUser) {
@@ -86,8 +96,43 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       setComments([])
       setAttachments([])
       setLoading(false)
+      // Reset theme to defaults on logout
+      applyTheme(defaultPreferences)
     }
   }, [authUser])
+
+  // Apply Theme Side Effects
+  useEffect(() => {
+    if (currentUser) {
+      applyTheme(currentUser.preferences)
+    } else {
+      applyTheme(defaultPreferences)
+    }
+  }, [currentUser?.preferences])
+
+  const applyTheme = (prefs: UserPreferences) => {
+    const root = window.document.documentElement
+
+    // 1. Dark Mode
+    root.classList.remove('light', 'dark')
+
+    if (prefs.theme === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+        .matches
+        ? 'dark'
+        : 'light'
+      root.classList.add(systemTheme)
+    } else {
+      root.classList.add(prefs.theme)
+    }
+
+    // 2. Primary Color
+    const colorKey = prefs.primaryColor as ThemeColor
+    const themeColor = THEME_COLORS[colorKey] || THEME_COLORS['blue']
+
+    root.style.setProperty('--primary', themeColor.primary)
+    root.style.setProperty('--primary-foreground', themeColor.foreground)
+  }
 
   // Real-time Subscriptions for Notifications
   useEffect(() => {
@@ -189,6 +234,11 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     status: u.status,
     jobTitle: u.job_title,
     permissions: u.permissions || [],
+    preferences: u.preferences || {
+      theme: 'system',
+      primaryColor: 'blue',
+      layoutDensity: 'comfortable',
+    },
   })
 
   const mapCompany = (c: any): Company => ({
@@ -589,6 +639,27 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       await supabase.from('attachments').delete().eq('id', id)
       setAttachments(attachments.filter((a) => a.id !== id))
       toast.success('Attachment deleted')
+    },
+    updatePreferences: async (prefs) => {
+      if (!currentUser) return
+
+      const newPreferences = { ...currentUser.preferences, ...prefs }
+
+      // Optimistic update
+      setCurrentUser({ ...currentUser, preferences: newPreferences })
+
+      const { error } = await supabase
+        .from('members')
+        .update({ preferences: newPreferences })
+        .eq('id', currentUser.id)
+
+      if (error) {
+        toast.error('Failed to save preferences')
+        // Revert on error could be implemented here
+        console.error(error)
+      } else {
+        toast.success('Preferences saved')
+      }
     },
   }
 

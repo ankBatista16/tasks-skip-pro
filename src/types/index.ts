@@ -1,6 +1,12 @@
 export type Role = 'MASTER' | 'ADMIN' | 'USER'
 export type UserStatus = 'active' | 'suspended'
 
+export interface UserPreferences {
+  theme: 'light' | 'dark' | 'system'
+  primaryColor: string
+  layoutDensity: 'comfortable' | 'compact'
+}
+
 export interface User {
   id: string
   name: string
@@ -12,6 +18,7 @@ export interface User {
   status: UserStatus
   jobTitle?: string
   permissions: string[]
+  preferences: UserPreferences
 }
 
 export interface Company {

@@ -20,6 +20,7 @@ import { useOnlineStatus } from '@/hooks/use-online'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { formatDistanceToNow } from 'date-fns'
 import { cn } from '@/lib/utils'
+import { ThemeSettingsDialog } from '@/components/ThemeSettingsDialog'
 
 export function Header() {
   const { state, actions } = useStore()
@@ -74,6 +75,8 @@ export function Header() {
       )}
 
       <div className="flex items-center gap-2">
+        <ThemeSettingsDialog />
+
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="ghost" size="icon" className="relative">
