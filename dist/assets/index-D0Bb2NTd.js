@@ -29948,6 +29948,13 @@ function ProjectDetailsPage() {
 	const { state, actions } = useStore();
 	const { projects, tasks, users, comments } = state;
 	const currentUser = state.currentUser;
+	const [isTaskOpen, setIsTaskOpen] = (0, import_react.useState)(false);
+	const [newTask, setNewTask] = (0, import_react.useState)({
+		title: "",
+		priority: "medium",
+		assigneeId: ""
+	});
+	const [newComment, setNewComment] = (0, import_react.useState)("");
 	const project = projects.find((p) => p.id === projectId);
 	const projectTasks = tasks.filter((t) => t.projectId === projectId);
 	if (!project) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -29956,12 +29963,7 @@ function ProjectDetailsPage() {
 	});
 	const completedTasks = projectTasks.filter((t) => t.status === "done").length;
 	const progress = projectTasks.length ? Math.round(completedTasks / projectTasks.length * 100) : 0;
-	const [isTaskOpen, setIsTaskOpen] = (0, import_react.useState)(false);
-	const [newTask, setNewTask] = (0, import_react.useState)({
-		title: "",
-		priority: "medium",
-		assigneeId: ""
-	});
+	comments.filter((c) => c.projectId === project.id);
 	const handleCreateTask = (e) => {
 		e.preventDefault();
 		if (newTask.title) {
@@ -29980,8 +29982,6 @@ function ProjectDetailsPage() {
 			});
 		}
 	};
-	const [newComment, setNewComment] = (0, import_react.useState)("");
-	comments.filter((c) => c.projectId === project.id);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 pb-20 animate-slide-up",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -30796,4 +30796,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-NtniS5Tu.js.map
+//# sourceMappingURL=index-D0Bb2NTd.js.map

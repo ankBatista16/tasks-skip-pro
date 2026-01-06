@@ -47,6 +47,17 @@ export default function ProjectDetailsPage() {
   const { projects, tasks, users, comments } = state
   const currentUser = state.currentUser
 
+  // Task Creation State - Moved before conditional return
+  const [isTaskOpen, setIsTaskOpen] = useState(false)
+  const [newTask, setNewTask] = useState({
+    title: '',
+    priority: 'medium' as const,
+    assigneeId: '',
+  })
+
+  // Comments State - Moved before conditional return
+  const [newComment, setNewComment] = useState('')
+
   const project = projects.find((p) => p.id === projectId)
   const projectTasks = tasks.filter((t) => t.projectId === projectId)
 
@@ -57,13 +68,8 @@ export default function ProjectDetailsPage() {
     ? Math.round((completedTasks / projectTasks.length) * 100)
     : 0
 
-  // Task Creation
-  const [isTaskOpen, setIsTaskOpen] = useState(false)
-  const [newTask, setNewTask] = useState({
-    title: '',
-    priority: 'medium' as const,
-    assigneeId: '',
-  })
+  // Filter comments after project check
+  const projectComments = comments.filter((c) => c.projectId === project.id)
 
   const handleCreateTask = (e: React.FormEvent) => {
     e.preventDefault()
@@ -79,11 +85,6 @@ export default function ProjectDetailsPage() {
       setNewTask({ title: '', priority: 'medium', assigneeId: '' })
     }
   }
-
-  // Comments
-  const [newComment, setNewComment] = useState('')
-  const projectComments = comments.filter((c) => c.projectId === project.id) // Assuming comments can be on project too? Mock data says "taskId" mainly, but let's assume we can comment on project or add logic.
-  // Actually, let's just show mock UI for comments/attachments as requested in "Tabs: Tasks, Comments, Attachments".
 
   return (
     <div className="space-y-6 pb-20 animate-slide-up">
