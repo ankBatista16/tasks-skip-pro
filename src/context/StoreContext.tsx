@@ -39,6 +39,7 @@ interface StoreActions {
   addUser: (user: Omit<User, 'id'>) => Promise<boolean>
   updateUser: (id: string, data: Partial<User>) => void
   deleteUser: (id: string) => void
+  uploadAvatar: (file: File) => Promise<void>
   addProject: (project: Omit<Project, 'id'>) => void
   updateProject: (id: string, data: Partial<Project>) => void
   addTask: (task: Omit<Task, 'id'>) => void
@@ -401,6 +402,51 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         'Deletion requires admin privilege via backend. Suspending instead.',
       )
       actions.updateUser(id, { status: 'suspended' })
+    },
+    uploadAvatar: async (file: File) => {
+      if (!currentUser) return
+
+      try {
+        const fileExt = file.name.split('.').pop()
+        const fileName = `${currentUser.id}/${Date.now()}.${fileExt}`
+        const filePath = fileName
+
+        // 1. Upload file to Supabase Storage
+        const { error: uploadError } = await supabase.storage
+          .from('avatars')
+          .upload(filePath, file, {
+            upsert: true,
+          })
+
+        if (uploadError) throw uploadError
+
+        // 2. Get Public URL
+        const {
+          data: { publicUrl },
+        } = supabase.storage.from('avatars').getPublicUrl(filePath)
+
+        // 3. Update User Profile in DB
+        const { error: updateError } = await supabase
+          .from('members')
+          .update({ avatar_url: publicUrl })
+          .eq('id', currentUser.id)
+
+        if (updateError) throw updateError
+
+        // 4. Update Local State
+        const updatedUser = { ...currentUser, avatarUrl: publicUrl }
+        setCurrentUser(updatedUser)
+        setUsers(
+          users.map((u) =>
+            u.id === currentUser.id ? { ...u, avatarUrl: publicUrl } : u,
+          ),
+        )
+
+        toast.success('Profile photo updated successfully')
+      } catch (error: any) {
+        console.error('Error uploading avatar:', error)
+        toast.error('Failed to upload avatar: ' + error.message)
+      }
     },
     addProject: async (data) => {
       const { data: res, error } = await supabase

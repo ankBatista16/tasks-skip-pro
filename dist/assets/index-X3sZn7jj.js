@@ -18943,6 +18943,15 @@ var Calendar = createLucideIcon("calendar", [
 		key: "8toen8"
 	}]
 ]);
+var Camera = createLucideIcon("camera", [["path", {
+	d: "M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z",
+	key: "18u6gg"
+}], ["circle", {
+	cx: "12",
+	cy: "13",
+	r: "3",
+	key: "1vg3eu"
+}]]);
 var Check = createLucideIcon("check", [["path", {
 	d: "M20 6 9 17l-5-5",
 	key: "1gmf2c"
@@ -32225,6 +32234,30 @@ const StoreProvider = ({ children }) => {
 			toast.error("Deletion requires admin privilege via backend. Suspending instead.");
 			actions.updateUser(id, { status: "suspended" });
 		},
+		uploadAvatar: async (file) => {
+			if (!currentUser) return;
+			try {
+				const fileExt = file.name.split(".").pop();
+				const filePath = `${currentUser.id}/${Date.now()}.${fileExt}`;
+				const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, file, { upsert: true });
+				if (uploadError) throw uploadError;
+				const { data: { publicUrl } } = supabase.storage.from("avatars").getPublicUrl(filePath);
+				const { error: updateError } = await supabase.from("members").update({ avatar_url: publicUrl }).eq("id", currentUser.id);
+				if (updateError) throw updateError;
+				setCurrentUser({
+					...currentUser,
+					avatarUrl: publicUrl
+				});
+				setUsers(users.map((u) => u.id === currentUser.id ? {
+					...u,
+					avatarUrl: publicUrl
+				} : u));
+				toast.success("Profile photo updated successfully");
+			} catch (error) {
+				console.error("Error uploading avatar:", error);
+				toast.error("Failed to upload avatar: " + error.message);
+			}
+		},
 		addProject: async (data) => {
 			const { data: res, error } = await supabase.from("projects").insert({
 				name: data.name,
@@ -42004,9 +42037,37 @@ function CompanyDetailsPage() {
 function ProfilePage() {
 	const { state, actions } = useStore();
 	const { currentUser } = state;
-	const [deferredPrompt, setDeferredPrompt] = (0, import_react.useState)(null);
+	const [isUploading, setIsUploading] = (0, import_react.useState)(false);
+	const fileInputRef = (0, import_react.useRef)(null);
 	const handleInstall = () => {
 		alert("This would trigger the PWA install prompt in a real browser environment.");
+	};
+	const handleAvatarClick = () => {
+		fileInputRef.current?.click();
+	};
+	const handleFileChange = async (e) => {
+		const file = e.target.files?.[0];
+		if (!file) return;
+		if (![
+			"image/jpeg",
+			"image/png",
+			"image/webp",
+			"image/gif"
+		].includes(file.type)) {
+			toast.error("Invalid file type. Please upload an image (JPEG, PNG, WEBP).");
+			return;
+		}
+		if (file.size > 2 * 1024 * 1024) {
+			toast.error("File too large. Maximum size is 2MB.");
+			return;
+		}
+		try {
+			setIsUploading(true);
+			await actions.uploadAvatar(file);
+		} finally {
+			setIsUploading(false);
+			if (fileInputRef.current) fileInputRef.current.value = "";
+		}
 	};
 	if (!currentUser) return null;
 	const isEditable = currentUser.role === "MASTER" || currentUser.role === "ADMIN";
@@ -42025,16 +42086,52 @@ function ProfilePage() {
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex flex-col items-center gap-4 sm:flex-row",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
-							className: "h-20 w-20",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, { src: currentUser.avatarUrl }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, {
-								className: "text-xl",
-								children: currentUser.name.charAt(0)
-							})]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-							variant: "outline",
-							children: "Change Avatar"
-						})]
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "relative group cursor-pointer",
+								onClick: handleAvatarClick,
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Avatar, {
+										className: "h-20 w-20 ring-2 ring-transparent group-hover:ring-primary transition-all",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, {
+											src: currentUser.avatarUrl,
+											className: "object-cover"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, {
+											className: "text-xl",
+											children: currentUser.name.charAt(0)
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { className: "text-white h-6 w-6" })
+									}),
+									isUploading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "absolute inset-0 bg-black/60 rounded-full flex items-center justify-center",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "text-white h-6 w-6 animate-spin" })
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+								type: "file",
+								ref: fileInputRef,
+								className: "hidden",
+								accept: "image/*",
+								onChange: handleFileChange,
+								disabled: isUploading
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex flex-col gap-1 items-center sm:items-start",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									variant: "outline",
+									onClick: handleAvatarClick,
+									disabled: isUploading,
+									children: isUploading ? "Uploading..." : "Change Avatar"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-xs text-muted-foreground",
+									children: "Max 2MB. JPG, PNG or WEBP."
+								})]
+							})
+						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "grid gap-4",
@@ -42247,4 +42344,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-CcVf6WFW.js.map
+//# sourceMappingURL=index-X3sZn7jj.js.map
