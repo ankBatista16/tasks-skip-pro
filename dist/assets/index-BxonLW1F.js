@@ -32152,25 +32152,33 @@ const StoreProvider = ({ children }) => {
 				toast.error("Permission denied: Only Master or Admin can create users");
 				return false;
 			}
+			if (!data.email || !data.name || !data.role) {
+				toast.error("Missing required fields: Name, Email and Role are required");
+				return false;
+			}
 			const { data: res, error } = await supabase.functions.invoke("create-user", { body: {
 				email: data.email,
 				password: data.password || "password123",
 				fullName: data.name,
 				role: data.role,
 				companyId: data.companyId,
-				jobTitle: data.jobTitle
+				jobTitle: data.jobTitle,
+				permissions: data.permissions || []
 			} });
 			if (error) {
-				let message = error.message;
-				if (error && typeof error === "object" && "context" in error) try {
+				let message = "Failed to invite user";
+				if (typeof error === "object" && "context" in error) try {
 					const body = await error.context.json();
 					if (body && body.error) message = body.error;
-				} catch (e) {}
-				toast.error("Failed to invite user: " + message);
+				} catch (e) {
+					if (error.message) message = error.message;
+				}
+				else if (error.message) message = error.message;
+				toast.error(message);
 				return false;
 			}
 			if (authUser) fetchData(authUser.id);
-			toast.success("User invite sent");
+			toast.success("User invite sent successfully");
 			return true;
 		},
 		updateUser: async (id, data) => {
@@ -41367,22 +41375,26 @@ function UsersPage() {
 		e.preventDefault();
 		if (newUser.name && newUser.email) {
 			setIsSubmitting(true);
-			const success = await actions.addUser({
-				...newUser,
-				role: newUser.role,
-				avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`,
-				permissions: []
-			});
-			setIsSubmitting(false);
-			if (success) {
-				setIsOpen(false);
-				setNewUser({
-					name: "",
-					email: "",
-					role: "USER",
-					companyId: currentUser?.companyId || "",
-					jobTitle: ""
-				});
+			try {
+				if (await actions.addUser({
+					...newUser,
+					role: newUser.role,
+					avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`,
+					permissions: []
+				})) {
+					setIsOpen(false);
+					setNewUser({
+						name: "",
+						email: "",
+						role: "USER",
+						companyId: currentUser?.companyId || "",
+						jobTitle: ""
+					});
+				}
+			} catch (error) {
+				console.error("Failed to add user", error);
+			} finally {
+				setIsSubmitting(false);
 			}
 		}
 	};
@@ -42168,4 +42180,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DPP96SnW.js.map
+//# sourceMappingURL=index-BxonLW1F.js.map

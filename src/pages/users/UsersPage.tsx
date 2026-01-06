@@ -52,23 +52,28 @@ export default function UsersPage() {
     e.preventDefault()
     if (newUser.name && newUser.email) {
       setIsSubmitting(true)
-      const success = await actions.addUser({
-        ...newUser,
-        role: newUser.role,
-        avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`, // Randomize later
-        permissions: [],
-      })
-      setIsSubmitting(false)
-
-      if (success) {
-        setIsOpen(false)
-        setNewUser({
-          name: '',
-          email: '',
-          role: 'USER',
-          companyId: currentUser?.companyId || '',
-          jobTitle: '',
+      try {
+        const success = await actions.addUser({
+          ...newUser,
+          role: newUser.role,
+          avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`, // Randomize later
+          permissions: [], // Initialize with empty permissions
         })
+
+        if (success) {
+          setIsOpen(false)
+          setNewUser({
+            name: '',
+            email: '',
+            role: 'USER',
+            companyId: currentUser?.companyId || '',
+            jobTitle: '',
+          })
+        }
+      } catch (error) {
+        console.error('Failed to add user', error)
+      } finally {
+        setIsSubmitting(false)
       }
     }
   }

@@ -281,7 +281,15 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         return false
       }
 
-      // 2. Call Edge Function (Auth Header is automatically handled by supabase-js if session exists)
+      // 2. Validate Payload
+      if (!data.email || !data.name || !data.role) {
+        toast.error(
+          'Missing required fields: Name, Email and Role are required',
+        )
+        return false
+      }
+
+      // 3. Call Edge Function (Auth Header is automatically handled by supabase-js if session exists)
       const { data: res, error } = await supabase.functions.invoke(
         'create-user',
         {
@@ -292,31 +300,37 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
             role: data.role,
             companyId: data.companyId,
             jobTitle: data.jobTitle,
+            permissions: data.permissions || [],
           },
         },
       )
 
       if (error) {
-        let message = error.message
+        let message = 'Failed to invite user'
         // Try to parse detailed error from edge function response
-        if (error && typeof error === 'object' && 'context' in error) {
+        if (typeof error === 'object' && 'context' in error) {
           try {
+            // error.context is the Response object
             const body = await (error as any).context.json()
-            if (body && body.error) message = body.error
+            if (body && body.error) {
+              message = body.error
+            }
           } catch (e) {
-            // Failed to parse JSON body, stick to message
+            // Fallback to error message if JSON parse fails
+            if (error.message) message = error.message
           }
+        } else if (error.message) {
+          message = error.message
         }
-        toast.error('Failed to invite user: ' + message)
+
+        toast.error(message)
         return false
       }
 
       // 3. Refresh Data
-      // We rely on realtime or refresh for the user list to update,
-      // but for now we can optimistically add if we knew the ID.
-      // Since we don't return the full profile from EF easily without another query, let's refresh.
+      // Since the trigger handles creation, we can refresh to see the new user
       if (authUser) fetchData(authUser.id)
-      toast.success('User invite sent')
+      toast.success('User invite sent successfully')
       return true
     },
     updateUser: async (id, data) => {
@@ -339,10 +353,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('User updated')
     },
     deleteUser: async (id) => {
-      // Cannot delete from auth.users easily from client without Edge Function.
-      // For now, we just delete from members if possible or set status to suspended?
-      // Let's assume we just delete the member profile or use EF.
-      // For this scope, let's just toast error if not implemented
       toast.error(
         'Deletion requires admin privilege via backend. Suspending instead.',
       )

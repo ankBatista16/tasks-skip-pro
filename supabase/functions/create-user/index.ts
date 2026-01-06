@@ -3,6 +3,7 @@ import { createClient } from 'jsr:@supabase/supabase-js@2'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers':
     'authorization, x-client-info, apikey, content-type',
 }
@@ -19,7 +20,6 @@ Deno.serve(async (req: Request) => {
     }
 
     // 1. Verify the user calling the function (using Anon key + User JWT)
-    // This ensures we know exactly who is calling the function
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_ANON_KEY') ?? '',
@@ -48,7 +48,7 @@ Deno.serve(async (req: Request) => {
       )
     }
 
-    // 2. Create Admin Client for privileged operations (Service Role)
+    // 2. Create Admin Client for privileged operations
     const supabaseAdmin = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
@@ -83,62 +83,98 @@ Deno.serve(async (req: Request) => {
       )
     }
 
-    const { email, password, fullName, role, companyId, jobTitle } =
-      await req.json()
+    // 4. Parse and Validate Body
+    const body = await req.json().catch(() => ({}))
+    const {
+      email,
+      password,
+      fullName,
+      role,
+      companyId,
+      jobTitle,
+      permissions,
+    } = body
 
-    // 4. Additional validation for ADMIN: can only create users for their own company
-    if (member.role === 'ADMIN' && companyId !== member.company_id) {
+    if (!email || !fullName || !role) {
       return new Response(
         JSON.stringify({
-          error:
-            'Forbidden: Admins can only create users for their own company',
+          error: 'Missing required fields: email, fullName, role',
         }),
         {
-          status: 403,
+          status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         },
       )
     }
 
-    // 5. Create Auth User
-    const { data: authUser, error: authError } =
-      await supabaseAdmin.auth.admin.createUser({
-        email,
-        password,
-        email_confirm: true,
-        user_metadata: { full_name: fullName },
-      })
-
-    if (authError) throw authError
-
-    if (authUser.user) {
-      // 6. Update Member Profile
-      const { error: updateError } = await supabaseAdmin
-        .from('members')
-        .update({
-          role: role || 'USER',
-          company_id: companyId,
-          job_title: jobTitle,
-          full_name: fullName,
-        })
-        .eq('id', authUser.user.id)
-
-      if (updateError) {
-        console.error('Failed to update profile:', updateError)
-        // We throw to return error, but user is created in Auth
-        throw updateError
+    // 5. Additional validation for ADMIN: can only create users for their own company
+    if (member.role === 'ADMIN') {
+      if (companyId && companyId !== member.company_id) {
+        return new Response(
+          JSON.stringify({
+            error:
+              'Forbidden: Admins can only create users for their own company',
+          }),
+          {
+            status: 403,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
+        )
+      }
+      // Force company ID for admin created users if not provided
+      if (!companyId) {
+        // We will assume they meant their own company, or we fail.
+        // Let's enforce companyId check.
       }
     }
 
+    const targetCompanyId =
+      member.role === 'ADMIN' ? member.company_id : companyId
+
+    // 6. Create Auth User
+    // We pass all profile data in user_metadata so the trigger can populate the members table atomically
+    const { data: authUser, error: authError } =
+      await supabaseAdmin.auth.admin.createUser({
+        email,
+        password: password || 'password123',
+        email_confirm: true,
+        user_metadata: {
+          full_name: fullName,
+          role: role,
+          company_id: targetCompanyId,
+          job_title: jobTitle,
+          permissions: permissions || [],
+        },
+      })
+
+    if (authError) {
+      // Handle known Supabase Auth errors
+      if (authError.message?.includes('already registered')) {
+        return new Response(
+          JSON.stringify({ error: 'Email already registered' }),
+          {
+            status: 409,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
+        )
+      }
+
+      throw authError
+    }
+
+    // Success - The trigger handles member creation
     return new Response(JSON.stringify(authUser), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 200,
+      status: 201,
     })
   } catch (error: any) {
     console.error('Error creating user:', error)
-    return new Response(JSON.stringify({ error: error.message }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 400,
-    })
+    return new Response(
+      JSON.stringify({ error: error.message || 'Internal Server Error' }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: error.status || 500,
+      },
+    )
   }
 })
