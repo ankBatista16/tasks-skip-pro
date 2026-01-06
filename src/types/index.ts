@@ -1,0 +1,71 @@
+export type Role = 'MASTER' | 'ADMIN' | 'USER'
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  role: Role
+  companyId?: string
+  avatarUrl?: string
+  password?: string // In a real app this would be hashed
+}
+
+export interface Company {
+  id: string
+  name: string
+  logoUrl?: string
+  adminId?: string
+}
+
+export interface Project {
+  id: string
+  companyId: string
+  name: string
+  description: string
+  leaderId: string
+  status: 'active' | 'completed' | 'on-hold'
+  startDate: string
+  dueDate: string
+  members: string[] // User IDs
+}
+
+export type Priority = 'low' | 'medium' | 'high'
+export type TaskStatus = 'todo' | 'in-progress' | 'done'
+
+export interface Task {
+  id: string
+  projectId: string
+  title: string
+  description?: string
+  status: TaskStatus
+  priority: Priority
+  assigneeIds: string[]
+  dueDate?: string
+  subtasks: Subtask[]
+}
+
+export interface Subtask {
+  id: string
+  title: string
+  status: boolean // true = done
+}
+
+export interface Comment {
+  id: string
+  taskId?: string // Can be on task
+  projectId?: string // Can be on project
+  userId: string
+  content: string
+  createdAt: string
+}
+
+export interface Notification {
+  id: string
+  userId: string
+  title: string
+  message: string
+  type: 'info' | 'success' | 'warning' | 'error'
+  read: boolean
+  createdAt: string
+  link?: string
+}
