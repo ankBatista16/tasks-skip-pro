@@ -1,6 +1,5 @@
 import { useStore } from '@/context/StoreContext'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { StatusBadge } from '@/components/pm/StatusBadge'
 import { Users, Building2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
 import { formatDistanceToNow } from 'date-fns'
@@ -33,6 +32,9 @@ export default function Index() {
   const totalTasks = myTasks.length
   const taskProgress =
     totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100)
+
+  // Calculate active users (not suspended)
+  const activeUsersCount = users.filter((u) => u.status === 'active').length
 
   // Recent Activity from notifications
   // Filter notifications to only show those for the current user to prevent information leak
@@ -72,7 +74,10 @@ export default function Index() {
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{users.length}</div>
+                <div className="text-2xl font-bold">{activeUsersCount}</div>
+                <p className="text-xs text-muted-foreground">
+                  {users.length - activeUsersCount} suspended
+                </p>
               </CardContent>
             </Card>
             <Card>

@@ -87,9 +87,13 @@ export function EditTaskDialog({
     setEditingSubtaskId(null)
   }, [task, open])
 
-  // Get project members for task assignment
+  // Get project members for task assignment - Filter out suspended users
   const projectMembers = project
-    ? users.filter((u) => project.members.includes(u.id))
+    ? users.filter(
+        (u) =>
+          project.members.includes(u.id) &&
+          (u.status === 'active' || formData.assigneeIds.includes(u.id)),
+      )
     : []
 
   // Get task assignees for subtask assignment

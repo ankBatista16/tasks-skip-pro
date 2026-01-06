@@ -1577,6 +1577,12 @@ body{
   margin-bottom: calc(0px * var(--tw-space-y-reverse));
 }
 
+.space-y-0\.5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.125rem * var(--tw-space-y-reverse));
+}
+
 .space-y-1 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1835,6 +1841,10 @@ body{
 
 .bg-destructive{
   background-color: hsl(var(--destructive));
+}
+
+.bg-destructive\/10{
+  background-color: hsl(var(--destructive) / 0.1);
 }
 
 .bg-emerald-100{
@@ -2170,6 +2180,10 @@ body{
   text-align: center;
 }
 
+.text-right{
+  text-align: right;
+}
+
 .align-middle{
   vertical-align: middle;
 }
@@ -2199,6 +2213,10 @@ body{
 
 .text-\[10px\]{
   font-size: 10px;
+}
+
+.text-\[9px\]{
+  font-size: 9px;
 }
 
 .text-base{
@@ -2336,6 +2354,11 @@ body{
 .text-gray-600{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+.text-green-600{
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity, 1));
 }
 
 .text-green-700{
@@ -2929,6 +2952,10 @@ body{
 
 .focus\:text-accent-foreground:focus{
   color: hsl(var(--accent-foreground));
+}
+
+.focus\:text-destructive:focus{
+  color: hsl(var(--destructive));
 }
 
 .focus\:text-red-500:focus{
@@ -3812,6 +3839,10 @@ body{
     max-width: 600px;
   }
 
+  .sm\:max-w-md{
+    max-width: 28rem;
+  }
+
   .sm\:max-w-sm{
     max-width: 24rem;
   }
@@ -3887,6 +3918,10 @@ body{
 
   .md\:flex{
     display: flex;
+  }
+
+  .md\:table-cell{
+    display: table-cell;
   }
 
   .md\:hidden{

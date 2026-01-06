@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { Plus, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import {
@@ -19,8 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
+import { UserTable } from './components/UserTable'
 
 export default function UsersPage() {
   const { state, actions } = useStore()
@@ -32,6 +30,7 @@ export default function UsersPage() {
     email: '',
     role: 'USER' as const,
     companyId: currentUser?.companyId || '',
+    jobTitle: '',
   })
 
   const isMaster = currentUser?.role === 'MASTER'
@@ -55,8 +54,16 @@ export default function UsersPage() {
         ...newUser,
         role: newUser.role,
         avatarUrl: `https://img.usecurling.com/ppl/medium?gender=male`, // Randomize later
+        permissions: [],
       })
       setIsOpen(false)
+      setNewUser({
+        name: '',
+        email: '',
+        role: 'USER',
+        companyId: currentUser?.companyId || '',
+        jobTitle: '',
+      })
     }
   }
 
@@ -101,6 +108,17 @@ export default function UsersPage() {
                     setNewUser({ ...newUser, email: e.target.value })
                   }
                   required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="jobTitle">Job Title</Label>
+                <Input
+                  id="jobTitle"
+                  value={newUser.jobTitle}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, jobTitle: e.target.value })
+                  }
+                  placeholder="e.g. Developer"
                 />
               </div>
               <div className="space-y-2">
@@ -161,47 +179,11 @@ export default function UsersPage() {
         />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {filteredUsers.map((user) => (
-          <Card key={user.id} className="overflow-hidden">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage src={user.avatarUrl} />
-                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <h3 className="font-semibold">{user.name}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {user.email}
-                    </p>
-                  </div>
-                </div>
-                <Badge
-                  variant={
-                    user.role === 'MASTER'
-                      ? 'default'
-                      : user.role === 'ADMIN'
-                        ? 'secondary'
-                        : 'outline'
-                  }
-                >
-                  {user.role}
-                </Badge>
-              </div>
-              {isMaster && user.companyId && (
-                <div className="mt-4 pt-4 border-t text-xs text-muted-foreground">
-                  Company:{' '}
-                  <span className="font-medium text-foreground">
-                    {companies.find((c) => c.id === user.companyId)?.name}
-                  </span>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <UserTable
+        users={filteredUsers}
+        companies={companies}
+        isMaster={isMaster}
+      />
     </div>
   )
 }

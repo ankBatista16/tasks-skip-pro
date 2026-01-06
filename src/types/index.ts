@@ -1,4 +1,5 @@
 export type Role = 'MASTER' | 'ADMIN' | 'USER'
+export type UserStatus = 'active' | 'suspended'
 
 export interface User {
   id: string
@@ -8,6 +9,9 @@ export interface User {
   companyId?: string
   avatarUrl?: string
   password?: string // In a real app this would be hashed
+  status: UserStatus
+  jobTitle?: string
+  permissions: string[]
 }
 
 export interface Company {

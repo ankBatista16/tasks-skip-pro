@@ -341,7 +341,8 @@ export default function ProjectDetailsPage() {
                       <SelectContent>
                         {project.members.map((mid) => {
                           const m = users.find((u) => u.id === mid)
-                          return m ? (
+                          // Only show active members for assignment
+                          return m && m.status === 'active' ? (
                             <SelectItem key={m.id} value={m.id}>
                               {m.name}
                             </SelectItem>

@@ -44,6 +44,7 @@ interface StoreActions {
   deleteCompany: (id: string) => void
   addUser: (user: Omit<User, 'id'>) => void
   updateUser: (id: string, data: Partial<User>) => void
+  deleteUser: (id: string) => void
   addProject: (project: Omit<Project, 'id'>) => void
   updateProject: (id: string, data: Partial<Project>) => void
   addTask: (task: Omit<Task, 'id'>) => void
@@ -79,14 +80,26 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     const storedUser = localStorage.getItem('currentUser')
     if (storedUser) {
       const user = users.find((u) => u.id === storedUser)
-      if (user) setCurrentUser(user)
+      if (user) {
+        if (user.status === 'suspended') {
+          toast.error('Account suspended. Access denied.')
+          localStorage.removeItem('currentUser')
+          setCurrentUser(null)
+        } else {
+          setCurrentUser(user)
+        }
+      }
     }
-  }, [])
+  }, [users])
 
   const actions: StoreActions = {
     login: (userId: string) => {
       const user = users.find((u) => u.id === userId)
       if (user) {
+        if (user.status === 'suspended') {
+          toast.error('Account suspended. Please contact administrator.')
+          return
+        }
         setCurrentUser(user)
         localStorage.setItem('currentUser', userId)
         toast.success(`Welcome back, ${user.name}`)
@@ -124,13 +137,28 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       toast.success('Company deleted successfully')
     },
     addUser: (data) => {
-      const newUser = { ...data, id: crypto.randomUUID() }
+      const newUser: User = {
+        ...data,
+        id: crypto.randomUUID(),
+        status: data.status || 'active',
+        permissions: data.permissions || [],
+        jobTitle: data.jobTitle || 'Member',
+      }
       setUsers([...users, newUser])
       toast.success('User invite sent')
     },
     updateUser: (id, data) => {
       setUsers(users.map((u) => (u.id === id ? { ...u, ...data } : u)))
       toast.success('User updated')
+    },
+    deleteUser: (id) => {
+      if (currentUser?.id === id) {
+        toast.error('Cannot delete yourself')
+        return
+      }
+      setUsers(users.filter((u) => u.id !== id))
+      // Also remove from projects tasks etc would be ideal but simpler for now
+      toast.success('User deleted successfully')
     },
     addProject: (data) => {
       const newProject = { ...data, id: crypto.randomUUID() }

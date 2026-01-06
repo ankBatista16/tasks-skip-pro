@@ -15,6 +15,9 @@ export const mockUsers: User[] = [
     email: 'master@saas.com',
     role: 'MASTER',
     avatarUrl: 'https://img.usecurling.com/ppl/medium?gender=male&seed=1',
+    status: 'active',
+    jobTitle: 'System Master',
+    permissions: ['all'],
   },
   {
     id: 'u2',
@@ -23,6 +26,9 @@ export const mockUsers: User[] = [
     role: 'ADMIN',
     companyId: 'c1',
     avatarUrl: 'https://img.usecurling.com/ppl/medium?gender=female&seed=2',
+    status: 'active',
+    jobTitle: 'CTO',
+    permissions: ['manage_users', 'create_project'],
   },
   {
     id: 'u3',
@@ -31,6 +37,9 @@ export const mockUsers: User[] = [
     role: 'USER',
     companyId: 'c1',
     avatarUrl: 'https://img.usecurling.com/ppl/medium?gender=male&seed=3',
+    status: 'active',
+    jobTitle: 'Senior Developer',
+    permissions: [],
   },
   {
     id: 'u4',
@@ -39,6 +48,9 @@ export const mockUsers: User[] = [
     role: 'ADMIN',
     companyId: 'c2',
     avatarUrl: 'https://img.usecurling.com/ppl/medium?gender=female&seed=4',
+    status: 'active',
+    jobTitle: 'Creative Director',
+    permissions: ['manage_users'],
   },
 ]
 

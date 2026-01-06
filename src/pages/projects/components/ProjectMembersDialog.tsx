@@ -18,7 +18,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
-import { X, Plus, Shield } from 'lucide-react'
+import { X, Plus, Shield, Ban } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 interface ProjectMembersDialogProps {
   project: Project
@@ -35,12 +36,13 @@ export function ProjectMembersDialog({
   const { users, currentUser } = state
   const [selectedUserId, setSelectedUserId] = useState<string>('')
 
-  // Users in the same company who are not yet members
+  // Users in the same company who are not yet members and are active
   const availableUsers = users.filter(
     (u) =>
       u.companyId === project.companyId &&
       !project.members.includes(u.id) &&
-      u.id !== project.leaderId,
+      u.id !== project.leaderId &&
+      u.status === 'active',
   )
 
   const handleAddMember = () => {
@@ -81,7 +83,7 @@ export function ProjectMembersDialog({
                   ))}
                   {availableUsers.length === 0 && (
                     <div className="p-2 text-sm text-muted-foreground text-center">
-                      No available users
+                      No active users available
                     </div>
                   )}
                 </SelectContent>
@@ -100,7 +102,7 @@ export function ProjectMembersDialog({
                   const member = users.find((u) => u.id === memberId)
                   if (!member) return null
                   const isLeader = member.id === project.leaderId
-                  const isMe = member.id === currentUser?.id
+                  const isSuspended = member.status === 'suspended'
 
                   return (
                     <div
@@ -119,8 +121,16 @@ export function ProjectMembersDialog({
                               <Shield className="h-3 w-3 text-primary" />
                             )}
                           </span>
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
                             {member.email}
+                            {isSuspended && (
+                              <Badge
+                                variant="destructive"
+                                className="h-4 px-1 text-[9px]"
+                              >
+                                Suspended
+                              </Badge>
+                            )}
                           </span>
                         </div>
                       </div>

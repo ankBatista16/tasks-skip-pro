@@ -48,6 +48,9 @@ export default function CompaniesPage() {
     return c.id === currentUser?.companyId
   })
 
+  // Only active users can be company admins
+  const activeUsers = users.filter((u) => u.status === 'active')
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (newCompany.name) {
@@ -114,7 +117,7 @@ export default function CompaniesPage() {
                         <SelectValue placeholder="Select a user" />
                       </SelectTrigger>
                       <SelectContent>
-                        {users.map((u) => (
+                        {activeUsers.map((u) => (
                           <SelectItem key={u.id} value={u.id}>
                             {u.name} ({u.email})
                           </SelectItem>
