@@ -410,6 +410,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
           console.error('Create user error:', error)
           const msg = error.message || ''
 
+          // Parse context-specific errors
           if (
             msg.includes('401') ||
             msg.toLowerCase().includes('unauthorized')
@@ -421,17 +422,21 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
           ) {
             toast.error('You do not have permission to perform this action.')
           } else {
-            // Check for custom error message in response
+            // Check for custom error message in response body
+            // invoke helper typically wraps response error in 'context' for non-2xx
             try {
               if (
                 typeof error === 'object' &&
                 error !== null &&
-                'error' in error
+                'context' in error
               ) {
-                toast.error((error as any).error)
-              } else {
-                toast.error('Failed to create user: ' + msg)
+                const body = await (error as any).context.json()
+                if (body && body.error) {
+                  toast.error(body.error)
+                  return false
+                }
               }
+              toast.error('Failed to create user: ' + msg)
             } catch {
               toast.error('Failed to create user')
             }

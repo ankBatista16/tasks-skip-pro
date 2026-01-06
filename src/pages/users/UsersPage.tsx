@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStore } from '@/context/StoreContext'
 import { Button } from '@/components/ui/button'
 import { Plus, Search, Loader2 } from 'lucide-react'
@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/select'
 import { UserTable } from './components/UserTable'
 import { toast } from 'sonner'
-import { cn } from '@/lib/utils'
+import { Role } from '@/types'
 
 export default function UsersPage() {
   const { state, actions } = useStore()
@@ -35,10 +35,20 @@ export default function UsersPage() {
     name: '',
     email: '',
     password: '',
-    role: 'USER' as const,
-    companyId: currentUser?.companyId || '',
+    role: 'USER' as Role,
+    companyId: '',
     jobTitle: '',
   })
+
+  // Initialize company ID when user is loaded
+  useEffect(() => {
+    if (currentUser && !newUser.companyId) {
+      setNewUser((prev) => ({
+        ...prev,
+        companyId: currentUser.companyId || '',
+      }))
+    }
+  }, [currentUser])
 
   const isMaster = currentUser?.role === 'MASTER'
 
@@ -185,7 +195,7 @@ export default function UsersPage() {
                 <Label>Role</Label>
                 <Select
                   value={newUser.role}
-                  onValueChange={(val: any) =>
+                  onValueChange={(val: Role) =>
                     setNewUser({ ...newUser, role: val })
                   }
                 >
