@@ -394,22 +394,26 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
         const token = session.access_token
 
-        const { error } = await supabase.functions.invoke('create-user', {
-          body: {
-            email: data.email,
-            password: data.password,
-            fullName: data.name,
-            role: data.role,
-            companyId: data.companyId,
-            jobTitle: data.jobTitle,
-            permissions: data.permissions || [],
-            status: data.status,
+        // Using create-user-with-member as per user requirement to verify edge function integration
+        const { error } = await supabase.functions.invoke(
+          'create-user-with-member',
+          {
+            body: {
+              email: data.email,
+              password: data.password,
+              fullName: data.name,
+              role: data.role,
+              companyId: data.companyId,
+              jobTitle: data.jobTitle,
+              permissions: data.permissions || [],
+              status: data.status,
+            },
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
           },
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        })
+        )
 
         if (error) {
           console.error('Create user error:', error)
