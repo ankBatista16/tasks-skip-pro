@@ -181,18 +181,23 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true)
     try {
       // 1. Fetch Current User Profile
+      // With recursion fixed, this should reliably return the user's profile
       const { data: profile, error: profileError } = await supabase
         .from('members')
         .select('*')
         .eq('id', userId)
         .single()
 
-      if (profileError) throw profileError
+      if (profileError) {
+        // If profile not found but auth exists, it's a critical sync issue
+        console.error('Profile fetch error:', profileError)
+        throw profileError
+      }
 
       const mappedUser = mapUser(profile)
       setCurrentUser(mappedUser)
 
-      // 2. Fetch All Data (RLS will filter)
+      // 2. Fetch All Data (RLS will filter based on user role/company)
       const [
         { data: usersData },
         { data: companiesData },
